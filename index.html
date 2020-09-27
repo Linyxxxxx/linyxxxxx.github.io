@@ -1,18 +1,18 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.1.1" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.1.1" type="image/png" sizes="32x32"><meta name="description" content="自娱自乐罢了...">
 <meta property="og:type" content="website">
-<meta property="og:title" content="yx&#39;s home">
+<meta property="og:title" content="Linyx&#39;s Home">
 <meta property="og:url" content="https://linyxxxxx.github.io/index.html">
-<meta property="og:site_name" content="yx&#39;s home">
+<meta property="og:site_name" content="Linyx&#39;s Home">
 <meta property="og:description" content="自娱自乐罢了...">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Linyx">
-<meta name="twitter:card" content="summary"><title>yx's home</title><link ref="canonical" href="https://linyxxxxx.github.io/index.html"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.1.1"><script>var Stun = window.Stun || {};
+<meta name="twitter:card" content="summary"><title>Linyx's Home</title><link ref="canonical" href="https://linyxxxxx.github.io/index.html"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.1.1"><script>var Stun = window.Stun || {};
 var CONFIG = {
   root: '/',
   algolia: undefined,
   fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
   sidebar: {"offsetTop":"20px","tocMaxDepth":6},
-  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  header: {"enable":true,"showOnPost":false,"scrollDownIcon":true},
   postWidget: {"endText":true},
   nightMode: {"enable":true},
   back2top: {"enable":true},
@@ -29,120 +29,14 @@ var CONFIG = {
   sourcePath: {"js":"js","css":"css","images":"images"},
 };
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">yx's home</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/09/27/%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F/">第一个程序</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-09-27</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2020-09-27</span></span></div></header><div class="post-body"><div class="post-excerpt">
-        <h1 id="C-实验笔记-1-第一个程序：二叉树的层序遍历">
-          <a href="#C-实验笔记-1-第一个程序：二叉树的层序遍历" class="heading-link"><i class="fas fa-link"></i></a>[C#实验笔记] #1 第一个程序：二叉树的层序遍历</h1>
-      <blockquote>
-<p>C# 是一个现代的、通用的、面向对象的编程语言，它是由微软（Microsoft）开发的，由 Ecma 和 ISO 核准认可的。</p>
-<p>C# 是由 Anders Hejlsberg 和他的团队在 .Net 框架开发期间开发的。</p>
-<p>C# 是专为公共语言基础结构（CLI）设计的。CLI 由可执行代码和运行时环境组成，允许在不同的计算机平台和体系结构上使用各种高级语言。</p>
-</blockquote>
-
-        <h2 id="配置开发环境">
-          <a href="#配置开发环境" class="heading-link"><i class="fas fa-link"></i></a>配置开发环境</h2>
-      <p>在C#的学习过程中，我们一般使用Visual Studio或者VS Code来编写，前者体积较大，但功能较为完善，配置也较容易；后者虽然轻量，但配置环境对于初学者来说较为困难。所以笔者在此使用了Visual Studio来进行编写。</p>
-
-        <h4 id="下载VS">
-          <a href="#下载VS" class="heading-link"><i class="fas fa-link"></i></a>下载VS</h4>
-      <p>首先前往<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://visualstudio.microsoft.com/zh-hans/">VS官网</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>进行下载。</p>
-<img src="/Source/VS.png" style="zoom:35%;">
-
-<p>然后下载完安装包后进行安装，一路点NEXT就好了。</p>
-
-        <h4 id="新建项目">
-          <a href="#新建项目" class="heading-link"><i class="fas fa-link"></i></a>新建项目</h4>
-      <p>由于这次只是编写一个简单的二叉树，所以我们只要创建控制台应用就足够了。</p>
-<img src="/Source/CreateNew.png" style="zoom:50%;">
-
-<p>接着进入下一步，输入程序名称，选择存放目录，之后点击“创建”，就可以开始编写我们的第一个程序了。</p>
-
-        <h2 id="第一个程序">
-          <a href="#第一个程序" class="heading-link"><i class="fas fa-link"></i></a>第一个程序</h2>
-      <p>作为刚刚接触C#的我们，自然要从一个较为简单的程序开始入手。这里笔者<del>选择</del>抽到了实验2.4：</p>
-<blockquote>
-<p>2.4 用C#构造一棵二叉树，并从根开始，按层的顺序，从右到左，从上到下，依次进行访问。</p>
-</blockquote>
-<p>既然如此，我们就先来了解一下二叉树是什么。</p>
-
-        <h3 id="二叉树">
-          <a href="#二叉树" class="heading-link"><i class="fas fa-link"></i></a>二叉树</h3>
-      <p>二叉树，顾名思义就是一颗拥有二叉的树。从根节点开始，每个节点都分为左右两个子节点，在每个节点处可以存储数据。当然，子节点并不是必需的，可以仅拥有一个子节点，甚至可以没有子节点。</p>
-<p><img src="/Source/%E4%BA%8C%E5%8F%89%E6%A0%91.png" alt="一棵简单的二叉树"></p>
-
-        <h3 id="层序遍历">
-          <a href="#层序遍历" class="heading-link"><i class="fas fa-link"></i></a>层序遍历</h3>
-      <p>层序遍历，顾名思义：就是按层的顺序进行遍历，从上到下按每层的顺序分别从左到右遍历。例如图中的这棵树，层序遍历的结果就是：</p>
-<blockquote>
-<p>F -&gt; C -&gt; E -&gt; A -&gt; D -&gt; H -&gt; G -&gt; B -&gt; M</p>
-</blockquote>
-<p>很显然，我们要实现的算法与层序遍历类似。</p>
-
-        <h3 id="算法实现">
-          <a href="#算法实现" class="heading-link"><i class="fas fa-link"></i></a>算法实现</h3>
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Linyx's Home</div><div class="header-banner-info__subtitle"></div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><div class="sticky-top" data-popover="置顶文章" data-popover-pos="up"><span class="sticky-top__icon"><i class="fas fa-thumbtack"></i></span></div><h1 class="post-title"><a class="post-title__link" href="/2020/09/27/%E5%BA%8F/">序</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-09-27</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2020-09-27</span></span></div></header><div class="post-body"><div class="post-excerpt"><h1 id="序">
+          <a href="#序" class="heading-link"><i class="fas fa-link"></i></a>序</h1>
       
-        <h4 id="创建一棵树">
-          <a href="#创建一棵树" class="heading-link"><i class="fas fa-link"></i></a>创建一棵树</h4>
-      <figure class="highlight c#"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Tree</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> <span class="keyword">value</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> Tree left = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">public</span> Tree right = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
-
-<p>这就是一个最基础的节点，很简单，就三行代码。第一行储存节点的数据，第二三行分别储存了另外两个节点，默认都为null。</p>
-
-        <h3 id="给这棵树赋值">
-          <a href="#给这棵树赋值" class="heading-link"><i class="fas fa-link"></i></a>给这棵树赋值</h3>
-      <figure class="highlight c#"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">CreateTree</span>(<span class="params">Tree tree</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    tree.<span class="keyword">value</span> = <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    tree.left = <span class="keyword">new</span> Tree</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">value</span> = <span class="string">&quot;left1&quot;</span>,</span><br><span class="line">					left = <span class="keyword">new</span> Tree</span><br><span class="line">					&#123;</span><br><span class="line">						<span class="keyword">value</span> = <span class="string">&quot;left2&quot;</span>,</span><br><span class="line">					&#125;,</span><br><span class="line">					...</span><br><span class="line">				&#125;;</span><br><span class="line">   ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
-
-<p>赋完值后的这棵树长这样：</p>
-<img src="/Source/赋值后的树.png" alt="赋完值后的树" style="zoom:30%;">
-
-<p>此时，我们就可以对它进行遍历输出了。</p>
-
-        <h3 id="队列">
-          <a href="#队列" class="heading-link"><i class="fas fa-link"></i></a>队列</h3>
-      <p>在进行遍历算法之前，我们要先了解一下队列：</p>
-<blockquote>
-<p>队列（Queue）代表了一个<strong>先进先出</strong>的对象集合。当您需要对各项进行先进先出的访问时，则使用队列。当您在列表中添加一项，称为<strong>入队</strong>，当您从列表中移除一项时，称为<strong>出队</strong>。</p>
-</blockquote>
-<p>层序遍历需要依靠队列来实现。</p>
-
-        <h3 id="遍历">
-          <a href="#遍历" class="heading-link"><i class="fas fa-link"></i></a>遍历</h3>
-      <figure class="highlight c#"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">RevLevelOrder</span>(<span class="params">Tree tree</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">var</span> queue = <span class="keyword">new</span> System.Collections.Generic.Queue&lt;Tree&gt;();</span><br><span class="line">    queue.Enqueue(tree); <span class="comment">//根节点入队</span></span><br><span class="line">	<span class="keyword">while</span> (queue.Count!=<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> item = queue.Dequeue(); <span class="comment">//出队</span></span><br><span class="line">        Console.Write(item.<span class="keyword">value</span> + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (item.right != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            queue.Enqueue(item.right); <span class="comment">//下一层的右节点入队</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (item.left != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            queue.Enqueue(item.left); <span class="comment">//下一层的左节点入队</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
-
-<p>遍历算法的实现应该不难理解，主要利用了队列<strong>先进先出</strong>的特性，每层按从右到左的顺序依次入队，先入队的右节点先出队，出队后再将其子节点按同样的顺序入队，这样等该层处理完，就能按安排好的顺序处理下一行的节点数据。直到队列为空。</p>
-<p>代码的输出结果如下：</p>
-<blockquote>
-<p>root right1 left1 right2 left3 left2 right5 right3 left4 right4</p>
-</blockquote>
-<p>显然，符合我们的预期结果，说明算法被正确地实现了。</p>
-
-        <h2 id="结">
-          <a href="#结" class="heading-link"><i class="fas fa-link"></i></a>结</h2>
-      <p>对于第一次接触C#的我们，二叉树的层序遍历算是较为简单的算法，适合作为第一次上手的练手程序。当然，这次实验用到的都只是C#的基础语法，并未涉及到其深层特性。C#是一门十分优秀的语言，值得后续不断地深入。</p>
-</div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/09/27/hello-world/">Hello World</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-09-27</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2020-09-27</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>Welcome to <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>! This is your very first post. Check <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> for more info. If you get any problems when using Hexo, you can find the answer in <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> or you can ask me on <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>.</p>
-
-        <h2 id="Quick-Start">
-          <a href="#Quick-Start" class="heading-link"><i class="fas fa-link"></i></a>Quick Start</h2>
-      
-        <h3 id="Create-a-new-post">
-          <a href="#Create-a-new-post" class="heading-link"><i class="fas fa-link"></i></a>Create a new post</h3>
-      <figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></div></figure>
-
-<p>More info: <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
-
-        <h3 id="Run-server">
-          <a href="#Run-server" class="heading-link"><i class="fas fa-link"></i></a>Run server</h3>
-      <figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></div></figure>
-
-<p>More info: <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
-
-        <h3 id="Generate-static-files">
-          <a href="#Generate-static-files" class="heading-link"><i class="fas fa-link"></i></a>Generate static files</h3>
-      <figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></div></figure>
-
-<p>More info: <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
-
-        <h3 id="Deploy-to-remote-sites">
-          <a href="#Deploy-to-remote-sites" class="heading-link"><i class="fas fa-link"></i></a>Deploy to remote sites</h3>
-      <figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></div></figure>
-
-<p>More info: <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
-</div></div></article></section><nav class="paginator"><div class="paginator-inner"><span class="page-number current">1</span></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/avatar.png" alt="avatar"></div><p class="sidebar-ov-author__text">言多必失.</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://https://github.com/Linyxxxxx/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://weibo.com/5239240464/" target="_blank" rel="noopener" data-popover="微博" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-weibo"></i></span></a><a class="sidebar-ov-social-item" href="https://www.zhihu.com/people/lin-30-65/" target="_blank" rel="noopener" data-popover="知乎" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">知</span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">2</div><div class="sidebar-ov-state-item__name">归档</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2020</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Linyx</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.2.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.1.1</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.1.1"></script><script src="/js/stun-boot.js?v=2.1.1"></script><script src="/js/scroll.js?v=2.1.1"></script><script src="/js/header.js?v=2.1.1"></script><script src="/js/sidebar.js?v=2.1.1"></script></body></html>
+        <h2 id="我是谁">
+          <a href="#我是谁" class="heading-link"><i class="fas fa-link"></i></a>我是谁</h2>
+      <p>我。</p>
+<p>诞生于世纪之交的一个巨婴。</p></div><div class="post-readmore"><a class="post-readmore__link" href="/2020/09/27/%E5%BA%8F/"><span class="post-readmore__text">阅读全文</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2020/09/27/C-%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0-1/">C#实验笔记_#1</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-09-27</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2020-09-27</span></span></div></header><div class="post-body"><div class="post-excerpt"><h1 id="第一个程序：二叉树的层序遍历">
+          <a href="#第一个程序：二叉树的层序遍历" class="heading-link"><i class="fas fa-link"></i></a>第一个程序：二叉树的层序遍历</h1>
+      <p>我本对分享毫无兴趣，也从未有过编写教程的想法。</p>
+<p>然而这个学期的C#课程的教授要求我以教程的形式撰写实验报告。不出所料，写完后总有许多同学欲向我借去””借鉴”。那么多人，一个个发属实有些繁琐，索性丢到 自己的个人站上让大家自由借阅。</p>
+<p>于是就有了这一系列笔记。随便写写，从心所欲，谨慎阅读。</p></div><div class="post-readmore"><a class="post-readmore__link" href="/2020/09/27/C-%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0-1/"><span class="post-readmore__text">阅读全文</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article></section><nav class="paginator"><div class="paginator-inner"><span class="page-number current">1</span></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/avatar.png" alt="avatar"></div><p class="sidebar-ov-author__text">言多必失.</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://https://github.com/Linyxxxxx/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://weibo.com/5239240464/" target="_blank" rel="noopener" data-popover="微博" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-weibo"></i></span></a><a class="sidebar-ov-social-item" href="https://www.zhihu.com/people/lin-30-65/" target="_blank" rel="noopener" data-popover="知乎" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">知</span></a><a class="sidebar-ov-social-item" href="https://steamcommunity.com/profiles/76561198147249500/" target="_blank" rel="noopener" data-popover="Steam" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-steam"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">2</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">1</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">1</div><div class="sidebar-ov-state-item__name">标签</div></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2020</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Linyx All Rights Reserved</span></div><div>唯有孤独永恒。</div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.1.1"></script><script src="/js/stun-boot.js?v=2.1.1"></script><script src="/js/scroll.js?v=2.1.1"></script><script src="/js/header.js?v=2.1.1"></script><script src="/js/sidebar.js?v=2.1.1"></script></body></html>
