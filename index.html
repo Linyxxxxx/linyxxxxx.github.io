@@ -45,14 +45,14 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
         <h4 id="下载VS">
           <a href="#下载VS" class="heading-link"><i class="fas fa-link"></i></a>下载VS</h4>
       <p>首先前往<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://visualstudio.microsoft.com/zh-hans/">VS官网</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>进行下载。</p>
-<img src="/.io//VS.png" style="zoom:35%;">
+<img src="/Source/VS.png" style="zoom:35%;">
 
 <p>然后下载完安装包后进行安装，一路点NEXT就好了。</p>
 
         <h4 id="新建项目">
           <a href="#新建项目" class="heading-link"><i class="fas fa-link"></i></a>新建项目</h4>
       <p>由于这次只是编写一个简单的二叉树，所以我们只要创建控制台应用就足够了。</p>
-<img src="/.io//CreateNew.png" style="zoom:50%;">
+<img src="/Source/CreateNew.png" style="zoom:50%;">
 
 <p>接着进入下一步，输入程序名称，选择存放目录，之后点击“创建”，就可以开始编写我们的第一个程序了。</p>
 
@@ -67,7 +67,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
         <h3 id="二叉树">
           <a href="#二叉树" class="heading-link"><i class="fas fa-link"></i></a>二叉树</h3>
       <p>二叉树，顾名思义就是一颗拥有二叉的树。从根节点开始，每个节点都分为左右两个子节点，在每个节点处可以存储数据。当然，子节点并不是必需的，可以仅拥有一个子节点，甚至可以没有子节点。</p>
-<p><img src="/.io//%E4%BA%8C%E5%8F%89%E6%A0%91.png" alt="一棵简单的二叉树"></p>
+<p><img src="/Source/%E4%BA%8C%E5%8F%89%E6%A0%91.png" alt="一棵简单的二叉树"></p>
 
         <h3 id="层序遍历">
           <a href="#层序遍历" class="heading-link"><i class="fas fa-link"></i></a>层序遍历</h3>
@@ -91,7 +91,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
       <figure class="highlight c#"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">CreateTree</span>(<span class="params">Tree tree</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    tree.<span class="keyword">value</span> = <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    tree.left = <span class="keyword">new</span> Tree</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="keyword">value</span> = <span class="string">&quot;left1&quot;</span>,</span><br><span class="line">					left = <span class="keyword">new</span> Tree</span><br><span class="line">					&#123;</span><br><span class="line">						<span class="keyword">value</span> = <span class="string">&quot;left2&quot;</span>,</span><br><span class="line">					&#125;,</span><br><span class="line">					...</span><br><span class="line">				&#125;;</span><br><span class="line">   ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
 
 <p>赋完值后的这棵树长这样：</p>
-<img src="/.io//赋值后的树.png" alt="赋完值后的树" style="zoom:30%;">
+<img src="/Source/赋值后的树.png" alt="赋完值后的树" style="zoom:30%;">
 
 <p>此时，我们就可以对它进行遍历输出了。</p>
 
