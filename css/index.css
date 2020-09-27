@@ -1042,6 +1042,7 @@ kbd {
   opacity: 1;
   -ms-filter: none;
   filter: none;
+  border-radius: 50%;
 }
 .sidebar-ov-author__avatar:hover .sidebar-ov-author__avatar_img {
   -webkit-animation: avatar-turn 0.8s both ease-out;
