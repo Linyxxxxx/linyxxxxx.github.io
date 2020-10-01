@@ -9,7 +9,7 @@
 <meta property="og:image" content="https://linyxxxxx.github.io/2020/09/30/lets-create-a-blog-2/hexo2.png">
 <meta property="og:image" content="https://linyxxxxx.github.io/2020/09/30/lets-create-a-blog-2/hexo3.png">
 <meta property="article:published_time" content="2020-09-30T04:13:55.000Z">
-<meta property="article:modified_time" content="2020-10-01T02:55:44.514Z">
+<meta property="article:modified_time" content="2020-10-01T04:26:17.476Z">
 <meta property="article:author" content="Linyx">
 <meta property="article:tag" content="计算机">
 <meta name="twitter:card" content="summary">
@@ -60,8 +60,12 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
       
         <h3 id="基础">
           <a href="#基础" class="heading-link"><i class="fas fa-link"></i></a>基础</h3>
-      <p>这时我们再回到<strong>cmd</strong>，同样地，cd到博客的目录。输入命令：</p>
-<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post &quot;文章名字&quot;</span><br></pre></td></tr></table></div></figure>
+      <p>我们首先打开博客文件夹，找到<strong>_config.yml</strong>，双击打开，然后找到：</p>
+<figure class="highlight yaml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">false</span></span><br></pre></td></tr></table></div></figure>
+
+<p>这行，<strong>将false改为true</strong>，这一行的含义是在创建文章时同时创建一个<strong>资源文件夹</strong>，我们如果要在文章中加入图片就需要这一个文件夹。</p>
+<p>这时我们再回到<strong>cmd</strong>，同样地，cd到博客的目录。输入命令：</p>
+<figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post <span class="string">&quot;文章名字&quot;</span></span><br></pre></td></tr></table></div></figure>
 
 <img src="/2020/09/30/lets-create-a-blog-2/hexo1.png" class title="新建文章">
 
@@ -74,7 +78,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <p>(PS. 不要忘了在冒号后加上一个空格喔~)</p>
 <p>写完文章之后，保存，退出。</p>
 <p>进入cmd，输入命令：</p>
-<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></div></figure>
 
 <p>在发布的过程中，可能会要求你输入GitHub的id与密码，正常输入就行了。需要注意的是，在输入密码的时候可能<strong>不会显示在屏幕上</strong>，不要慌张，这不是你卡了，而是对你密码的保护，顺便考验一下你的盲打能力。</p>
 <p>然后耐心等待，过一会再打开你的网站，会发现文章已经出现在了网站首页。</p>
@@ -87,6 +91,13 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <p>显示在网页中是这样的：</p>
 <img src="/2020/09/30/lets-create-a-blog-2/hexo2.png" class title="文章缩略">
 
+
+        <h3 id="插入图片">
+          <a href="#插入图片" class="heading-link"><i class="fas fa-link"></i></a>插入图片</h3>
+      <p>插入图片其实十分简单，只要把图片放入文章对应的资源文件夹中，然后在文章中要添加图片的位置写入：</p>
+<figure class="highlight markdown"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset<span class="emphasis">_img 图片名 描述 %&#125;</span></span><br><span class="line"><span class="emphasis">如： &#123;% asset_</span>img image<span class="emphasis">_name.jpg This is an image %&#125;</span></span><br></pre></td></tr></table></div></figure>
+
+<p>就可以了。</p>
 
         <h3 id="分类">
           <a href="#分类" class="heading-link"><i class="fas fa-link"></i></a>分类</h3>
@@ -105,47 +116,47 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 
         <h3 id="init">
           <a href="#init" class="heading-link"><i class="fas fa-link"></i></a>init</h3>
-      <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init [文件夹]</span><br></pre></td></tr></table></div></figure>
+      <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init [文件夹]</span><br></pre></td></tr></table></div></figure>
 
 <p>在[文件夹]处初始化网站。</p>
 
         <h3 id="new">
           <a href="#new" class="heading-link"><i class="fas fa-link"></i></a>new</h3>
-      <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] &lt;标题&gt;</span><br></pre></td></tr></table></div></figure>
+      <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new [<span class="type">layout</span>] &lt;标题&gt;</span><br></pre></td></tr></table></div></figure>
 
 <p>新建一个文章/页面，layout处可以选填post、page……，如果填post就是新建一篇文章，page就是新建一个空页面。</p>
 
         <h3 id="generate">
           <a href="#generate" class="heading-link"><i class="fas fa-link"></i></a>generate</h3>
-      <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></div></figure>
+      <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></div></figure>
 
 <p>生成网站的静态文件，也可以简写为：</p>
-<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></div></figure>
 
 
         <h3 id="deploy">
           <a href="#deploy" class="heading-link"><i class="fas fa-link"></i></a>deploy</h3>
-      <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></div></figure>
+      <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></div></figure>
 
 <p>部署网站，也可以简写为：</p>
-<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></div></figure>
 
 <p>以上两个命令，在更新文章前<strong>必不可少</strong>。</p>
 
         <h3 id="clean">
           <a href="#clean" class="heading-link"><i class="fas fa-link"></i></a>clean</h3>
-      <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></div></figure>
+      <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></div></figure>
 
 <p>清除缓存文件与静态文件。用于更换主题之后或提交了内容后发现网站没有更新。也可以简写为：</p>
-<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo cl</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo cl</span><br></pre></td></tr></table></div></figure>
 
 
         <h3 id="server">
           <a href="#server" class="heading-link"><i class="fas fa-link"></i></a>server</h3>
-      <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></div></figure>
+      <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></div></figure>
 
 <p>在本地启动服务器，默认访问网址为<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>。也可以简写为：</p>
-<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></div></figure>
 
 
         <h2 id="结">
@@ -155,7 +166,8 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
           第一篇文章</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Markdown"><span class="toc-number">1.1.</span> <span class="toc-text">
           Markdown</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E6%96%87%E7%AB%A0"><span class="toc-number">1.2.</span> <span class="toc-text">
           编写文章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80"><span class="toc-number">1.2.1.</span> <span class="toc-text">
-          基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.2.</span> <span class="toc-text">
+          基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87"><span class="toc-number">1.2.2.</span> <span class="toc-text">
+          插入图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.3.</span> <span class="toc-text">
           分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">
           附：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#init"><span class="toc-number">1.3.1.</span> <span class="toc-text">
           init</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#new"><span class="toc-number">1.3.2.</span> <span class="toc-text">
