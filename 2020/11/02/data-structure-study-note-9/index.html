@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://linyxxxxx.github.io/2020/11/02/data-structure-study-note-9/tbt1.png">
 <meta property="article:published_time" content="2020-11-02T06:31:11.000Z">
-<meta property="article:modified_time" content="2020-11-02T07:33:22.426Z">
+<meta property="article:modified_time" content="2020-11-02T07:39:05.955Z">
 <meta property="article:author" content="Linyx">
 <meta property="article:tag" content="编程">
 <meta property="article:tag" content="计算机">
@@ -83,7 +83,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <p>对于整棵树而言，我们当然是要从根节点开始进行线索化。在处理完所有结点后，也别忘了<strong>将最后一次的前驱结点的右指针域指向NULL</strong>，保证后续的遍历能够正常退出。</p>
 <figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//线索化</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BinaryTree::enMidThread</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    BTLink pre = <span class="literal">NULL</span>;</span><br><span class="line">    midThread(root, pre); <span class="comment">//从根结点开始线索化</span></span><br><span class="line">    pre-&gt;right = <span class="literal">NULL</span>;    <span class="comment">//处理最后一个结点</span></span><br><span class="line">    pre-&gt;rflag = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
 
-<p>这样一来，线索化二叉树的基本算法都已经构建完成了，我们只需要在构造函数中调用**enMidThread()**函数，就能将一棵普通的二叉树线索化了。</p>
+<p>这样一来，线索化二叉树的基本算法都已经构建完成了，我们只需要在构造函数中调用<strong>enMidThread()</strong> 函数，就能将一棵普通的二叉树线索化了。</p>
 
         <h4 id="中序遍历">
           <a href="#中序遍历" class="heading-link"><i class="fas fa-link"></i></a>中序遍历</h4>
