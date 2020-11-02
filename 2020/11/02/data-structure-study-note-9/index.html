@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://linyxxxxx.github.io/2020/11/02/data-structure-study-note-9/tbt1.png">
 <meta property="article:published_time" content="2020-11-02T06:31:11.000Z">
-<meta property="article:modified_time" content="2020-11-02T07:29:42.991Z">
+<meta property="article:modified_time" content="2020-11-02T07:33:22.426Z">
 <meta property="article:author" content="Linyx">
 <meta property="article:tag" content="编程">
 <meta property="article:tag" content="计算机">
@@ -90,7 +90,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
       <p>有了之前线索化的铺垫，再来进行中序遍历就十分容易了：</p>
 <figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BinaryTree::threadMidOrder</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (BTLink node = firstNode(root); node != <span class="literal">NULL</span>; node = nextNode(node))</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; node-&gt;val &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
 
-<p>这里的<strong>firstNode()**是用来获取当前树按中序遍历的</strong>第一个结点<strong>，即为最左下角的那个结点；而</strong>nextNode()<strong>是用来获取当前结点的</strong>下一个结点<strong>。其实完全不需要做成函数，可以分别展开。这里我用了函数主要是为了体现线索二叉树的特性：将复杂的</strong>树结构<strong>转换成简单的</strong>线性结构**。</p>
+<p>这里的<strong>firstNode()</strong> 是用来获取当前树按中序遍历的<strong>第一个结点</strong>，即为最左下角的那个结点；而<strong>nextNode()</strong> 是用来获取当前结点的<strong>下一个结点</strong>。其实完全不需要做成函数，可以分别展开。这里我用了函数主要是为了体现线索二叉树的特性：将复杂的<strong>树结构</strong>转换成简单的<strong>线性结构</strong>。</p>
 <p>对于上述那两个函数，其实也十分容易理解，看代码就可以明白，就不多赘述：</p>
 <figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BTLink <span class="title">firstNode</span><span class="params">(BTLink tree)</span> <span class="comment">//返回该树按中序遍历的第一个结点</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (tree-&gt;lflag == <span class="number">0</span>)</span><br><span class="line">        tree = tree-&gt;left;</span><br><span class="line">    <span class="keyword">return</span> tree;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">BTLink <span class="title">nextNode</span><span class="params">(BTLink node)</span> <span class="comment">//返回该结点的下一个结点</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> node-&gt;rflag == <span class="number">0</span> ? firstNode(node-&gt;right) : node-&gt;right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
 
