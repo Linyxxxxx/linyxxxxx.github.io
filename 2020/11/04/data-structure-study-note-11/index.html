@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.1.1" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.1.1" type="image/png" sizes="32x32"><meta name="description" content="已知a和b是亲戚， b和c是亲戚，b和d也是亲戚。那c和d是不是亲戚呢…… 要解决这种问题，看起来不是那么地容易。 没事，这次我们来聊一聊并查集，学完之后这种问题就能迎刃而解！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法学习笔记#2.4:树的应用—并查集">
+<meta property="og:url" content="https://linyxxxxx.github.io/2020/11/04/data-structure-study-note-11/index.html">
+<meta property="og:site_name" content="Linyx&#39;s Home">
+<meta property="og:description" content="已知a和b是亲戚， b和c是亲戚，b和d也是亲戚。那c和d是不是亲戚呢…… 要解决这种问题，看起来不是那么地容易。 没事，这次我们来聊一聊并查集，学完之后这种问题就能迎刃而解！">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://linyxxxxx.github.io/2020/11/04/data-structure-study-note-11/ufs1.png">
+<meta property="og:image" content="https://linyxxxxx.github.io/2020/11/04/data-structure-study-note-11/ufs2.png">
+<meta property="og:image" content="https://linyxxxxx.github.io/2020/11/04/data-structure-study-note-11/ufs3.png">
+<meta property="article:published_time" content="2020-11-04T06:51:32.000Z">
+<meta property="article:modified_time" content="2020-11-04T09:17:33.525Z">
+<meta property="article:author" content="Linyx">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="计算机">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://linyxxxxx.github.io/2020/11/04/data-structure-study-note-11/ufs1.png"><title>数据结构与算法学习笔记#2.4:树的应用—并查集 | Linyx's Home</title><link ref="canonical" href="https://linyxxxxx.github.io/2020/11/04/data-structure-study-note-11/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.1.1"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":false,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"carbon","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-bookmark"></i></span><span class="header-nav-menu-item__text">文章</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/friends/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-friends"></i></span><span class="header-nav-menu-item__text">朋友</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/me/"><span class="header-nav-menu-item__icon"><i class="fas fa-heart"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/comments/"><span class="header-nav-menu-item__icon"><i class="fas fa-comments"></i></span><span class="header-nav-menu-item__text">留言</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">数据结构与算法学习笔记#2.4:树的应用—并查集</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-11-04</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2020-11-04</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p>已知a和b是亲戚， b和c是亲戚，b和d也是亲戚。那c和d是不是亲戚呢……</p>
+<p>要解决这种问题，看起来不是那么地容易。</p>
+<p>没事，这次我们来聊一聊并查集，学完之后这种问题就能迎刃而解！</p>
+<a id="more"></a>
+
+<p>在介绍并查集之前，我要先介绍一种树的表示方法——树的双亲表示法。</p>
+
+        <h2 id="双亲表示法">
+          <a href="#双亲表示法" class="heading-link"><i class="fas fa-link"></i></a>双亲表示法</h2>
+      <p>双亲表示法，实际上就是利用了树的<strong>每个结点只有一个父结点</strong>的特性来表示树。为了不引起歧义，我更喜欢称之为父亲表示法。</p>
+<p>比如对于这样一棵二叉树：</p>
+<img src="/2020/11/04/data-structure-study-note-11/ufs1.png" class>
+
+<p>我们可以将其转化成链式结构，数组中的每一位代表一个结点，而其数据则代表其父结点的序号：</p>
+<img src="/2020/11/04/data-structure-study-note-11/ufs2.png" class>
+
+<p>比如对于结点5，在数组tree中，tree[5]=2，则说明其父结点为2号结点。</p>
+<p>用这种表示方式，很容易找到某个结点的父结点；然而缺点也很显然，如果要找结点的子结点，则需要遍历整个数组。</p>
+
+        <h2 id="并查集">
+          <a href="#并查集" class="heading-link"><i class="fas fa-link"></i></a>并查集</h2>
+      <p>回到我们开头讲的那个问题，要判断两个人是不是亲戚，直接判断或许难度较高，但我们可以将他们的亲戚关系建立一棵树，在判断的时候只需要判断他们是否拥有同一个根结点即可，这样就大大简化了问题的难度。</p>
+<p>我们建立起来的这种用双亲表示法表示的树形结构，由于只需实现合并与查找的功能，所以被称为<strong>并查集(union-find sets)</strong> 。</p>
+
+        <h3 id="代码实现">
+          <a href="#代码实现" class="heading-link"><i class="fas fa-link"></i></a>代码实现</h3>
+      
+        <h4 id="初始化">
+          <a href="#初始化" class="heading-link"><i class="fas fa-link"></i></a>初始化</h4>
+      <p>在初始化并查集的时候，我们需要根据所需的元素个数n创建一个父结点数组，且由于其互相之间还没有关系，所以其父结点都指向自己。</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">father</span><span class="params">(n)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        father[i] = i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="查找">
+          <a href="#查找" class="heading-link"><i class="fas fa-link"></i></a>查找</h4>
+      <p>查找的功能是找到某一个结点所在树的根结点（祖先），这便需要我们递归查找：</p>
+<ul>
+<li>如果该结点的父结点是自身，则说明已经找到。</li>
+<li>否则对其父结点继续递归查找。</li>
+</ul>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> father[x] == x ? x : find(father[x]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="合并">
+          <a href="#合并" class="heading-link"><i class="fas fa-link"></i></a>合并</h4>
+      <p>合并的作用说白了就是建立两个结点之间的关系，可以直接将一个结点的父结点设为另一个，也可以分别找到它们的祖先，然后建立父子关系，我这里选择了后者。</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    father[find(x)] = find(y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="查找优化">
+          <a href="#查找优化" class="heading-link"><i class="fas fa-link"></i></a>查找优化</h3>
+      <p>之前学二叉树的时候已经知道，对于深度很深的树，递归查找的效率是非常低的，我们上文写的并查集也如此。作为一个本为了高效率而存在的数据结构，自然不允许出现效率这么低的情况。</p>
+<p>于是，我们可以采用<strong>路径压缩</strong>的方法，在每次查找时将该结点的父结点设为根结点，这样一来，在下一次查找的时候就可以大大减少需要递归的次数，从而实现效率的提高。</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> father[x] == x ? x : (father[x] = find(father[x]));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="合并优化">
+          <a href="#合并优化" class="heading-link"><i class="fas fa-link"></i></a>合并优化</h3>
+      <p>看一下这两棵树，如果要将它们合并，是要将0的父结点设为9还是将9的父结点设为0呢？</p>
+<img src="/2020/11/04/data-structure-study-note-11/ufs3.png" class>
+
+<p>很显然，将9的父结点设为0较为合理，因为如果是将0的父结点设为9，那会使整棵树的深度增加，从而降低查找效率。</p>
+<p>因此我们可以额外引入一个数组来记录每一个结点的深度，从而决定要如何合并。</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">father</span><span class="params">(n)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">depth</span><span class="params">(n)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        father[i] = i;</span><br><span class="line">        depth[i] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+<p>在初始化时先引入深度数组，并将其全部置为1。</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> rx = find(x), ry = find(y);</span><br><span class="line">    depth[rx] &lt;= depth[ry] ? father[x] = y : father[y] = x; <span class="comment">//将深度较大的结点设为深度较小的结点的父结点</span></span><br><span class="line">    <span class="keyword">if</span> (depth[rx] == depth[ry] &amp;&amp; rx != ry)                 <span class="comment">//深度相同但根不同:说明合并后深度要+1</span></span><br><span class="line">        depth[ry]++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="结">
+          <a href="#结" class="heading-link"><i class="fas fa-link"></i></a>结</h2>
+      <p>容易发现，由于进行了查找优化，depth数组中储存的并不是真正的深度，而仅仅是起到参考的作用，但这并不会影响最终的结果。</p>
+<p>并查集是一种十分优美的数据结构，在接下来图的学习中也会用到。在这里就作为一个铺垫，作为树结构的结尾，也翻开图结构的新一页。</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://linyxxxxx.github.io">Linyx</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://linyxxxxx.github.io/2020/11/04/data-structure-study-note-11/">https://linyxxxxx.github.io/2020/11/04/data-structure-study-note-11/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://linyxxxxx.github.io/tags/%E7%BC%96%E7%A8%8B/">编程</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://linyxxxxx.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2020/11/04/data-structure-study-note-10/"><span class="paginator-prev__text">数据结构与算法学习笔记#2.3:Huffman树</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E4%BA%B2%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">
+          双亲表示法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B6%E6%9F%A5%E9%9B%86"><span class="toc-number">2.</span> <span class="toc-text">
+          并查集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.1.</span> <span class="toc-text">
+          代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">2.1.1.</span> <span class="toc-text">
+          初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE"><span class="toc-number">2.1.2.</span> <span class="toc-text">
+          查找</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%88%E5%B9%B6"><span class="toc-number">2.1.3.</span> <span class="toc-text">
+          合并</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E4%BC%98%E5%8C%96"><span class="toc-number">2.2.</span> <span class="toc-text">
+          查找优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E4%BC%98%E5%8C%96"><span class="toc-number">2.3.</span> <span class="toc-text">
+          合并优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">
+          结</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/avatar.png" alt="avatar"></div><p class="sidebar-ov-author__text">言多必失.</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://https://github.com/Linyxxxxx/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://weibo.com/5239240464/" target="_blank" rel="noopener" data-popover="微博" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-weibo"></i></span></a><a class="sidebar-ov-social-item" href="https://www.zhihu.com/people/lin-30-65/" target="_blank" rel="noopener" data-popover="知乎" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">知</span></a><a class="sidebar-ov-social-item" href="https://steamcommunity.com/profiles/76561198147249500/" target="_blank" rel="noopener" data-popover="Steam" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-steam"></i></span></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2020</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Linyx All Rights Reserved</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div><div>唯有孤独永恒。</div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1.0.1/dist/canvas-nest.min.js" color="255,182,185" opacity="0.6" count="99" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.1.1"></script><script src="/js/stun-boot.js?v=2.1.1"></script><script src="/js/scroll.js?v=2.1.1"></script><script src="/js/header.js?v=2.1.1"></script><script src="/js/sidebar.js?v=2.1.1"></script></body></html>
