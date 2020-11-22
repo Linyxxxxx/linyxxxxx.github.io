@@ -1,0 +1,188 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.1.1" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.1.1" type="image/png" sizes="32x32"><meta name="description" content="XML是一种用于标记电子文件使其具有结构性的标记语言。这是一篇XML的笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XML学习笔记#1:XML语法">
+<meta property="og:url" content="https://linyxxxxx.github.io/2020/11/22/xml-note-1/index.html">
+<meta property="og:site_name" content="Linyx&#39;s Home">
+<meta property="og:description" content="XML是一种用于标记电子文件使其具有结构性的标记语言。这是一篇XML的笔记。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-22T02:40:26.000Z">
+<meta property="article:modified_time" content="2020-11-22T03:55:17.200Z">
+<meta property="article:author" content="Linyx">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="计算机">
+<meta name="twitter:card" content="summary"><title>XML学习笔记#1:XML语法 | Linyx's Home</title><link ref="canonical" href="https://linyxxxxx.github.io/2020/11/22/xml-note-1/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.1.1"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":false,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"carbon","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-bookmark"></i></span><span class="header-nav-menu-item__text">文章</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/friends/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-friends"></i></span><span class="header-nav-menu-item__text">朋友</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/me/"><span class="header-nav-menu-item__icon"><i class="fas fa-heart"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/comments/"><span class="header-nav-menu-item__icon"><i class="fas fa-comments"></i></span><span class="header-nav-menu-item__text">留言</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">XML学习笔记#1:XML语法</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-11-22</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2020-11-22</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p>XML是一种用于标记电子文件使其具有结构性的标记语言。这是一篇XML的笔记。</p>
+<a id="more"></a>
+
+
+        <h2 id="概述">
+          <a href="#概述" class="heading-link"><i class="fas fa-link"></i></a>概述</h2>
+      <p>XML(eXtensible Markup Language)是标记语言中的一种，以一种更中立的方式，让用户自行决定要如何理解、呈现从服务端所提供的信息，而着重表示数据以及数据之间的联系。 </p>
+<p>其特点为可扩展性、灵活性、自描述性与简洁性。</p>
+<p>一个完整的XML文档大体分为三个部分：文档数据(XML)、文档结构(DTD/Schema)与文档样式(XSL/CSS)。其结构为树形结构。</p>
+
+        <h2 id="语法">
+          <a href="#语法" class="heading-link"><i class="fas fa-link"></i></a>语法</h2>
+      
+        <h3 id="声明">
+          <a href="#声明" class="heading-link"><i class="fas fa-link"></i></a>声明</h3>
+      <p>位于XML文档的第一行，结构一般为：</p>
+<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span> </span><br></pre></td></tr></table></div></figure>
+
+<p>其基本框架为</p>
+<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml 版本声明 编码声明 独立声明?&gt;</span></span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li><strong>版本声明</strong> ：version属性的取值用于描述当前XML的版本编号，通常情况下为1.0，这是为了将来的新版本能够保持向后的兼容性而设计的。这个属性必须存在，且必须作为第一个属性。</li>
+<li><strong>编码声明</strong> ：encoding属性的取值用于指明当前XML文档中所使用的符号的编码方式。我们一般选用UTF-8编码。</li>
+<li><strong>独立声明</strong> ：standalone属性的取值表明当前XML文件是独立使用、还是与其他的标记文件配套使用。如果该属性为yes，表示在解析当前XML文档时，无需其他的外部标记声明文件。</li>
+</ul>
+
+    <div class="note-plugin info">
+      <span class="note-plugin__icon note-plugin__icon--info">
+              <i class="fas fa-info-circle"></i>
+            </span>
+      <p><strong>注意</strong></p><p>encoding的值与XML文档在文件系统中保存时使用的编码方式没有直接的关系</p>
+    </div>
+  
+
+
+    <div class="note-plugin info">
+      <span class="note-plugin__icon note-plugin__icon--info">
+              <i class="fas fa-info-circle"></i>
+            </span>
+      <figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">?target-name</span> <span class="attr">data</span>?&gt;</span> </span><br></pre></td></tr></table></div></figure><p>的语法形式为<strong>处理指令</strong> ，用于XML文档的转换，后续会接触到更多处理指令。</p>
+    </div>
+  
+
+
+        <h3 id="注释">
+          <a href="#注释" class="heading-link"><i class="fas fa-link"></i></a>注释</h3>
+      <p>注释的基本框架为：</p>
+<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注释内容  --&gt;</span></span><br></pre></td></tr></table></div></figure>
+
+
+    <div class="note-plugin warning">
+      <span class="note-plugin__icon note-plugin__icon--warning">
+              <i class="fas fa-exclamation-circle"></i>
+            </span>
+      <p>由于“- -”为注释中的保留字符，所以在注释内容中<strong>不应该出现双横杠</strong></p>
+    </div>
+  
+
+
+    <div class="note-plugin warning">
+      <span class="note-plugin__icon note-plugin__icon--warning">
+              <i class="fas fa-exclamation-circle"></i>
+            </span>
+      <p>注释一般为<strong>独立出现</strong> ，不应出现在其他元素的标记中，同理，注释也不应该嵌套</p>
+    </div>
+  
+
+
+        <h3 id="元素与属性">
+          <a href="#元素与属性" class="heading-link"><i class="fas fa-link"></i></a>元素与属性</h3>
+      
+        <h4 id="基本框架">
+          <a href="#基本框架" class="heading-link"><i class="fas fa-link"></i></a>基本框架</h4>
+      <p>之所以将其放在一起，是因为它们所起的功能是相似的，其基本框架为：</p>
+<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">元素名</span> 属性名<span class="attr">1</span>=<span class="string">&quot;属性值1&quot;</span> 属性名<span class="attr">2</span>=<span class="string">&quot;属性值2&quot;</span>&gt;</span></span><br><span class="line">    元素内容1</span><br><span class="line">    元素内容2</span><br><span class="line"><span class="tag">&lt;/<span class="name">元素名</span>&gt;</span>                        </span><br></pre></td></tr></table></div></figure>
+
+<p>元素与属性可谓XML中的核心，起到了存储数据的功能。其基本框架与HTML类似：元素分为起始标记&lt;元素名&gt;与中止标记&lt;/元素名&gt;，被这两个标记所包含的即为元素的内容，内容中可以嵌套其他元素。而属性被包含在元素的起始标记当中，基本结构为属性名=”属性值”，用来为元素添加属性。</p>
+<p>元素与属性的使用并没有优劣之分，但一般情况下：考虑到文档的可读性，我们会将简单的标量数据设置为属性，其余一律设置为元素。</p>
+<p>由于不同属性之间不允许有重复的属性名，但不同元素可以，所以要是有多个相同内容，就必须使用元素。也正因为此，属性之间是无序的，而元素之间是有序的。例如：若一本书有多个作者，用元素表示会显得更为优雅：</p>
+<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">book</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">author</span>&gt;</span>Lyx<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">author</span>&gt;</span>linyx<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+<p>而用元素表示，则较为杂乱：</p>
+<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">book</span> <span class="attr">author1</span>=<span class="string">&quot;Lyx&quot;</span> <span class="attr">author2</span>=<span class="string">&quot;linyx&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+
+<p>与HTML一样，XML也支持空元素的表示，一般用于只有属性而没有元素内容的元素。如上面这行代码，可以简化成：</p>
+<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">book</span> <span class="attr">author1</span>=<span class="string">&quot;Lyx&quot;</span> <span class="attr">author2</span>=<span class="string">&quot;linyx&quot;</span>/&gt;</span></span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="元素中的文本">
+          <a href="#元素中的文本" class="heading-link"><i class="fas fa-link"></i></a>元素中的文本</h4>
+      <p>与HTML相同，在元素的文本中无法清晰地解析一些保留字符，如：</p>
+<figure class="highlight"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;lessthan&gt;1&lt;2&lt;/lessthan&gt; </span><br></pre></td></tr></table></div></figure>
+
+<p>中的“&lt;”就难以被XML所解析，无法判断到底是字符还是结束标记。所以需要我们用其他字符来代替这些保留字符。XML1.0规范中定义了五种预定义实体：</p>
+<div class="table-container"><table>
+<thead>
+<tr>
+<th>字符</th>
+<th>预定义实体</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&lt;</td>
+<td>&amp;lt;</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>&amp;gt;</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>&amp;amp;</td>
+</tr>
+<tr>
+<td>‘</td>
+<td>&amp;apos;</td>
+</tr>
+<tr>
+<td>“</td>
+<td>&amp;quot;</td>
+</tr>
+</tbody></table></div>
+<p>如上述例子将“&lt;”用“&amp;lt;”替代后就能成功被解析：</p>
+<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">lessthan</span>&gt;</span>1<span class="symbol">&amp;lt;</span>2<span class="tag">&lt;/<span class="name">lessthan</span>&gt;</span> </span><br></pre></td></tr></table></div></figure>
+
+<p>（这里无法成功被转换成“&lt;”是我博客解析的问题，写入XML是会正常转换的）</p>
+<p>当然，如果觉得这些预定义实体符太难记，也可以用暴力点的方法：CDATA段。可以将整段文本放入CDATA段中：</p>
+<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;![CDATA[文本内容]]&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p>这样一来其中的字符就不会被保留字符所影响，可以直接解析。但需要注意的是，其中的文本内容也不能包含“]]&gt;”的字符串，否则也是会解析错误。同理，CDATA段不应嵌套。</p>
+
+        <h3 id="命名空间">
+          <a href="#命名空间" class="heading-link"><i class="fas fa-link"></i></a>命名空间</h3>
+      <p>和许多编程语言相同，XML也支持命名空间。其基本声明方式为：<strong>xmlns:空间名=”URL”</strong> ，声明部分应该作为属性存在于某个元素中。这样听起来可能有些抽象，我们来举个例子：</p>
+<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ns:company</span> <span class="attr">xmlns:ns</span>=<span class="string">&quot;http://www.myns.com&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ns:company-info</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ns:name</span>&gt;</span>SoftwareBG<span class="tag">&lt;/<span class="name">ns:name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ns:fdate</span>&gt;</span>2007-03-17<span class="tag">&lt;/<span class="name">ns:fdate</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ns:company-info</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ns:company</span>&gt;</span> </span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+<p>这里就是从网络上引用了命名空间，并设置其名字为ns，然后应用于该元素极其子元素中。与其他语言一样，命名空间存在其作用域，比如这里的ns就只能在</p>
+<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ns:company</span> <span class="attr">xmlns:ns</span>=<span class="string">&quot;http://www.myns.com&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">ns:company</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+
+<p>中被使用，超出了这个作用域就无法使用。</p>
+<p>与其他语言相同，命名空间的名字可以被缺省，简化了命名空间的使用，同时对作用域中的所有元素强制应用：</p>
+<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">company</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.myns.com&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">company-info</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>SoftwareBG<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">fdate</span>&gt;</span>2007-03-17<span class="tag">&lt;/<span class="name">fdate</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">company-info</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">company</span>&gt;</span> </span><br></pre></td></tr></table></div></figure>
+
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://linyxxxxx.github.io">Linyx</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://linyxxxxx.github.io/2020/11/22/xml-note-1/">https://linyxxxxx.github.io/2020/11/22/xml-note-1/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://linyxxxxx.github.io/tags/%E7%BC%96%E7%A8%8B/">编程</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://linyxxxxx.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2020/11/20/csharp-homework-3/"><span class="paginator-prev__text">C#实验笔记#3:反射</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">
+          概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">
+          语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E"><span class="toc-number">2.1.</span> <span class="toc-text">
+          声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">2.2.</span> <span class="toc-text">
+          注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E4%B8%8E%E5%B1%9E%E6%80%A7"><span class="toc-number">2.3.</span> <span class="toc-text">
+          元素与属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6"><span class="toc-number">2.3.1.</span> <span class="toc-text">
+          基本框架</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E4%B8%AD%E7%9A%84%E6%96%87%E6%9C%AC"><span class="toc-number">2.3.2.</span> <span class="toc-text">
+          元素中的文本</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4"><span class="toc-number">2.4.</span> <span class="toc-text">
+          命名空间</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/avatar.png" alt="avatar"></div><p class="sidebar-ov-author__text">言多必失.</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/Linyxxxxx/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://weibo.com/5239240464/" target="_blank" rel="noopener" data-popover="微博" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-weibo"></i></span></a><a class="sidebar-ov-social-item" href="https://www.zhihu.com/people/lin-30-65/" target="_blank" rel="noopener" data-popover="知乎" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">知</span></a><a class="sidebar-ov-social-item" href="https://steamcommunity.com/profiles/76561198147249500/" target="_blank" rel="noopener" data-popover="Steam" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-steam"></i></span></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2020</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Linyx All Rights Reserved</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div><div>唯有孤独永恒。</div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1.0.1/dist/canvas-nest.min.js" color="255,182,185" opacity="0.6" count="99" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.1.1"></script><script src="/js/stun-boot.js?v=2.1.1"></script><script src="/js/scroll.js?v=2.1.1"></script><script src="/js/header.js?v=2.1.1"></script><script src="/js/sidebar.js?v=2.1.1"></script></body></html>
