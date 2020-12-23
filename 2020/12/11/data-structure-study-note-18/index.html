@@ -36,44 +36,51 @@ var CONFIG = {
 window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-bookmark"></i></span><span class="header-nav-menu-item__text">文章</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/friends/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-friends"></i></span><span class="header-nav-menu-item__text">朋友</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/me/"><span class="header-nav-menu-item__icon"><i class="fas fa-heart"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/comments/"><span class="header-nav-menu-item__icon"><i class="fas fa-comments"></i></span><span class="header-nav-menu-item__text">留言</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">数据结构算法笔记#4.2:哈希表</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-12-11</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2020-12-11</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p>这次来聊一聊哈希表(Hash Table)。哈希表本身不难理解，所以我就做点简单的介绍。</p>
 <a id="more"></a>
 
-
         <h2 id="哈希表">
           <a href="#哈希表" class="heading-link"><i class="fas fa-link"></i></a>哈希表</h2>
-      <p>哈希表是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做哈希表。</p>
+      
+<p>哈希表是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。这个映射函数叫做散列函数，存放记录的数组叫做哈希表。</p>
 <p>看这些概念或许有点凌乱，但我们举个例子就能很快明白了：假设有一组数据 <code>15, 24, 16, 32, 40</code> 要进行存储，此时我们就可以开放一个数组 <code>int HashTable[7]</code> ，并设计哈希函数 <code>index = key % 10</code> ，就容易算出 <code>index(15) = 5</code> ，<code>index(24) = 4</code> ，<code>index(16) = 6</code> ，<code>index(32) = 2</code> ，<code>index(40) = 0</code> ，并按照这些角标进行存储，得到 <code>HashTable = [40, 0, 32, 0, 24, 15, 16]</code> 。</p>
 <p>接下来我来介绍两个比较典型的哈希函数构造方法。</p>
 
         <h2 id="哈希函数">
           <a href="#哈希函数" class="heading-link"><i class="fas fa-link"></i></a>哈希函数</h2>
       
+
         <h3 id="直接定址法">
           <a href="#直接定址法" class="heading-link"><i class="fas fa-link"></i></a>直接定址法</h3>
-      <p>直接定址法的哈希函数为 <code>index = key * a + b</code> ，其中a与b都是自由取的变量。一般用于 <strong>地址数组长度&gt;=key值个数</strong> 的情况。</p>
+      
+<p>直接定址法的哈希函数为 <code>index = key * a + b</code> ，其中a与b都是自由取的变量。一般用于 <strong>地址数组长度&gt;=key值个数</strong> 的情况。</p>
 
         <h3 id="除留取余法">
           <a href="#除留取余法" class="heading-link"><i class="fas fa-link"></i></a>除留取余法</h3>
-      <p>除留取余法的哈希函数为 <code>index = key % p</code> ，其中p为自由取的变量。上方例子用的就是除留取余法，只不过p值取的不太恰当，导致容易出现 <strong>冲突</strong> 的情况（如20与30），所以一般情况下，p的取值为 <strong>素数或不含20以下素因子的合数</strong> 。</p>
+      
+<p>除留取余法的哈希函数为 <code>index = key % p</code> ，其中p为自由取的变量。上方例子用的就是除留取余法，只不过p值取的不太恰当，导致容易出现 <strong>冲突</strong> 的情况（如20与30），所以一般情况下，p的取值为 <strong>素数或不含20以下素因子的合数</strong> 。</p>
 <p>但不论取的哈希函数有多么恰当，难免还是会出现冲突，那么我再来介绍一下几种处理冲突的方法。</p>
 
         <h2 id="冲突处理">
           <a href="#冲突处理" class="heading-link"><i class="fas fa-link"></i></a>冲突处理</h2>
       
+
         <h3 id="开放定址法">
           <a href="#开放定址法" class="heading-link"><i class="fas fa-link"></i></a>开放定址法</h3>
-      <p>所谓开放定址法，便是对哈希函数做略微修改，使其按规律不断地计算地址，直到找到一个空余的地址，此时的哈希函数可以写作 <code>index = (key + di) % p = key % p + di % p</code> ，di即为第i次计算时的增量，一般情况下有两种取法：</p>
+      
+<p>所谓开放定址法，便是对哈希函数做略微修改，使其按规律不断地计算地址，直到找到一个空余的地址，此时的哈希函数可以写作 <code>index = (key + di) % p = key % p + di % p</code> ，di即为第i次计算时的增量，一般情况下有两种取法：</p>
 <ol>
 <li>线性探测再散列： <code>di = c * i</code> ，其中c为常数</li>
 <li>二次探测再散列： <code>di = 1², -1², 2², -2² ...</code></li>
 </ol>
-<p>举个例子，假如我们要将 <code>16, 22, 29</code> 三个数存进 <code>int HashTable[3]</code> 当中，并取哈希函数为 <code>index = (key + di) % 3, di = 2*i</code>，首先存入16，得到 <code>HashTable = [0, 16, 0]</code> ，其次存入22，计算 (22+0)%3=1 ，但 <code>HashTable[1]</code> 已经被 16 所占据，我们便要进行第一次开放定址，此时 <code>di = 2 * 1 = 2</code> ，计算得 <code> index = (22+2)%3 = 0</code> ，发现 <code>HashTable[0]</code> 为空，便将22存入，接着将29存入，得到 <code>HashTable = [22, 16, 29]</code> 。</p>
+<p>举个例子，假如我们要将 <code>16, 22, 29</code> 三个数存进 <code>int HashTable[3]</code> 当中，并取哈希函数为 <code>index = (key + di) % 3, di = 2*i</code>，首先存入16，得到 <code>HashTable = [0, 16, 0]</code> ，其次存入22，计算 (22+0)%3=1 ，但 <code>HashTable[1]</code> 已经被 16 所占据，我们便要进行第一次开放定址，此时 <code>di = 2 * 1 = 2</code> ，计算得 <code>index = (22+2)%3 = 0</code> ，发现 <code>HashTable[0]</code> 为空，便将22存入，接着将29存入，得到 <code>HashTable = [22, 16, 29]</code> 。</p>
 
         <h3 id="链地址法">
           <a href="#链地址法" class="heading-link"><i class="fas fa-link"></i></a>链地址法</h3>
-      <p>既然冲突的本质是当前位置已被占据，那我们直接让一个位置可以存储多个值不就解决这个问题了么？既然如此，便可以创建一个指针数组，数组中的每个元素为一条链表的头结点，有冲突的元素便记录在所对应头结点所延展出的链表中。</p>
+      
+<p>既然冲突的本质是当前位置已被占据，那我们直接让一个位置可以存储多个值不就解决这个问题了么？既然如此，便可以创建一个指针数组，数组中的每个元素为一条链表的头结点，有冲突的元素便记录在所对应头结点所延展出的链表中。</p>
 
         <h2 id="性能分析">
           <a href="#性能分析" class="heading-link"><i class="fas fa-link"></i></a>性能分析</h2>
-      <p>从以上那么多冲突可以看出来，哈希表的平均查找长度(ASL)肯定不会为 1，但由于哈希表的开放性，平均查找长度并不能很好的估算，需要结合实际取值手动计算。</p>
+      
+<p>从以上那么多冲突可以看出来，哈希表的平均查找长度(ASL)肯定不会为 1，但由于哈希表的开放性，平均查找长度并不能很好的估算，需要结合实际取值手动计算。</p>
 <p>但一般来说，ASL的值是 <strong>α</strong> 的函数，其中 α 为 <strong>装填因子</strong> ，定义为 <code>表中实际填入的数据数 / 表长</code> 。比如线性探测再散列法的平均查找长度 <code>ASL=0.5 * (1 + 1 / (1 - α))</code> 。</p>
 </div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://linyxxxxx.github.io">Linyx</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://linyxxxxx.github.io/2020/12/11/data-structure-study-note-18/">https://linyxxxxx.github.io/2020/12/11/data-structure-study-note-18/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://linyxxxxx.github.io/tags/%E7%BC%96%E7%A8%8B/">编程</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://linyxxxxx.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/12/15/data-structure-study-note-19/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">数据结构算法笔记#5.1:排序(1)</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2020/12/08/data-structure-study-note-17/"><span class="paginator-prev__text">数据结构算法笔记#4.1:二叉排序树</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text">
           哈希表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">

@@ -41,78 +41,76 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <p>要解决这种问题，看起来不是那么的容易。</p>
 <p>没事，这次我们来聊一聊并查集，学完之后这种问题就能迎刃而解！</p>
 <a id="more"></a>
-
 <p>在介绍并查集之前，我要先介绍一种树的表示方法——树的双亲表示法。</p>
 
         <h2 id="双亲表示法">
           <a href="#双亲表示法" class="heading-link"><i class="fas fa-link"></i></a>双亲表示法</h2>
-      <p>双亲表示法，实际上就是利用了树的<strong>每个结点只有一个父结点</strong>的特性来表示树。为了不引起歧义，我更喜欢称之为父亲表示法。</p>
+      
+<p>双亲表示法，实际上就是利用了树的<strong>每个结点只有一个父结点</strong>的特性来表示树。为了不引起歧义，我更喜欢称之为父亲表示法。</p>
 <p>比如对于这样一棵二叉树：</p>
 <img src="/2020/11/04/data-structure-study-note-11/ufs1.png" class>
-
 <p>我们可以将其转化成线性结构，数组中的每一位代表一个结点，而其数据则代表其父结点的序号：</p>
 <img src="/2020/11/04/data-structure-study-note-11/ufs2.png" class>
-
 <p>比如对于结点5，在数组tree中，tree[5]=2，则说明其父结点为2号结点。</p>
 <p>用这种表示方式，很容易找到某个结点的父结点；然而缺点也很显然，如果要找结点的子结点，则需要遍历整个数组。</p>
 
         <h2 id="并查集">
           <a href="#并查集" class="heading-link"><i class="fas fa-link"></i></a>并查集</h2>
-      <p>回到我们开头讲的那个问题，要判断两个人是不是亲戚，直接判断或许难度较高，但我们可以将他们的亲戚关系建立一棵树，在判断的时候只需要判断他们是否拥有同一个根结点即可，这样就大大简化了问题的难度。</p>
+      
+<p>回到我们开头讲的那个问题，要判断两个人是不是亲戚，直接判断或许难度较高，但我们可以将他们的亲戚关系建立一棵树，在判断的时候只需要判断他们是否拥有同一个根结点即可，这样就大大简化了问题的难度。</p>
 <p>我们建立起来的这种用双亲表示法表示的树形结构，由于只需实现合并与查找的功能，所以被称为<strong>并查集(union-find sets)</strong> 。</p>
 
         <h3 id="代码实现">
           <a href="#代码实现" class="heading-link"><i class="fas fa-link"></i></a>代码实现</h3>
       
+
         <h4 id="初始化">
           <a href="#初始化" class="heading-link"><i class="fas fa-link"></i></a>初始化</h4>
-      <p>在初始化并查集的时候，我们需要根据所需的元素个数n创建一个父结点数组，且由于其互相之间还没有关系，所以其父结点都指向自己。</p>
+      
+<p>在初始化并查集的时候，我们需要根据所需的元素个数n创建一个父结点数组，且由于其互相之间还没有关系，所以其父结点都指向自己。</p>
 <figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">father</span><span class="params">(n)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        father[i] = i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
-
 
         <h4 id="查找">
           <a href="#查找" class="heading-link"><i class="fas fa-link"></i></a>查找</h4>
-      <p>查找的功能是找到某一个结点所在树的根结点（祖先），这便需要我们递归查找：</p>
+      
+<p>查找的功能是找到某一个结点所在树的根结点（祖先），这便需要我们递归查找：</p>
 <ul>
 <li>如果该结点的父结点是自身，则说明已经找到。</li>
 <li>否则对其父结点继续递归查找。</li>
 </ul>
 <figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> father[x] == x ? x : find(father[x]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
 
-
         <h4 id="合并">
           <a href="#合并" class="heading-link"><i class="fas fa-link"></i></a>合并</h4>
-      <p>合并的作用说白了就是建立两个结点之间的关系，可以直接将一个结点的父结点设为另一个，也可以分别找到它们的祖先，然后建立父子关系，我这里选择了后者。</p>
+      
+<p>合并的作用说白了就是建立两个结点之间的关系，可以直接将一个结点的父结点设为另一个，也可以分别找到它们的祖先，然后建立父子关系，我这里选择了后者。</p>
 <figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    father[find(x)] = find(y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
-
 
         <h3 id="查找优化">
           <a href="#查找优化" class="heading-link"><i class="fas fa-link"></i></a>查找优化</h3>
-      <p>之前学二叉树的时候已经知道，对于深度很深的树，递归查找的效率是非常低的，我们上文写的并查集也如此。作为一个本为了高效率而存在的数据结构，自然不允许出现效率这么低的情况。</p>
+      
+<p>之前学二叉树的时候已经知道，对于深度很深的树，递归查找的效率是非常低的，我们上文写的并查集也如此。作为一个本为了高效率而存在的数据结构，自然不允许出现效率这么低的情况。</p>
 <p>于是，我们可以采用<strong>路径压缩</strong>的方法，在每次查找时将该结点的父结点设为根结点，这样一来，在下一次查找的时候就可以大大减少需要递归的次数，从而实现效率的提高。</p>
 <figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> father[x] == x ? x : (father[x] = find(father[x]));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
 
-
         <h3 id="合并优化">
           <a href="#合并优化" class="heading-link"><i class="fas fa-link"></i></a>合并优化</h3>
-      <p>看一下这两棵树，如果要将它们合并，是要将0的父结点设为9还是将9的父结点设为0呢？</p>
+      
+<p>看一下这两棵树，如果要将它们合并，是要将0的父结点设为9还是将9的父结点设为0呢？</p>
 <img src="/2020/11/04/data-structure-study-note-11/ufs3.png" class>
-
 <p>很显然，将9的父结点设为0较为合理，因为如果是将0的父结点设为9，那会使整棵树的深度增加，从而降低查找效率。</p>
 <p>因此我们可以额外引入一个数组来记录每一个结点的深度，从而决定要如何合并。</p>
 <figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">father</span><span class="params">(n)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">depth</span><span class="params">(n)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        father[i] = i;</span><br><span class="line">        depth[i] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
-
 <p>在初始化时先引入深度数组，并将其全部置为1。</p>
 <figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> rx = find(x), ry = find(y);</span><br><span class="line">    depth[rx] &lt;= depth[ry] ? father[x] = y : father[y] = x; <span class="comment">//将深度较大的结点设为深度较小的结点的父结点</span></span><br><span class="line">    <span class="keyword">if</span> (depth[rx] == depth[ry] &amp;&amp; rx != ry)                 <span class="comment">//深度相同但根不同:说明合并后深度要+1</span></span><br><span class="line">        depth[ry]++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
 
-
         <h2 id="结">
           <a href="#结" class="heading-link"><i class="fas fa-link"></i></a>结</h2>
-      <p>容易发现，由于进行了查找优化，depth数组中储存的并不是真正的深度，而仅仅是起到参考的作用，但这并不会影响最终的结果。</p>
+      
+<p>容易发现，由于进行了查找优化，depth数组中储存的并不是真正的深度，而仅仅是起到参考的作用，但这并不会影响最终的结果。</p>
 <p>并查集是一种十分优美的数据结构，在接下来图的学习中也会用到。在这里就作为一个铺垫，作为树结构的结尾，也翻开图结构的新一页。</p>
 <p>这边顺便给出一段常用形式的板子：</p>
 <figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> fa[<span class="number">200005</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        fa[i] = i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x == fa[x] ? x : (fa[x] = find(fa[x]));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    fa[find(x)] = find(y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
-
 </div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://linyxxxxx.github.io">Linyx</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://linyxxxxx.github.io/2020/11/04/data-structure-study-note-11/">https://linyxxxxx.github.io/2020/11/04/data-structure-study-note-11/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://linyxxxxx.github.io/tags/%E7%BC%96%E7%A8%8B/">编程</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://linyxxxxx.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/11/13/data-structure-study-note-12/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">数据结构算法笔记#3.1:图</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2020/11/04/data-structure-study-note-10/"><span class="paginator-prev__text">数据结构算法笔记#2.4:Huffman树</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E4%BA%B2%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">
           双亲表示法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B6%E6%9F%A5%E9%9B%86"><span class="toc-number">2.</span> <span class="toc-text">
           并查集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.1.</span> <span class="toc-text">

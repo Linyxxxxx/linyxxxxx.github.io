@@ -36,32 +36,31 @@ var CONFIG = {
 window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-bookmark"></i></span><span class="header-nav-menu-item__text">文章</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/friends/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-friends"></i></span><span class="header-nav-menu-item__text">朋友</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/me/"><span class="header-nav-menu-item__icon"><i class="fas fa-heart"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/comments/"><span class="header-nav-menu-item__icon"><i class="fas fa-comments"></i></span><span class="header-nav-menu-item__text">留言</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">XML学习笔记#4:XPath</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-11-28</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2020-11-28</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p>XPath即为XML路径语言(XML Path Language)，这是一篇XPath的笔记。</p>
 <a id="more"></a>
 
-
         <h2 id="概述">
           <a href="#概述" class="heading-link"><i class="fas fa-link"></i></a>概述</h2>
-      <p>XPath的主要功能是<strong>定位</strong>XML文档中的某部分内容，换句话说，就是确定一条路，使得电脑能够顺着这条路找到你想要的节点。</p>
+      
+<p>XPath的主要功能是<strong>定位</strong>XML文档中的某部分内容，换句话说，就是确定一条路，使得电脑能够顺着这条路找到你想要的节点。</p>
 
         <h2 id="语法">
           <a href="#语法" class="heading-link"><i class="fas fa-link"></i></a>语法</h2>
       
+
         <h3 id="节点">
           <a href="#节点" class="heading-link"><i class="fas fa-link"></i></a>节点</h3>
-      <p>节点是XPath中的基本单位，以下几种都属于节点：</p>
+      
+<p>节点是XPath中的基本单位，以下几种都属于节点：</p>
 <figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bookstore</span>&gt;</span> <span class="comment">&lt;!-- 文档节点 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">author</span>&gt;</span>J K. Rowling<span class="tag">&lt;/<span class="name">author</span>&gt;</span> <span class="comment">&lt;!-- 元素节点 --&gt;</span></span><br><span class="line">lang=&quot;en&quot; <span class="comment">&lt;!-- 属性节点 --&gt;</span></span><br></pre></td></tr></table></div></figure>
-
 <p>而节点中的数据被称为<strong>原子值</strong> ，比如上述例子中，J K. Rowling与“en”都属于原子值。</p>
 <p>而节点之间的<strong>关系</strong> 分为父（Parent）、子（Children）、兄弟（Sibling）、先辈（Ancestor）与后代（Descendant）。举个例子，在如下文档中：</p>
 <figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bookstore</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">book</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Harry Potter<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">author</span>&gt;</span>J K. Rowling<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">year</span>&gt;</span>2005<span class="tag">&lt;/<span class="name">year</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">price</span>&gt;</span>29.99<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bookstore</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
-
 <p>&lt;title&gt;的父节点是&lt;book&gt;，而先辈节点是&lt;book&gt;与&lt;bookstore&gt;；&lt;bookstore&gt;的子节点是&lt;book&gt;，而后代节点是&lt;book&gt;、&lt;title&gt;、&lt;author&gt;、&lt;year&gt;以及&lt;price&gt;。</p>
 
         <h3 id="基本语法">
           <a href="#基本语法" class="heading-link"><i class="fas fa-link"></i></a>基本语法</h3>
-      <figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bookstore</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">book</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span> <span class="attr">lang</span>=<span class="string">&quot;eng&quot;</span>&gt;</span>Harry Potter<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">price</span>&gt;</span>29.99<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">book</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span> <span class="attr">lang</span>=<span class="string">&quot;eng&quot;</span>&gt;</span>Learning XML<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">price</span>&gt;</span>39.95<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bookstore</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
-
+      
+<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bookstore</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">book</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span> <span class="attr">lang</span>=<span class="string">&quot;eng&quot;</span>&gt;</span>Harry Potter<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">price</span>&gt;</span>29.99<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">book</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span> <span class="attr">lang</span>=<span class="string">&quot;eng&quot;</span>&gt;</span>Learning XML<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">price</span>&gt;</span>39.95<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bookstore</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
 <p>在以上文档中，假如我们需要匹配所有&lt;title&gt;元素，那就可以使用以下语法：</p>
 <figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bookstore/book/title</span><br></pre></td></tr></table></div></figure>
-
 <p>这就是XPath的最核心语法，是不是一看就懂。当然，在匹配过程中，为了方便地操作，还有一些路径表达式可以选用：</p>
 <div class="table-container"><table>
 <thead>
@@ -71,7 +70,8 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <th>实例</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>nodename</td>
 <td>选取此节点的所有子节点。</td>
 <td>bookstore</td>
@@ -92,16 +92,17 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <td>//title/.</td>
 </tr>
 <tr>
-<td>..</td>
+<td>…</td>
 <td>选取当前节点的父节点。</td>
-<td>//title/..</td>
+<td>//title/…</td>
 </tr>
 <tr>
 <td>@</td>
 <td>选取属性。</td>
 <td>//@lang</td>
 </tr>
-</tbody></table></div>
+</tbody>
+</table></div>
 <p>在匹配过程中，假如我们要匹配到一些未知节点，或是不精确匹配，就可以用<strong>通配符</strong> 来匹配未知节点：</p>
 <div class="table-container"><table>
 <thead>
@@ -111,7 +112,8 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <th>实例</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>*</td>
 <td>匹配任何元素节点。</td>
 <td>/bookstore/*</td>
@@ -126,14 +128,15 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <td>匹配任何类型的节点。</td>
 <td>//book/node()</td>
 </tr>
-</tbody></table></div>
+</tbody>
+</table></div>
 <p>在匹配过程中，如果要选取若干路径，则可以用 “|” 运算符连接：</p>
 <figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//book/title | //book/price</span><br></pre></td></tr></table></div></figure>
 
-
         <h3 id="谓语">
           <a href="#谓语" class="heading-link"><i class="fas fa-link"></i></a>谓语</h3>
-      <p>谓语相当于在匹配的过程中加入一些限定条件，起到过滤地作用。看几个例子就能明白了：</p>
+      
+<p>谓语相当于在匹配的过程中加入一些限定条件，起到过滤地作用。看几个例子就能明白了：</p>
 <div class="table-container"><table>
 <thead>
 <tr>
@@ -141,7 +144,8 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <th>结果</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>/bookstore/book[1]</td>
 <td>选取属于 bookstore 子元素的第一个 book 元素。（注意，是从1开始，而不是从0开始）</td>
 </tr>
@@ -154,7 +158,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <td>选取属于 bookstore 子元素的倒数第二个 book 元素。</td>
 </tr>
 <tr>
-<td>/bookstore/book[position()&lt;3]</td>
+<td>/bookstore/book[position()❤️]</td>
 <td>选取最前面的两个属于 bookstore 元素的子元素的 book 元素。</td>
 </tr>
 <tr>
@@ -162,7 +166,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <td>选取所有拥有名为 lang 的属性的 title 元素。</td>
 </tr>
 <tr>
-<td>//title[@lang=’eng’]</td>
+<td>//title[@lang=‘eng’]</td>
 <td>选取所有 title 元素，且这些元素拥有值为 eng 的 lang 属性。</td>
 </tr>
 <tr>
@@ -173,13 +177,14 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <td>/bookstore/book[price&gt;35.00]//title</td>
 <td>选取 bookstore 元素中的 book 元素的所有 title 元素，且其中的 price 元素的值须大于 35.00。</td>
 </tr>
-</tbody></table></div>
+</tbody>
+</table></div>
 
         <h3 id="轴">
           <a href="#轴" class="heading-link"><i class="fas fa-link"></i></a>轴</h3>
-      <p>如果我们已经确定了一个节点，但要顺着这个节点匹配与它相关的其他值，那就可以通过轴来进行查找。比如我们要匹配bookstore下的所有title节点，但我们不清楚title的具体位置，就可以用如下表达式：</p>
+      
+<p>如果我们已经确定了一个节点，但要顺着这个节点匹配与它相关的其他值，那就可以通过轴来进行查找。比如我们要匹配bookstore下的所有title节点，但我们不清楚title的具体位置，就可以用如下表达式：</p>
 <figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bookstore/descendant::title</span><br></pre></td></tr></table></div></figure>
-
 <p>其中，/descendant::title即是一段轴表达式，表示匹配后代中所有的title元素，轴表达式有以下多种选择：</p>
 <div class="table-container"><table>
 <thead>
@@ -188,7 +193,8 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <th>结果</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>ancestor</td>
 <td>选取当前节点的所有先辈（父、祖父等）。</td>
 </tr>
@@ -240,67 +246,83 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <td>self</td>
 <td>选取当前节点。</td>
 </tr>
-</tbody></table></div>
+</tbody>
+</table></div>
 
         <h3 id="节点测试函数">
           <a href="#节点测试函数" class="heading-link"><i class="fas fa-link"></i></a>节点测试函数</h3>
-      <p>由于函数有很多，所以这里只稍微介绍几个：</p>
+      
+<p>由于函数有很多，所以这里只稍微介绍几个：</p>
 
         <h4 id="comment">
           <a href="#comment" class="heading-link"><i class="fas fa-link"></i></a>comment()</h4>
-      <p>对注释节点返回 True。如<code>following::comment()</code> 可以选择所有出现在上下文节点之后的注释节点。</p>
+      
+<p>对注释节点返回 True。如<code>following::comment()</code> 可以选择所有出现在上下文节点之后的注释节点。</p>
 
         <h4 id="text">
           <a href="#text" class="heading-link"><i class="fas fa-link"></i></a>text()</h4>
-      <p>对文本节点返回 True。如<code>child::text()</code> 选择属于上下文节点子级的文本节点。</p>
+      
+<p>对文本节点返回 True。如<code>child::text()</code> 选择属于上下文节点子级的文本节点。</p>
 
         <h4 id="empty">
           <a href="#empty" class="heading-link"><i class="fas fa-link"></i></a>empty()</h4>
-      <p>如果参数值是空序列则返回 True。如 <code>//book[empty(child::title)]/price</code>选择所有不含title的book的price。</p>
+      
+<p>如果参数值是空序列则返回 True。如 <code>//book[empty(child::title)]/price</code>选择所有不含title的book的price。</p>
 
         <h2 id="类型">
           <a href="#类型" class="heading-link"><i class="fas fa-link"></i></a>类型</h2>
-      <p>XPath是强类型的语言。在查询计划的编写和执行过程中，数据类型扮演着重要的角色。</p>
+      
+<p>XPath是强类型的语言。在查询计划的编写和执行过程中，数据类型扮演着重要的角色。</p>
 
         <h3 id="序列类型">
           <a href="#序列类型" class="heading-link"><i class="fas fa-link"></i></a>序列类型</h3>
-      <p>这里举两个函数：</p>
+      
+<p>这里举两个函数：</p>
 
-        <h4 id="codepoints-to-string-int-arg">
-          <a href="#codepoints-to-string-int-arg" class="heading-link"><i class="fas fa-link"></i></a>codepoints-to-string(int arg[])</h4>
-      <p>该函数将序列中的数值（Unicode代码点）转换为字符串。参数 arg 是一个由0或多个整数值构成的序列，返回值是一个字符串。</p>
+        <h4 id="codepoints-to-stringint-arg">
+          <a href="#codepoints-to-stringint-arg" class="heading-link"><i class="fas fa-link"></i></a>codepoints-to-string(int arg[])</h4>
+      
+<p>该函数将序列中的数值（Unicode代码点）转换为字符串。参数 arg 是一个由0或多个整数值构成的序列，返回值是一个字符串。</p>
 <p>如<code>codepoints-to-string((88, 81, 117, 101, 114, 121))</code> 返回 “XQuery”。</p>
 
-        <h4 id="string-to-codepoints-string-arg">
-          <a href="#string-to-codepoints-string-arg" class="heading-link"><i class="fas fa-link"></i></a>string-to-codepoints(string arg)</h4>
-      <p>该函数将参数中的字符串转换为Unicode代码点。参数 arg 是一个空序列或者一个字符串，返回值是一个由0或多个整数值构成的序列。</p>
+        <h4 id="string-to-codepointsstring-arg">
+          <a href="#string-to-codepointsstring-arg" class="heading-link"><i class="fas fa-link"></i></a>string-to-codepoints(string arg)</h4>
+      
+<p>该函数将参数中的字符串转换为Unicode代码点。参数 arg 是一个空序列或者一个字符串，返回值是一个由0或多个整数值构成的序列。</p>
 <p>如 <code>string-to-codepoints(&quot;XQuery&quot;)</code> 返回 (88, 81, 117, 101, 114, 121) 。</p>
 
         <h3 id="类型转换">
           <a href="#类型转换" class="heading-link"><i class="fas fa-link"></i></a>类型转换</h3>
-      <p>与大多数一样，XPath也支持隐式类型转换与显式类型转换。这边介绍一下几个显式类型转换的相关操作符：</p>
+      
+<p>与大多数一样，XPath也支持隐式类型转换与显式类型转换。这边介绍一下几个显式类型转换的相关操作符：</p>
 
         <h4 id="cast-as">
           <a href="#cast-as" class="heading-link"><i class="fas fa-link"></i></a>cast as</h4>
-      <p>可以使用 cast as 操作符进行显式类型转换。比如，表达式 <code>&quot;123&quot; cast as xs:integer</code> 可以将字符串 123 转换为整型值。 </p>
+      
+<p>可以使用 cast as 操作符进行显式类型转换。比如，表达式 <code>&quot;123&quot; cast as xs:integer</code> 可以将字符串 123 转换为整型值。</p>
 
         <h4 id="castable-as">
           <a href="#castable-as" class="heading-link"><i class="fas fa-link"></i></a>castable as</h4>
-      <p>可以使用 castable as 操作符判断是否能够成功地进行显式类型转换，但并不进行类型转换。返回值为 true 或 false。 </p>
+      
+<p>可以使用 castable as 操作符判断是否能够成功地进行显式类型转换，但并不进行类型转换。返回值为 true 或 false。</p>
 
         <h4 id="instance-of">
           <a href="#instance-of" class="heading-link"><i class="fas fa-link"></i></a>instance of</h4>
-      <p>如果输入数据是目标类型的实例，则返回 true，否则返回 false。</p>
+      
+<p>如果输入数据是目标类型的实例，则返回 true，否则返回 false。</p>
 <ol>
-<li><p>对于简单数据类型：通过限制派生的数据类型的值 <strong>instance of</strong> 原数据类型 ＝ <strong>true</strong></p>
+<li>
+<p>对于简单数据类型：通过限制派生的数据类型的值 <strong>instance of</strong> 原数据类型 ＝ <strong>true</strong></p>
 </li>
-<li><p>对于用户定义的复杂类型：通过扩展派生的数据类型的值 <strong>instance of</strong> 原数据类型 ＝ <strong>true</strong></p>
+<li>
+<p>对于用户定义的复杂类型：通过扩展派生的数据类型的值 <strong>instance of</strong> 原数据类型 ＝ <strong>true</strong></p>
 </li>
 </ol>
 
         <h2 id="结">
           <a href="#结" class="heading-link"><i class="fas fa-link"></i></a>结</h2>
-      <hr>
+      
+<hr>
 </div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://linyxxxxx.github.io">Linyx</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://linyxxxxx.github.io/2020/11/28/xml-note-4/">https://linyxxxxx.github.io/2020/11/28/xml-note-4/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://linyxxxxx.github.io/tags/%E7%BC%96%E7%A8%8B/">编程</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://linyxxxxx.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/11/30/xml-note-5/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">XML学习笔记#5:XSLT</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2020/11/27/data-structure-study-note-15/"><span class="paginator-prev__text">数据结构算法笔记#3.4:最短路径</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">
           概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">
           语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8A%82%E7%82%B9"><span class="toc-number">2.1.</span> <span class="toc-text">
@@ -313,8 +335,8 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
           text()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#empty"><span class="toc-number">2.5.3.</span> <span class="toc-text">
           empty()</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">
           类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">
-          序列类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#codepoints-to-string-int-arg"><span class="toc-number">3.1.1.</span> <span class="toc-text">
-          codepoints-to-string(int arg[])</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#string-to-codepoints-string-arg"><span class="toc-number">3.1.2.</span> <span class="toc-text">
+          序列类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#codepoints-to-stringint-arg"><span class="toc-number">3.1.1.</span> <span class="toc-text">
+          codepoints-to-string(int arg[])</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#string-to-codepointsstring-arg"><span class="toc-number">3.1.2.</span> <span class="toc-text">
           string-to-codepoints(string arg)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">3.2.</span> <span class="toc-text">
           类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cast-as"><span class="toc-number">3.2.1.</span> <span class="toc-text">
           cast as</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#castable-as"><span class="toc-number">3.2.2.</span> <span class="toc-text">

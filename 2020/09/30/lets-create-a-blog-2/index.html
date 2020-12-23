@@ -40,10 +40,10 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <p>我们这次来聊一聊如何上传自己的文章。</p>
 <a id="more"></a>
 
-
-        <h2 id="Markdown">
-          <a href="#Markdown" class="heading-link"><i class="fas fa-link"></i></a>Markdown</h2>
-      <blockquote>
+        <h2 id="markdown">
+          <a href="#markdown" class="heading-link"><i class="fas fa-link"></i></a>Markdown</h2>
+      
+<blockquote>
 <p>Markdown是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。</p>
 <p>由于Markdown的轻量化、易读易写特性，并且对于图片，图表、数学式都有支持，目前许多网站都广泛使用Markdown来撰写帮助文档或是用于论坛上发表消息。</p>
 </blockquote>
@@ -55,116 +55,107 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
         <h2 id="编写文章">
           <a href="#编写文章" class="heading-link"><i class="fas fa-link"></i></a>编写文章</h2>
       
+
         <h3 id="基础">
           <a href="#基础" class="heading-link"><i class="fas fa-link"></i></a>基础</h3>
-      <p>我们首先打开博客文件夹，找到<strong>_config.yml</strong>，双击打开，然后找到：</p>
+      
+<p>我们首先打开博客文件夹，找到**_config.yml**，双击打开，然后找到：</p>
 <figure class="highlight yaml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">false</span></span><br></pre></td></tr></table></div></figure>
-
 <p>这行，<strong>将false改为true</strong>，这一行的含义是在创建文章时同时创建一个<strong>资源文件夹</strong>，我们如果要在文章中加入图片就需要这一个文件夹。</p>
 <p>这时我们再回到<strong>cmd</strong>，同样地，cd到博客的目录。输入命令：</p>
 <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post <span class="string">&quot;文章名字&quot;</span></span><br></pre></td></tr></table></div></figure>
-
 <img src="/2020/09/30/lets-create-a-blog-2/hexo1.png" class title="新建文章">
-
 <p>会看到命令行中提示我们成功创建了文章，我们便顺着路径找到这个md文件。</p>
 <p>用编辑器打开后可以看到顶部的</p>
 <figure class="highlight markdown"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: &#x27;你好,世界!&#x27;</span><br><span class="line">date: 2020-09-30 12:29:13</span><br><span class="line">tags:</span><br></pre></td></tr></table></div></figure>
-
 <p>这部分被称为<strong>Front-matter</strong>，主要用来设置文章中的变量。</p>
 <p>具体内容可以阅读<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/front-matter">官方文档中的Front-matter介绍</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>。</p>
 <p>(PS. 不要忘了在冒号后加上一个空格喔~)</p>
 <p>写完文章之后，保存，退出。</p>
 <p>进入cmd，输入命令：</p>
 <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></div></figure>
-
 <p>在发布的过程中，可能会要求你输入GitHub的id与密码，正常输入就行了。需要注意的是，在输入密码的时候可能<strong>不会显示在屏幕上</strong>，不要慌张，这不是你卡了，而是对你密码的保护，顺便考验一下你的盲打能力。</p>
 <p>然后耐心等待，过一会再打开你的网站，会发现文章已经出现在了网站首页。</p>
 <p>如果你觉得把整篇文章展示在主页太过冗杂，且影响阅读体验，可以试试</p>
 <figure class="highlight markdown"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!--more--&gt;</span></span></span><br></pre></td></tr></table></div></figure>
-
-<p>这个分隔符(所有符号都是英文的，记得别打成中文的喔!)。在它以上的部分会显示在首页，其余部分会被收纳进”阅读更多”中。比如：</p>
+<p>这个分隔符(所有符号都是英文的，记得别打成中文的喔!)。在它以上的部分会显示在首页，其余部分会被收纳进&quot;阅读更多&quot;中。比如：</p>
 <figure class="highlight markdown"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">## 你好，世界！</span></span><br><span class="line"></span><br><span class="line">今天中午吃了一只炸鸡，我很开心。</span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="comment">&lt;!--MORE--&gt;</span></span></span><br><span class="line"></span><br><span class="line">我又饿了。</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-
 <p>显示在网页中是这样的：</p>
 <img src="/2020/09/30/lets-create-a-blog-2/hexo2.png" class title="文章缩略">
 
-
         <h3 id="插入图片">
           <a href="#插入图片" class="heading-link"><i class="fas fa-link"></i></a>插入图片</h3>
-      <p>插入图片其实十分简单，只要把图片放入文章对应的资源文件夹中，然后在文章中要添加图片的位置写入：</p>
+      
+<p>插入图片其实十分简单，只要把图片放入文章对应的资源文件夹中，然后在文章中要添加图片的位置写入：</p>
 <figure class="highlight markdown"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset<span class="emphasis">_img 图片名 描述 %&#125;</span></span><br><span class="line"><span class="emphasis">如： &#123;% asset_</span>img image<span class="emphasis">_name.jpg This is an image %&#125;</span></span><br></pre></td></tr></table></div></figure>
-
 <p>就可以了。</p>
 
         <h3 id="分类">
           <a href="#分类" class="heading-link"><i class="fas fa-link"></i></a>分类</h3>
-      <p>如果要给文章分类或者加标签，我们只需修改<strong>Fron-matter</strong>的部分：</p>
+      
+<p>如果要给文章分类或者加标签，我们只需修改<strong>Fron-matter</strong>的部分：</p>
 <figure class="highlight markdown"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">title: &#x27;你好,世界!&#x27;</span><br><span class="line">date: 2020-09-30 12:29:13</span><br><span class="line">tags: </span><br><span class="line"><span class="bullet">  -</span> 标签1</span><br><span class="line"><span class="bullet">  -</span> 标签2</span><br><span class="line">categories:</span><br><span class="line"><span class="bullet">  -</span> 分类1</span><br><span class="line"><span class="bullet">  -</span> 分类2</span><br><span class="line"><span class="bullet">  -</span> 记住冒号也是中文的，别打错呀！</span><br></pre></td></tr></table></div></figure>
-
-<p>这里注意一下，tags是<strong>无序</strong>的，在列表中的每个tag都会显示在文章中，可以以任意顺序输入。而categories是<strong>有序</strong>的，被写在下面的会被认为是上面的分类的<strong>子类</strong>，比如这里，这篇文章的分类会被视为”分类1→分类2→记住冒号也是中文的，别打错呀！”，可能这样说起来有点抽象，没事，我们可以看图。</p>
+<p>这里注意一下，tags是<strong>无序</strong>的，在列表中的每个tag都会显示在文章中，可以以任意顺序输入。而categories是<strong>有序</strong>的，被写在下面的会被认为是上面的分类的<strong>子类</strong>，比如这里，这篇文章的分类会被视为&quot;分类1→分类2→记住冒号也是中文的，别打错呀！&quot;，可能这样说起来有点抽象，没事，我们可以看图。</p>
 <img src="/2020/09/30/lets-create-a-blog-2/hexo3.png" class title="标签与分类">
-
 <p>有了这些知识储备，你应该知道如何正确地编写自己的文章了。</p>
 
-        <h2 id="附：">
-          <a href="#附：" class="heading-link"><i class="fas fa-link"></i></a>附：</h2>
-      <p>其实在之前的操作过程中，我们已经接触过了hexo的大部分指令，或许你还是一头雾水，记不住各个指令的确切含义，没关系，我在这里<strong>简略</strong>地介绍几个常见的指令。</p>
+        <h2 id="附">
+          <a href="#附" class="heading-link"><i class="fas fa-link"></i></a>附：</h2>
+      
+<p>其实在之前的操作过程中，我们已经接触过了hexo的大部分指令，或许你还是一头雾水，记不住各个指令的确切含义，没关系，我在这里<strong>简略</strong>地介绍几个常见的指令。</p>
 <p>你也可以前往<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/commands">Hexo的官方文档</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>自行查阅<strong>具体内容</strong>。</p>
 
         <h3 id="init">
           <a href="#init" class="heading-link"><i class="fas fa-link"></i></a>init</h3>
-      <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init [文件夹]</span><br></pre></td></tr></table></div></figure>
-
+      
+<figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init [文件夹]</span><br></pre></td></tr></table></div></figure>
 <p>在[文件夹]处初始化网站。</p>
 
         <h3 id="new">
           <a href="#new" class="heading-link"><i class="fas fa-link"></i></a>new</h3>
-      <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new [<span class="type">layout</span>] &lt;标题&gt;</span><br></pre></td></tr></table></div></figure>
-
+      
+<figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new [<span class="type">layout</span>] &lt;标题&gt;</span><br></pre></td></tr></table></div></figure>
 <p>新建一个文章/页面，layout处可以选填post、page……，如果填post就是新建一篇文章，page就是新建一个空页面。</p>
 
         <h3 id="generate">
           <a href="#generate" class="heading-link"><i class="fas fa-link"></i></a>generate</h3>
-      <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></div></figure>
-
+      
+<figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></div></figure>
 <p>生成网站的静态文件，也可以简写为：</p>
 <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></div></figure>
 
-
         <h3 id="deploy">
           <a href="#deploy" class="heading-link"><i class="fas fa-link"></i></a>deploy</h3>
-      <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></div></figure>
-
+      
+<figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></div></figure>
 <p>部署网站，也可以简写为：</p>
 <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></div></figure>
-
 <p>以上两个命令，在更新文章前<strong>必不可少</strong>。</p>
 
         <h3 id="clean">
           <a href="#clean" class="heading-link"><i class="fas fa-link"></i></a>clean</h3>
-      <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></div></figure>
-
+      
+<figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></div></figure>
 <p>清除缓存文件与静态文件。用于更换主题之后或提交了内容后发现网站没有更新。也可以简写为：</p>
 <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo cl</span><br></pre></td></tr></table></div></figure>
 
-
         <h3 id="server">
           <a href="#server" class="heading-link"><i class="fas fa-link"></i></a>server</h3>
-      <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></div></figure>
-
+      
+<figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></div></figure>
 <p>在本地启动服务器，默认访问网址为<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>。也可以简写为：</p>
 <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></div></figure>
 
-
         <h2 id="结">
           <a href="#结" class="heading-link"><i class="fas fa-link"></i></a>结</h2>
-      <p>用Hexo发布一篇文章十分容易，但你会不会也感觉到网站空空的，除了文章以外没有能够<strong>宣誓主权</strong>的标记，没关系，下一次我们就来一起美化我们的网站。</p>
-</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://linyxxxxx.github.io">Linyx</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://linyxxxxx.github.io/2020/09/30/lets-create-a-blog-2/">https://linyxxxxx.github.io/2020/09/30/lets-create-a-blog-2/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://linyxxxxx.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/10/01/lets-create-a-blog-3/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">从零开始的个人博客#3:个性化</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2020/09/28/lets-create-a-blog-1/"><span class="paginator-prev__text">从零开始的个人博客#1:第一个页面</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Markdown"><span class="toc-number">1.</span> <span class="toc-text">
+      
+<p>用Hexo发布一篇文章十分容易，但你会不会也感觉到网站空空的，除了文章以外没有能够<strong>宣誓主权</strong>的标记，没关系，下一次我们就来一起美化我们的网站。</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://linyxxxxx.github.io">Linyx</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://linyxxxxx.github.io/2020/09/30/lets-create-a-blog-2/">https://linyxxxxx.github.io/2020/09/30/lets-create-a-blog-2/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://linyxxxxx.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/10/01/lets-create-a-blog-3/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">从零开始的个人博客#3:个性化</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2020/09/28/lets-create-a-blog-1/"><span class="paginator-prev__text">从零开始的个人博客#1:第一个页面</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#markdown"><span class="toc-number">1.</span> <span class="toc-text">
           Markdown</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E6%96%87%E7%AB%A0"><span class="toc-number">2.</span> <span class="toc-text">
           编写文章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80"><span class="toc-number">2.1.</span> <span class="toc-text">
           基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87"><span class="toc-number">2.2.</span> <span class="toc-text">
           插入图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB"><span class="toc-number">2.3.</span> <span class="toc-text">
-          分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">
+          分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84"><span class="toc-number">3.</span> <span class="toc-text">
           附：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#init"><span class="toc-number">3.1.</span> <span class="toc-text">
           init</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#new"><span class="toc-number">3.2.</span> <span class="toc-text">
           new</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#generate"><span class="toc-number">3.3.</span> <span class="toc-text">

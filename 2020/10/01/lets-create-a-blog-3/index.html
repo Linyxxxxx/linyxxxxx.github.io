@@ -39,54 +39,49 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <p>但追求个性化的我肯定不满足于此。</p>
 <p>这次我们来聊一聊网站的个性化。</p>
 <a id="more"></a>
-
 <p>这次我们涉及的指令部分并不多，不用再苦恼于记那些生涩的指令了。只需要一点英文基础就行。</p>
 <p>这一次不用进入cmd了，直接在文件资源管理器中打开博客的文件夹。</p>
-<p>看到里面有个叫<strong>_config.yml</strong>的文件了吧？双击打开它。</p>
+<p>看到里面有个叫**_config.yml**的文件了吧？双击打开它。</p>
 
         <h2 id="基本设置">
           <a href="#基本设置" class="heading-link"><i class="fas fa-link"></i></a>基本设置</h2>
-      <p>首先来看第一部分：</p>
+      
+<p>首先来看第一部分：</p>
 <figure class="highlight yaml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">网站的标题</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">网站的副标题</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">网站的描述</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">网站的关键词，暂时可以不填</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">作者，你的名字</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">语言，可以改成zh-CN</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">时区，可以改成Asia/Shanghai</span></span><br></pre></td></tr></table></div></figure>
-
 <p><strong>记得冒号后有一个空格喔！</strong></p>
 <p>然后中间的部分可以先不用管，拉到最下面：</p>
 <figure class="highlight yaml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">landscape</span></span><br></pre></td></tr></table></div></figure>
-
 <p>显然，这个部分可以让我们自选需要的主题，那我们就根据文档的提示前往<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://hexo.io/themes/">官网的主题页</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>下载吧👉。</p>
 
         <h2 id="主题">
           <a href="#主题" class="heading-link"><i class="fas fa-link"></i></a>主题</h2>
-      <p>进入官网的主题页，找到一个适合你的主题，点进去。</p>
+      
+<p>进入官网的主题页，找到一个适合你的主题，点进去。</p>
 <p>这时一般会跳转到一个示例网站，大多数是主题作者的个人博客。</p>
 <p>一般情况下能在这个页面中找到主题的<strong>官方文档</strong>，里面会介绍如何使用该主题。</p>
-<p>什么？你说找不到？<del>那就换个主题吧</del>没事，再认真找找，总能找到的。</p>
+<p>什么？你说找不到？<s>那就换个主题吧</s>没事，再认真找找，总能找到的。</p>
 <p>好的，这时进入我们熟悉的<strong>cmd</strong>，cd到博客的目录。</p>
 <p>输入官方文档中给出的命令，一般是：</p>
 <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 一个网址 themes/主题名字</span><br></pre></td></tr></table></div></figure>
-
 <p>的这种形式，和一个npm开头的安装依赖的命令。</p>
 <p>总之照着作者说的做就对了✔。</p>
 <p>接下来就是漫长的等待……</p>
 <img src="/2020/10/01/lets-create-a-blog-3/theme1.png" class title="安装完成">
-
 <p>如果一路没有报错的话，就是安装成功啦。（WARN部分不用管，是正常现象）</p>
-<p>这时候回到<strong>_config.yml</strong>，把theme部分改成你刚才下载的主题：</p>
+<p>这时候回到**_config.yml**，把theme部分改成你刚才下载的主题：</p>
 <figure class="highlight yaml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">ayer</span></span><br><span class="line"><span class="comment"># 我下载的这个叫做ayer</span></span><br></pre></td></tr></table></div></figure>
-
 <p>这时候回到我们的网站，已经能看到完全变了一个样啦！</p>
 <img src="/2020/10/01/lets-create-a-blog-3/theme2.png" class title="换了新主题">
-
 <p>如果没有更新的话可以试试</p>
 <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo cl &amp;&amp; hexo g</span><br></pre></td></tr></table></div></figure>
-
 <p>来重新生成静态文件，总会有的。</p>
-<p>一般可以在博客文件夹下的<strong>\themes\主题名</strong>中找到名为<strong>_config.yml</strong>的文件，里面提供了该主题的各种设置，我们可以在官方文档中参考并设置。</p>
+<p>一般可以在博客文件夹下的**\themes\主题名<strong>中找到名为</strong>_config.yml**的文件，里面提供了该主题的各种设置，我们可以在官方文档中参考并设置。</p>
 <p>具体的操作就是这些，剩余就留给大家一起发挥啦。</p>
 
         <h2 id="结">
           <a href="#结" class="heading-link"><i class="fas fa-link"></i></a>结</h2>
-      <p>至此，我们已经完成了网站的大部分内容。但你可能也发现了，不改DNS或者hosts的话经常无法访问网站。</p>
+      
+<p>至此，我们已经完成了网站的大部分内容。但你可能也发现了，不改DNS或者hosts的话经常无法访问网站。</p>
 <p>总不会把网站分享给别人的时候还得教别人改这些东西吧？</p>
 <p>当然不必，下一次我们来聊聊如何让大家在国内也能正常访问我们的网站。</p>
 </div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://linyxxxxx.github.io">Linyx</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://linyxxxxx.github.io/2020/10/01/lets-create-a-blog-3/">https://linyxxxxx.github.io/2020/10/01/lets-create-a-blog-3/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://linyxxxxx.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/10/02/lets-create-a-blog-4/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">从零开始的个人博客#4:使用Vercel托管博客</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2020/09/30/lets-create-a-blog-2/"><span class="paginator-prev__text">从零开始的个人博客#2:第一篇文章</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">

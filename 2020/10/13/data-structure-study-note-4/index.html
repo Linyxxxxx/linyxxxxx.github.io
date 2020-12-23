@@ -57,67 +57,65 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <p>那必然不可能。我们这次就来聊聊这个精妙的字符串匹配算法——KMP算法。</p>
 <a id="more"></a>
 
-
         <h2 id="串">
           <a href="#串" class="heading-link"><i class="fas fa-link"></i></a>串</h2>
-      <p>想必能点开这篇笔记的朋友都对串很熟悉了吧…</p>
+      
+<p>想必能点开这篇笔记的朋友都对串很熟悉了吧…</p>
 <p>如果不熟悉的话建议以后再回过头来看，KMP较难理解，不适合初学者。</p>
 
         <h2 id="串匹配">
           <a href="#串匹配" class="heading-link"><i class="fas fa-link"></i></a>串匹配</h2>
       
+
         <h3 id="问题描述">
           <a href="#问题描述" class="heading-link"><i class="fas fa-link"></i></a>问题描述</h3>
-      <p>给出一个主串（str）与一个模式串（pattern），编写一段程序找出模式串在主串中第一次出现的位置，若未能找到，返回-1。</p>
+      
+<p>给出一个主串（str）与一个模式串（pattern），编写一段程序找出模式串在主串中第一次出现的位置，若未能找到，返回-1。</p>
 <blockquote>
-<p>例：主串为”aaaaa123333451234hhahan”，模式串为”1234”。观察到主串的第14位开始能与模式串匹配：”aaaaa12333345<strong>1234</strong>hhahan”，返回13（数组下标从0开始，所以13对应第14位）。</p>
+<p>例：主串为&quot;aaaaa123333451234hhahan&quot;，模式串为&quot;1234&quot;。观察到主串的第14位开始能与模式串匹配：“aaaaa12333345<strong>1234</strong>hhahan”，返回13（数组下标从0开始，所以13对应第14位）。</p>
 </blockquote>
 
-        <h3 id="问题分析（Brute-Force）">
-          <a href="#问题分析（Brute-Force）" class="heading-link"><i class="fas fa-link"></i></a>问题分析（Brute-Force）</h3>
-      <p>很显然，以一般人的思维都能想到，让程序像人脑一样进行逐位对比。先将模式串与主串对齐：</p>
+        <h3 id="问题分析brute-force">
+          <a href="#问题分析brute-force" class="heading-link"><i class="fas fa-link"></i></a>问题分析（Brute-Force）</h3>
+      
+<p>很显然，以一般人的思维都能想到，让程序像人脑一样进行逐位对比。先将模式串与主串对齐：</p>
 <img src="/2020/10/13/data-structure-study-note-4/bf1.png" class title="BF1">
-
 <p>发现匹配失败，便将模式串后移，继续匹配：</p>
 <img src="/2020/10/13/data-structure-study-note-4/bf2.png" class title="BF2">
-
 <p>很显然，还是匹配失败，于是重复上述过程，直到重复到第14次：</p>
 <img src="/2020/10/13/data-structure-study-note-4/bf3.png" class title="BF3">
-
 <p>匹配成功，返回13。</p>
 <p>这么看来，这个算法貌似没什么问题。</p>
 <p>是的，没有一点问题，的确能正常的运行。但是效率极其低下。想象一下，如果是一个长度9999主串，和一个长度为888的匹配串，这个匹配串又恰好出现在主串的末尾。那我们光是移动匹配串就需要九千多次，再加之计算机进行逐位对比时还要遍历一遍这个888位的匹配串，需要的匹配次数可是百万级别的，那如果更长的串呢？</p>
 <p>时间复杂度为O(nm)的BF算法自然不能满足我们，于是，更加优秀的算法就应运而生。</p>
 
-        <h2 id="KMP算法">
-          <a href="#KMP算法" class="heading-link"><i class="fas fa-link"></i></a>KMP算法</h2>
+        <h2 id="kmp算法">
+          <a href="#kmp算法" class="heading-link"><i class="fas fa-link"></i></a>KMP算法</h2>
       
+
         <h3 id="实现思路">
           <a href="#实现思路" class="heading-link"><i class="fas fa-link"></i></a>实现思路</h3>
-      <p>KMP算法是由D.E.Knuth，J.H.Morris和V.R.Pratt三位大佬共同提出的算法，因此取他们的名字称为Knuth-Morris-Pratt算法。可以实现时间复杂度为O(n+m)的字符串匹配，比起BF的O(nm)，有了显著提升。</p>
+      
+<p>KMP算法是由D.E.Knuth，J.H.Morris和V.R.Pratt三位大佬共同提出的算法，因此取他们的名字称为Knuth-Morris-Pratt算法。可以实现时间复杂度为O(n+m)的字符串匹配，比起BF的O(nm)，有了显著提升。</p>
 <p>我们先来从一道串匹配开始吧：</p>
 <img src="/2020/10/13/data-structure-study-note-4/kmp1.png" class title="KMP1">
-
 <p>先将模式串对应主串开头，逐位对比，当对比到第5位的时候，发现匹配失败，于是我们就将指针 <strong>i</strong> 回退到主串的第二位，将指针  <strong>j</strong>  回退到模式串的第1位，重复匹配过程。</p>
 <img src="/2020/10/13/data-structure-study-note-4/kmp2.png" class title="KMP2">
-
 <p>（注意：模式串在内存中实际不会移动，我们所说的一切移动都是指针 i 和 j 的移动，图中串的偏移只是为了读者阅读方便）</p>
 <p>这时，我们发现，i 指向的b与 j 指向的a不匹配，从一开始就不匹配，可以直接跳过，进入下一次。依此类推……</p>
 <p>匹配的过程中，你会发现，模式串中这段“ab”的部分是重复的，我们在第一次匹配的时候其实就已经在主串中找到“ab”的位置了，那能不能把这个特性利用起来，不用重复地匹配“ab”呢？</p>
 <img src="/2020/10/13/data-structure-study-note-4/kmp3.png" class title="KMP3">
-
 <p>再让我们回到第一次匹配失败的时候：</p>
 <img src="/2020/10/13/data-structure-study-note-4/kmp4.png" class title="KMP4">
-
 <p>既然模式串中开头的“ab”只有在主串的第3位才能正确匹配，我们就不用考虑 i 从2开始的情况了，转而直接让 i 对准第三位，j 对准第1位。这时 i 对准的第三位和下一位分别为“ab”，j 对准的第一位和下一位也分别为“ab”，所以我们也不用考虑了。i 完全可以停留在上次匹配失败的位置，转而让 j 回退到第三位，即第一个“ab”后的那一位。</p>
 <img src="/2020/10/13/data-structure-study-note-4/kmp5.png" class title="KMP5">
-
 <p>好了，我们已经发现了，在匹配失败的时候，主串中的 i 指针实际上不需要回退，只需要模式串的 j 指针回退，且不必回退到起点，只需回退到某个点。那我们只需要计算出每一位所要回退到哪个点，不就可以实现KMP算法了吗？</p>
 <p>在介绍如何算出这个点之前，我先来介绍两个概念。</p>
 
         <h3 id="前缀与后缀">
           <a href="#前缀与后缀" class="heading-link"><i class="fas fa-link"></i></a>前缀与后缀</h3>
-      <p>对于任意一个串X，总存在字符串A和B，使得AS=X，SB=X。其中A被称为前缀，B被称为后缀，S为任意元素。</p>
+      
+<p>对于任意一个串X，总存在字符串A和B，使得AS=X，SB=X。其中A被称为前缀，B被称为后缀，S为任意元素。</p>
 <p>说简单点，前缀就是开头的一段字串，后缀就是结尾的一段字串。</p>
 <p>我们所要找的“重复部分”，就是<strong>前缀集合与后缀集合的交集中的最长元素</strong>。</p>
 <blockquote>
@@ -129,10 +127,8 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 </blockquote>
 <p>所以，假如把“ababac”作为模式串，与主串“ababaxxxx”在 j 指向第六位的时候匹配失败了。那这时我们要退到哪一位呢？</p>
 <img src="/2020/10/13/data-structure-study-note-4/kmp6.png" class title="KMP6">
-
 <p>观察第六位以前的部分“ababa”，算出重复部分长度为3，也就是说前三位与 i 指针前面的三位可以完美匹配，那就只要把 j 退到第四位就可以了。</p>
 <img src="/2020/10/13/data-structure-study-note-4/kmp7.png" class title="KMP7">
-
 <p>（至于为什么我们知道主串中 i 前面的三位能和模式串的前三位匹配。因为 i 前面的三位已经和 j 前面的三位匹配过了，而 j 前面的三位又和模式串的开头三位重复，当然可以完美匹配啦。）</p>
 <p>如果这个逻辑没捋清楚的话麻烦多读几遍，或者找找其他教程。毕竟这是这个算法的核心部分。</p>
 <p>好啦，那对于模式串中的每一位，我们只要计算出<strong>这一位前面的那部分</strong>的<strong>前缀集合与后缀集合的交集中的最长元素的长度</strong>，就可以实现正确的回退了。我们用一个名为PMT(Partial Match Table)的数组来存储这些信心，只要有了PMT，就能够实现KMP算法了。</p>
@@ -140,69 +136,65 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
         <h3 id="代码实现">
           <a href="#代码实现" class="heading-link"><i class="fas fa-link"></i></a>代码实现</h3>
       
-        <h4 id="KMP">
-          <a href="#KMP" class="heading-link"><i class="fas fa-link"></i></a>KMP</h4>
-      <p>我们先来看KMP的部分：</p>
-<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">KMP</span><span class="params">(<span class="built_in">string</span> str, <span class="built_in">string</span> pattern)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pmt = PMT(pattern);</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">string</span>::size_type i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; str.size(); i++) <span class="comment">//i在主串移动, j在模式串移动</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; str[i] != pattern[j]) <span class="comment">//匹配失败, 将模式串光标移到pmt数组的前一位记录的位置</span></span><br><span class="line">            j = pmt[j - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span> (str[i] == pattern[j]) <span class="comment">//匹配成功, 光标后移, 检查下一位</span></span><br><span class="line">            j++;</span><br><span class="line">        <span class="keyword">if</span> (j == pattern.size()) <span class="comment">//j走到模式串结尾, 说明匹配成功</span></span><br><span class="line">            <span class="keyword">return</span> i - j + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">//能走到这里说明匹配失败</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
 
+        <h4 id="kmp">
+          <a href="#kmp" class="heading-link"><i class="fas fa-link"></i></a>KMP</h4>
+      
+<p>我们先来看KMP的部分：</p>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">KMP</span><span class="params">(<span class="built_in">string</span> str, <span class="built_in">string</span> pattern)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pmt = PMT(pattern);</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">string</span>::size_type i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; str.size(); i++) <span class="comment">//i在主串移动, j在模式串移动</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; str[i] != pattern[j]) <span class="comment">//匹配失败, 将模式串光标移到pmt数组的前一位记录的位置</span></span><br><span class="line">            j = pmt[j - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span> (str[i] == pattern[j]) <span class="comment">//匹配成功, 光标后移, 检查下一位</span></span><br><span class="line">            j++;</span><br><span class="line">        <span class="keyword">if</span> (j == pattern.size()) <span class="comment">//j走到模式串结尾, 说明匹配成功</span></span><br><span class="line">            <span class="keyword">return</span> i - j + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">//能走到这里说明匹配失败</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
 <p>这里解释一个细节：</p>
 <ul>
-<li><p>为什么匹配失败的时候要回到pmt记录的前一位的位置？</p>
+<li>
+<p>为什么匹配失败的时候要回到pmt记录的前一位的位置？</p>
 <p>其实有的人喜欢把pmt数组的所有元素都后移一位，记录为next数组，这样就可以不用回到前一位了。两种方法都行，我记录标准的pmt数组完全是个人喜好，毕竟pmt记录的是 j 指针所对应的<strong>那一位以前的部分</strong>，所以数值也就退一位正好对应了。其实是没有差别的。</p>
 <p>如果暂时还是没法很好地理解pmt数组的话，可以看张图，动动笔，一一对应一下。</p>
 <img src="/2020/10/13/data-structure-study-note-4/kmp8.png" class title="KMP8">
-
 </li>
 </ul>
 <p>看得出来，这部分算法的时间复杂度为O(n)，接下来只要把pmt数组求出来就可以了。</p>
 
-        <h4 id="PMT">
-          <a href="#PMT" class="heading-link"><i class="fas fa-link"></i></a>PMT</h4>
-      <p>那么pmt数组要怎么求呢？可能最容易想到的就是暴力用O(m²)的算法求了……虽然也不是不行，但如果都走到这一步了还要用那种低效率的办法，还不如一开始就直接用Brute-Force来匹配呢哈哈哈。</p>
+        <h4 id="pmt">
+          <a href="#pmt" class="heading-link"><i class="fas fa-link"></i></a>PMT</h4>
+      
+<p>那么pmt数组要怎么求呢？可能最容易想到的就是暴力用O(m²)的算法求了……虽然也不是不行，但如果都走到这一步了还要用那种低效率的办法，还不如一开始就直接用Brute-Force来匹配呢哈哈哈。</p>
 <p>聪明的你可能已经发现了，求pmt的过程本身就是一个串匹配的过程。</p>
 <p>我们只要对每个子串，分别对其本身使用KMP算法就行了呀。不过，得让 i 从第二位开始，不然不就一定能匹配到了嘛！</p>
 <img src="/2020/10/13/data-structure-study-note-4/kmp9.png" class title="KMP9">
-
 <p>或许看到这里你会迷惑，那这个算法的pmt数组要怎么得到呢？可以自己模拟试试看，会发现每一次匹配所需的值，都已经在上一轮匹配就记录在pmt中了。</p>
 <p>具体过程我们用几张图来大概模拟一下：</p>
 <p>首先pmt的第一位我们记为0（ pmt[0] = 0 ），毕竟刚开始无法匹配。</p>
 <img src="/2020/10/13/data-structure-study-note-4/pmt1.png" class title="PMT1">
-
 <p>发现第一位无法匹配，将 i 后移，pmt[1] = j = 0；接着开始下一轮：</p>
 <img src="/2020/10/13/data-structure-study-note-4/pmt2.png" class title="PMT2">
-
 <p>发现匹配成功，那么pmt[2] = j+1 = 1；接下来接着重复这个过程。</p>
 <img src="/2020/10/13/data-structure-study-note-4/pmt3.png" class title="PMT3">
-
 <p>这时发现匹配失败了，那 j 指针就要退回到pmt[j-1]位，即pmt[2] = 1。</p>
 <img src="/2020/10/13/data-structure-study-note-4/pmt4.png" class title="PMT4">
-
 <p>然而还是匹配失败，所以继续回退到 j = 0，同时数组该为置零。同时 i 已经走到结尾，pmt数组也被完整求出来了。</p>
 <img src="/2020/10/13/data-structure-study-note-4/pmt5.png" class title="PMT5">
-
 <p>以下为代码实现：</p>
 <figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">PMT</span><span class="params">(<span class="built_in">string</span> pattern)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">pmt</span><span class="params">((<span class="keyword">int</span>)pattern.size(), <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">string</span>::size_type i = <span class="number">1</span>; i &lt; pattern.size(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; pattern[i] != pattern[j]) <span class="comment">//匹配失败, 像KMP算法一样将光标移到pmt[j-1]位</span></span><br><span class="line">            j = pmt[j - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span> (pattern[i] == pattern[j]) <span class="comment">//匹配成功, 光标后移, 记录pmt</span></span><br><span class="line">            j++;</span><br><span class="line">        pmt[i] = j; <span class="comment">//将数组第i位记录为j的值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pmt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
 
-
         <h3 id="完整代码">
           <a href="#完整代码" class="heading-link"><i class="fas fa-link"></i></a>完整代码</h3>
-      <figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">PMT</span><span class="params">(<span class="built_in">string</span> pattern)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">pmt</span><span class="params">((<span class="keyword">int</span>)pattern.size(), <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">string</span>::size_type i = <span class="number">1</span>; i &lt; pattern.size(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; pattern[i] != pattern[j]) <span class="comment">//匹配失败, 像KMP算法一样将光标移到pmt[j-1]位</span></span><br><span class="line">            j = pmt[j - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span> (pattern[i] == pattern[j]) <span class="comment">//匹配成功, 光标后移, 记录pmt</span></span><br><span class="line">            j++;</span><br><span class="line">        pmt[i] = j; <span class="comment">//将数组第i位记录为j的值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pmt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">KMP</span><span class="params">(<span class="built_in">string</span> str, <span class="built_in">string</span> pattern)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pmt = PMT(pattern);</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">string</span>::size_type i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; str.size(); i++) <span class="comment">//i在主串移动, j在模式串移动</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; str[i] != pattern[j]) <span class="comment">//匹配失败, 将模式串光标移到pmt数组的前一位记录的位置</span></span><br><span class="line">            j = pmt[j - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span> (str[i] == pattern[j]) <span class="comment">//匹配成功, 光标后移, 检查下一位</span></span><br><span class="line">            j++;</span><br><span class="line">        <span class="keyword">if</span> (j == pattern.size()) <span class="comment">//j走到模式串结尾, 说明匹配成功</span></span><br><span class="line">            <span class="keyword">return</span> i - j + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">//能走到这里说明匹配失败</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// // DEBUG</span></span><br><span class="line">    <span class="comment">// string s = &quot;ababababcd&quot;;</span></span><br><span class="line">    <span class="comment">// string p = &quot;ababcd&quot;;</span></span><br><span class="line">    <span class="comment">// cout &lt;&lt; KMP(s, p);</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
-
+      
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">PMT</span><span class="params">(<span class="built_in">string</span> pattern)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">pmt</span><span class="params">((<span class="keyword">int</span>)pattern.size(), <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">string</span>::size_type i = <span class="number">1</span>; i &lt; pattern.size(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; pattern[i] != pattern[j]) <span class="comment">//匹配失败, 像KMP算法一样将光标移到pmt[j-1]位</span></span><br><span class="line">            j = pmt[j - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span> (pattern[i] == pattern[j]) <span class="comment">//匹配成功, 光标后移, 记录pmt</span></span><br><span class="line">            j++;</span><br><span class="line">        pmt[i] = j; <span class="comment">//将数组第i位记录为j的值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pmt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">KMP</span><span class="params">(<span class="built_in">string</span> str, <span class="built_in">string</span> pattern)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pmt = PMT(pattern);</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">string</span>::size_type i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; str.size(); i++) <span class="comment">//i在主串移动, j在模式串移动</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; str[i] != pattern[j]) <span class="comment">//匹配失败, 将模式串光标移到pmt数组的前一位记录的位置</span></span><br><span class="line">            j = pmt[j - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span> (str[i] == pattern[j]) <span class="comment">//匹配成功, 光标后移, 检查下一位</span></span><br><span class="line">            j++;</span><br><span class="line">        <span class="keyword">if</span> (j == pattern.size()) <span class="comment">//j走到模式串结尾, 说明匹配成功</span></span><br><span class="line">            <span class="keyword">return</span> i - j + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">//能走到这里说明匹配失败</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// // DEBUG</span></span><br><span class="line">    <span class="comment">// string s = &quot;ababababcd&quot;;</span></span><br><span class="line">    <span class="comment">// string p = &quot;ababcd&quot;;</span></span><br><span class="line">    <span class="comment">// cout &lt;&lt; KMP(s, p);</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
 
         <h2 id="结">
           <a href="#结" class="heading-link"><i class="fas fa-link"></i></a>结</h2>
-      <p>通过以上代码我们可以得出：求解PMT数组的时间复杂度为O(m)，进行KMP的时间复杂度为O(n)，所以该算法的时间复杂度O(n+m)，远远低于BF的O(nm)。</p>
+      
+<p>通过以上代码我们可以得出：求解PMT数组的时间复杂度为O(m)，进行KMP的时间复杂度为O(n)，所以该算法的时间复杂度O(n+m)，远远低于BF的O(nm)。</p>
 <p>KMP算法虽然好用，但是确实有点难理解，特别是对于我这种算法初学者来说……学的时候起码翻了十几篇教程，五六个视频，才感觉大体体会到了中心思想。所以我这篇笔记或许也存在许多疏漏和需完善的地方。如果能对你有些帮助，那自然是我的荣幸。但如果哪些地方没读懂，也不一定要在我这死磕，毕竟有很多别的大佬写的教程，虽然过程可能没有我叙述得这么细致，但是原理肯定讲得比我清楚，建议移步他们的教程。</p>
 </div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://linyxxxxx.github.io">Linyx</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://linyxxxxx.github.io/2020/10/13/data-structure-study-note-4/">https://linyxxxxx.github.io/2020/10/13/data-structure-study-note-4/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://linyxxxxx.github.io/tags/%E7%BC%96%E7%A8%8B/">编程</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://linyxxxxx.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/10/18/data-structure-study-note-5/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">数据结构算法笔记#1.5:矩阵与转置</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2020/10/12/keyboard-1/"><span class="paginator-prev__text">机械键盘#1:入门与配列</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%B2"><span class="toc-number">1.</span> <span class="toc-text">
           串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%B2%E5%8C%B9%E9%85%8D"><span class="toc-number">2.</span> <span class="toc-text">
           串匹配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-number">2.1.</span> <span class="toc-text">
-          问题描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90%EF%BC%88Brute-Force%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">
-          问题分析（Brute-Force）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KMP%E7%AE%97%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">
+          问题描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90brute-force"><span class="toc-number">2.2.</span> <span class="toc-text">
+          问题分析（Brute-Force）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kmp%E7%AE%97%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">
           KMP算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-number">3.1.</span> <span class="toc-text">
           实现思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%BC%80%E4%B8%8E%E5%90%8E%E7%BC%80"><span class="toc-number">3.2.</span> <span class="toc-text">
           前缀与后缀</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.3.</span> <span class="toc-text">
-          代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#KMP"><span class="toc-number">3.3.1.</span> <span class="toc-text">
-          KMP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PMT"><span class="toc-number">3.3.2.</span> <span class="toc-text">
+          代码实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#kmp"><span class="toc-number">3.3.1.</span> <span class="toc-text">
+          KMP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pmt"><span class="toc-number">3.3.2.</span> <span class="toc-text">
           PMT</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="toc-number">3.4.</span> <span class="toc-text">
           完整代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">
           结</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/avatar.png" alt="avatar"></div><p class="sidebar-ov-author__text">言多必失.</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/Linyxxxxx/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://weibo.com/5239240464/" target="_blank" rel="noopener" data-popover="微博" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-weibo"></i></span></a><a class="sidebar-ov-social-item" href="https://www.zhihu.com/people/lin-30-65/" target="_blank" rel="noopener" data-popover="知乎" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">知</span></a><a class="sidebar-ov-social-item" href="https://steamcommunity.com/profiles/76561198147249500/" target="_blank" rel="noopener" data-popover="Steam" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-steam"></i></span></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2020</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Linyx All Rights Reserved</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div><div>唯有孤独永恒。</div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1.0.1/dist/canvas-nest.min.js" color="255,182,185" opacity="0.6" count="99" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.1.1"></script><script src="/js/stun-boot.js?v=2.1.1"></script><script src="/js/scroll.js?v=2.1.1"></script><script src="/js/header.js?v=2.1.1"></script><script src="/js/sidebar.js?v=2.1.1"></script></body></html>
