@@ -1,300 +1,320 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.1.1" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.1.1" type="image/png" sizes="32x32"><meta name="description" content="DTD即为Document Type Definition，这是一篇DTD的笔记。">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>XML学习笔记#2:DTD | Linyx's Home</title><meta name="keywords" content="编程,计算机"><meta name="author" content="Linyx"><meta name="copyright" content="Linyx"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="DTD即为Document Type Definition，这是一篇DTD的笔记。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XML学习笔记#2:DTD">
 <meta property="og:url" content="https://linyxxxxx.github.io/2020/11/23/xml-note-2/index.html">
 <meta property="og:site_name" content="Linyx&#39;s Home">
 <meta property="og:description" content="DTD即为Document Type Definition，这是一篇DTD的笔记。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://linyxxxxx.github.io/2020/11/23/xml-note-2/dtd1.png">
-<meta property="og:image" content="https://linyxxxxx.github.io/2020/11/23/xml-note-2/dtd2.png">
-<meta property="og:image" content="https://linyxxxxx.github.io/2020/11/23/xml-note-2/dtd3.png">
-<meta property="og:image" content="https://linyxxxxx.github.io/2020/11/23/xml-note-2/dtd4.png">
+<meta property="og:image" content="https://linyxxxxx.github.io/orange">
 <meta property="article:published_time" content="2020-11-23T01:51:25.000Z">
 <meta property="article:modified_time" content="2020-12-16T02:12:51.683Z">
 <meta property="article:author" content="Linyx">
 <meta property="article:tag" content="编程">
 <meta property="article:tag" content="计算机">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://linyxxxxx.github.io/2020/11/23/xml-note-2/dtd1.png"><title>XML学习笔记#2:DTD | Linyx's Home</title><link ref="canonical" href="https://linyxxxxx.github.io/2020/11/23/xml-note-2/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.1.1"><script>var Stun = window.Stun || {};
-var CONFIG = {
+<meta name="twitter:image" content="https://linyxxxxx.github.io/orange"><link rel="shortcut icon" href="/images/icons/favicon-32x32.png"><link rel="canonical" href="https://linyxxxxx.github.io/2020/11/23/xml-note-2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var GLOBAL_CONFIG = { 
   root: '/',
   algolia: undefined,
-  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
-  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
-  header: {"enable":true,"showOnPost":false,"scrollDownIcon":false},
-  postWidget: {"endText":true},
-  nightMode: {"enable":true},
-  back2top: {"enable":true},
-  codeblock: {"style":"carbon","highlight":"light","wordWrap":false},
-  reward: false,
-  fancybox: false,
-  zoomImage: {"gapAside":"20px"},
-  galleryWaterfall: undefined,
-  lazyload: false,
-  pjax: undefined,
-  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
-  shortcuts: undefined,
-  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
-  sourcePath: {"js":"js","css":"css","images":"images"},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Linyx","link":"链接: ","source":"来源: Linyx's Home","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
 };
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-bookmark"></i></span><span class="header-nav-menu-item__text">文章</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/friends/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-friends"></i></span><span class="header-nav-menu-item__text">朋友</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/me/"><span class="header-nav-menu-item__icon"><i class="fas fa-heart"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/comments/"><span class="header-nav-menu-item__icon"><i class="fas fa-comments"></i></span><span class="header-nav-menu-item__text">留言</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">XML学习笔记#2:DTD</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-11-23</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2020-12-16</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p>DTD即为Document Type Definition，这是一篇DTD的笔记。</p>
-<a id="more"></a>
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
 
-        <h2 id="概述">
-          <a href="#概述" class="heading-link"><i class="fas fa-link"></i></a>概述</h2>
-      
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-12-16 10:12:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'true'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}const fontSizeVal = saveToLocal.get('global-font-size')
+if (fontSizeVal !== undefined) {
+  document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-bookmark"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/me/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: orange"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Linyx's Home</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-bookmark"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/me/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">XML学习笔记#2:DTD</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-11-23T01:51:25.000Z" title="发表于 2020-11-23 09:51:25">2020-11-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-12-16T02:12:51.683Z" title="更新于 2020-12-16 10:12:51">2020-12-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/XML%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">XML学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>DTD即为Document Type Definition，这是一篇DTD的笔记。</p>
+<a id="more"></a>
+<h2 id="概述"><a class="markdownIt-Anchor" href="#概述"></a> 概述</h2>
 <p>文档类型定义（DTD，Document Type Definition）是一种特殊文档，它规定、约束符合标准通用标示语言（SGML）或SGML子集可扩展标示语言（XML）规则的定义和陈述。</p>
 <p><s>反正也没人看这部分，我就随便从百度百科复制一段了</s></p>
 <p>DTD由<strong>元素</strong>(Elements)、<strong>属性</strong>(Attribute)、<strong>实体</strong>(Entities)与<strong>注释</strong>(Comments)四部分组成。</p>
 <p>但由于其限制上的局限性与使用上的不方便，近年来已逐渐被schema代替。</p>
 <p>DTD的文件扩展名为 <strong>“.dtd”</strong> 。</p>
-
-        <h2 id="语法">
-          <a href="#语法" class="heading-link"><i class="fas fa-link"></i></a>语法</h2>
-      
-
-        <h3 id="引用">
-          <a href="#引用" class="heading-link"><i class="fas fa-link"></i></a>引用</h3>
-      
-
-        <h4 id="内部引用">
-          <a href="#内部引用" class="heading-link"><i class="fas fa-link"></i></a>内部引用</h4>
-      
+<h2 id="语法"><a class="markdownIt-Anchor" href="#语法"></a> 语法</h2>
+<h3 id="引用"><a class="markdownIt-Anchor" href="#引用"></a> 引用</h3>
+<h4 id="内部引用"><a class="markdownIt-Anchor" href="#内部引用"></a> 内部引用</h4>
 <p>在一个XML文档中引用DTD可分为<strong>内部引用</strong> 与<strong>外部引用</strong> ，很显然，内部引用即将DTD编写在XML文档内，外部引用即引用外部编写好的.dtd文件。</p>
 <p>内部引用的基本框架为：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE 根元素 [</span></span><br><span class="line"><span class="meta">    DTD内容</span></span><br><span class="line"><span class="meta">]&gt;</span> </span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE 根元素 [</span></span><br><span class="line"><span class="meta">    DTD内容</span></span><br><span class="line"><span class="meta">]&gt;</span> </span><br></pre></td></tr></table></figure>
 <p>根元素即为要被解释的部分的根元素。或许听起来有点绕，我们可以看个例子：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">note</span> [</span></span><br><span class="line"><span class="meta">   内容...</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">note</span>&gt;</span><span class="tag">&lt;/<span class="name">note</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">note</span> [</span></span><br><span class="line"><span class="meta">   内容...</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">note</span>&gt;</span><span class="tag">&lt;/<span class="name">note</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这就是一个对&lt;note&gt;元素引用内部DTD的例子。</p>
-
-        <h4 id="外部引用">
-          <a href="#外部引用" class="heading-link"><i class="fas fa-link"></i></a>外部引用</h4>
-      
+<h4 id="外部引用"><a class="markdownIt-Anchor" href="#外部引用"></a> 外部引用</h4>
 <p>内部引用虽然写起来方便，但是复用性较低。一般情况下我们会选择使用外部DTD，能够使得文档更为清晰，同时也能让DTD文档被多个XML文档所共享。</p>
 <p>外部引用又分为<strong>私有</strong> 与<strong>公有</strong> 两种。私有的外部引用就是自己编写的，而公有的就是那些官方的、经过认证的引用。</p>
 <p>私有外部引用的基本框架为：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE 根元素 <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;DTD_location&quot;</span>&gt;</span> </span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE 根元素 <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;DTD_location&quot;</span>&gt;</span> </span><br></pre></td></tr></table></figure>
 <p>这里的DTD_location即为外部DTD文档的相对或绝对路径，举个例子：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; standalone=&quot;no&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">book</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;book.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">book</span>&gt;</span><span class="tag">&lt;/<span class="name">book</span>&gt;</span> </span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; standalone=&quot;no&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">book</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;book.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">book</span>&gt;</span><span class="tag">&lt;/<span class="name">book</span>&gt;</span> </span><br></pre></td></tr></table></figure>
 <p>这里就引用了book.dtd中的DTD内容。</p>
 <p>而公有的外部DTD引用的框架较之私有的，还需多写一个DTD名称，便于解析器找到该DTD的最新版本。这部分较少使用，稍作了解即可：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE 根元素 <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;DTD_name&quot;</span> <span class="meta-string">&quot;DTD_location&quot;</span>&gt;</span> </span><br></pre></td></tr></table></div></figure>
-
-    <div class="note-plugin info">
-      <span class="note-plugin__icon note-plugin__icon--info">
-              <i class="fas fa-info-circle"></i>
-            </span>
-      <p><strong>DTD_name的语法</strong></p><figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prefix//owner_of_the_DTD//description_of_the_DTD//language_identifier</span><br></pre></td></tr></table></div></figure><p>第一部分 prefix 可以为 ISO、+、或者 -，分别表示通过批准的 ISO 标准、通过批准的非 ISO 标准、或者未通过批准的非 ISO 标准。</p><p>第二部分 owner_of_the_DTD 表示发布该文档的机构。</p><p>第三部分 description_of_the_DTD 表示对该文档的简短描述。</p><p>第四部分 Language_identifier 则表示其语言版本。</p><figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;-//IETF//DTD HTML Strict Level 1//EN&quot;</span></span><br><span class="line"><span class="string">&quot;-//W3C//DTD XHTML 1.1//EN&quot;</span> </span><br></pre></td></tr></table></div></figure>
-    </div>
-  
-
-    <div class="note-plugin info">
-      <span class="note-plugin__icon note-plugin__icon--info">
-              <i class="fas fa-info-circle"></i>
-            </span>
-      <p><strong>提示</strong></p><p>内部DTD与外部DTD可以同时组合使用。</p>
-    </div>
-  
-
-        <h3 id="元素">
-          <a href="#元素" class="heading-link"><i class="fas fa-link"></i></a>元素</h3>
-      
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE 根元素 <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;DTD_name&quot;</span> <span class="meta-string">&quot;DTD_location&quot;</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+<div class="note info flat"><p><strong>DTD_name的语法</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prefix//owner_of_the_DTD//description_of_the_DTD//language_identifier</span><br></pre></td></tr></table></figure>
+<p>第一部分 prefix 可以为 ISO、+、或者 -，分别表示通过批准的 ISO 标准、通过批准的非 ISO 标准、或者未通过批准的非 ISO 标准。</p>
+<p>第二部分 owner_of_the_DTD 表示发布该文档的机构。</p>
+<p>第三部分 description_of_the_DTD 表示对该文档的简短描述。</p>
+<p>第四部分 Language_identifier 则表示其语言版本。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;-//IETF//DTD HTML Strict Level 1//EN&quot;</span></span><br><span class="line"><span class="string">&quot;-//W3C//DTD XHTML 1.1//EN&quot;</span> </span><br></pre></td></tr></table></figure>
+</div>
+<div class="note info flat"><p><strong>提示</strong></p>
+<p>内部DTD与外部DTD可以同时组合使用。</p>
+</div>
+<h3 id="元素"><a class="markdownIt-Anchor" href="#元素"></a> 元素</h3>
 <p>DTD中的元素，起到了匹配XML文档中元素的作用，其基本框架为：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT 元素名 标识符&gt;</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT 元素名 标识符&gt;</span></span><br></pre></td></tr></table></figure>
 <p>或</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT 元素名 (子内容)&gt;</span> </span><br></pre></td></tr></table></div></figure>
-
-    <div class="note-plugin warning">
-      <span class="note-plugin__icon note-plugin__icon--warning">
-              <i class="fas fa-exclamation-circle"></i>
-            </span>
-      <p><strong>Warning</strong></p><p>ELEMENT四个字母必须<strong>大写</strong> ，元素内容必须有<strong>括号</strong></p>
-    </div>
-  
-
-        <h4 id="空元素">
-          <a href="#空元素" class="heading-link"><i class="fas fa-link"></i></a>空元素</h4>
-      
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT 元素名 (子内容)&gt;</span> </span><br></pre></td></tr></table></figure>
+<div class="note warning flat"><p><strong>Warning</strong></p>
+<p>ELEMENT四个字母必须<strong>大写</strong> ，元素内容必须有<strong>括号</strong></p>
+</div>
+<h4 id="空元素"><a class="markdownIt-Anchor" href="#空元素"></a> 空元素</h4>
 <p>空元素即为不包含子元素或子文本的元素，其基本框架为：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT 元素名 <span class="meta-keyword">EMPTY</span>&gt;</span> </span><br></pre></td></tr></table></div></figure>
-
-        <h4 id="任意元素">
-          <a href="#任意元素" class="heading-link"><i class="fas fa-link"></i></a>任意元素</h4>
-      
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT 元素名 <span class="meta-keyword">EMPTY</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+<h4 id="任意元素"><a class="markdownIt-Anchor" href="#任意元素"></a> 任意元素</h4>
 <p>即为可以包含任意子内容的元素，基本框架为：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT 元素名 <span class="meta-keyword">ANY</span>&gt;</span> </span><br></pre></td></tr></table></div></figure>
-
-        <h4 id="子内容为文本">
-          <a href="#子内容为文本" class="heading-link"><i class="fas fa-link"></i></a>子内容为文本</h4>
-      
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT 元素名 <span class="meta-keyword">ANY</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+<h4 id="子内容为文本"><a class="markdownIt-Anchor" href="#子内容为文本"></a> 子内容为文本</h4>
 <p>即为子内容只能为文本，不能为子元素的元素，但可以是空标记。这里用“#PCDATA”来表示文本内容，PCDATA即为Parsed Character DATA的简写，意为被解析的字符数据。基本框架为：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT 元素名 (<span class="meta-keyword">#PCDATA</span>)&gt;</span> </span><br></pre></td></tr></table></div></figure>
-
-        <h4 id="子内容为元素">
-          <a href="#子内容为元素" class="heading-link"><i class="fas fa-link"></i></a>子内容为元素</h4>
-      
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT 元素名 (子元素1,子元素2,...)&gt;</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT 元素名 (<span class="meta-keyword">#PCDATA</span>)&gt;</span> </span><br></pre></td></tr></table></figure>
+<h4 id="子内容为元素"><a class="markdownIt-Anchor" href="#子内容为元素"></a> 子内容为元素</h4>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT 元素名 (子元素1,子元素2,...)&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这其中，“子元素1,子元素2,…”序列为内容模型，其由元素名与标识符构成，有以下六种标识符可选用：</p>
 <img src="/2020/11/23/xml-note-2/dtd1.png" class>
 <p>这些标识符可以单独使用也可以组合使用，举个例子：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT <span class="meta-keyword">note</span> (<span class="meta-keyword">to</span>,<span class="meta-keyword">from</span>,<span class="meta-keyword">header</span>,(<span class="meta-keyword">message</span>|<span class="meta-keyword">body</span>))&gt;</span></span><br><span class="line"><span class="meta">&lt;!ELEMENT <span class="meta-keyword">article</span> (<span class="meta-keyword">title</span>, <span class="meta-keyword">subtitle</span>?, <span class="meta-keyword">author</span>*, (<span class="meta-keyword">para</span> | <span class="meta-keyword">table</span> | <span class="meta-keyword">list</span>)+, <span class="meta-keyword">bibliography</span>?)&gt;</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT <span class="meta-keyword">note</span> (<span class="meta-keyword">to</span>,<span class="meta-keyword">from</span>,<span class="meta-keyword">header</span>,(<span class="meta-keyword">message</span>|<span class="meta-keyword">body</span>))&gt;</span></span><br><span class="line"><span class="meta">&lt;!ELEMENT <span class="meta-keyword">article</span> (<span class="meta-keyword">title</span>, <span class="meta-keyword">subtitle</span>?, <span class="meta-keyword">author</span>*, (<span class="meta-keyword">para</span> | <span class="meta-keyword">table</span> | <span class="meta-keyword">list</span>)+, <span class="meta-keyword">bibliography</span>?)&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这两个都是合法的表达式。但需要注意，在父元素中声明过的子元素，也应该在父元素之后被完整声明，比如：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT <span class="meta-keyword">note</span> (<span class="meta-keyword">to</span>,<span class="meta-keyword">from</span>,<span class="meta-keyword">heading</span>,<span class="meta-keyword">body</span>)&gt;</span></span><br><span class="line">    <span class="meta">&lt;!ELEMENT <span class="meta-keyword">to</span> (<span class="meta-keyword">#PCDATA</span>)&gt;</span></span><br><span class="line">    <span class="meta">&lt;!ELEMENT <span class="meta-keyword">from</span> (<span class="meta-keyword">#PCDATA</span>)&gt;</span></span><br><span class="line">    <span class="meta">&lt;!ELEMENT <span class="meta-keyword">heading</span> (<span class="meta-keyword">#PCDATA</span>)&gt;</span></span><br><span class="line">    <span class="meta">&lt;!ELEMENT <span class="meta-keyword">body</span> (<span class="meta-keyword">#PCDATA</span>)&gt;</span></span><br></pre></td></tr></table></div></figure>
-
-        <h4 id="子内容有文本与元素">
-          <a href="#子内容有文本与元素" class="heading-link"><i class="fas fa-link"></i></a>子内容有文本与元素</h4>
-      
-
-    <div class="note-plugin danger">
-      <span class="note-plugin__icon note-plugin__icon--danger">
-              <i class="fas fa-minus-circle"></i>
-            </span>
-      <p><strong>这部分仅作学习，不推荐使用</strong></p><figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT 元素名 (<span class="meta-keyword">#PCDATA</span> | 子元素1 | 子元素2 | ...)*&gt;</span></span><br></pre></td></tr></table></div></figure><p>之所以把这种形式特别挑出来说，是因为它较为特别。</p><ul><li>必须将 #PCDATA 放在最前面，必须用*号结尾,必须用“|”分隔。</li><li>只能约束该标记可以有哪些子标记，不能约束这些子标记出现的次数和顺序。</li><li>约束条件中不能出现限制符号，如:（#PCDATA|子标记+|子标记*）。</li></ul>
-    </div>
-  
-
-        <h3 id="属性">
-          <a href="#属性" class="heading-link"><i class="fas fa-link"></i></a>属性</h3>
-      
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT <span class="meta-keyword">note</span> (<span class="meta-keyword">to</span>,<span class="meta-keyword">from</span>,<span class="meta-keyword">heading</span>,<span class="meta-keyword">body</span>)&gt;</span></span><br><span class="line">    <span class="meta">&lt;!ELEMENT <span class="meta-keyword">to</span> (<span class="meta-keyword">#PCDATA</span>)&gt;</span></span><br><span class="line">    <span class="meta">&lt;!ELEMENT <span class="meta-keyword">from</span> (<span class="meta-keyword">#PCDATA</span>)&gt;</span></span><br><span class="line">    <span class="meta">&lt;!ELEMENT <span class="meta-keyword">heading</span> (<span class="meta-keyword">#PCDATA</span>)&gt;</span></span><br><span class="line">    <span class="meta">&lt;!ELEMENT <span class="meta-keyword">body</span> (<span class="meta-keyword">#PCDATA</span>)&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="子内容有文本与元素"><a class="markdownIt-Anchor" href="#子内容有文本与元素"></a> 子内容有文本与元素</h4>
+<div class="note danger flat"><p><strong>这部分仅作学习，不推荐使用</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT 元素名 (<span class="meta-keyword">#PCDATA</span> | 子元素1 | 子元素2 | ...)*&gt;</span></span><br></pre></td></tr></table></figure>
+<p>之所以把这种形式特别挑出来说，是因为它较为特别。</p>
+<ul>
+<li>必须将 #PCDATA 放在最前面，必须用*号结尾,必须用“|”分隔。</li>
+<li>只能约束该标记可以有哪些子标记，不能约束这些子标记出现的次数和顺序。</li>
+<li>约束条件中不能出现限制符号，如:（#PCDATA|子标记+|子标记*）。</li>
+</ul>
+</div>
+<h3 id="属性"><a class="markdownIt-Anchor" href="#属性"></a> 属性</h3>
 <p>DTD元素的声明框架为：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ATTLIST 元素名 属性名 属性类型 属性值&gt;</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ATTLIST 元素名 属性名 属性类型 属性值&gt;</span></span><br></pre></td></tr></table></figure>
 <p>对于多个属性，可以选择写在同一个声明，或分为多个声明：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ATTLIST 元素名 属性名1 属性类型1 属性值1 属性名2 属性类型2 属性值2&gt;</span></span><br><span class="line">or</span><br><span class="line"><span class="meta">&lt;!ATTLIST 元素名 属性名1 属性类型1 属性值1&gt;</span></span><br><span class="line"><span class="meta">&lt;!ATTLIST 元素名 属性名2 属性类型2 属性值2&gt;</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ATTLIST 元素名 属性名1 属性类型1 属性值1 属性名2 属性类型2 属性值2&gt;</span></span><br><span class="line">or</span><br><span class="line"><span class="meta">&lt;!ATTLIST 元素名 属性名1 属性类型1 属性值1&gt;</span></span><br><span class="line"><span class="meta">&lt;!ATTLIST 元素名 属性名2 属性类型2 属性值2&gt;</span></span><br></pre></td></tr></table></figure>
 <p>除了元素名与属性名以外的两个概念可能听起来较为抽象，接下来我会一一解释。</p>
-
-        <h4 id="属性类型">
-          <a href="#属性类型" class="heading-link"><i class="fas fa-link"></i></a>属性类型</h4>
-      
+<h4 id="属性类型"><a class="markdownIt-Anchor" href="#属性类型"></a> 属性类型</h4>
 <p>属性类型有多个可选项，需要注意的是，一律需要大写。</p>
 <img src="/2020/11/23/xml-note-2/dtd2.png" class>
-
-    <div class="note-plugin warning">
-      <span class="note-plugin__icon note-plugin__icon--warning">
-              <i class="fas fa-exclamation-circle"></i>
-            </span>
-      <p><strong>Warning</strong></p><p>一个标记的若干属性中，不允许有两个属性的类型都是ID。</p>
-    </div>
-  
-
-        <h4 id="属性值">
-          <a href="#属性值" class="heading-link"><i class="fas fa-link"></i></a>属性值</h4>
-      
+<div class="note warning flat"><p><strong>Warning</strong></p>
+<p>一个标记的若干属性中，不允许有两个属性的类型都是ID。</p>
+</div>
+<h4 id="属性值"><a class="markdownIt-Anchor" href="#属性值"></a> 属性值</h4>
 <p>属性值也一样，一律需要大写。</p>
 <img src="/2020/11/23/xml-note-2/dtd3.png" class>
-
-    <div class="note-plugin warning">
-      <span class="note-plugin__icon note-plugin__icon--warning">
-              <i class="fas fa-exclamation-circle"></i>
-            </span>
-      <p><strong>Warning</strong></p><p>ID 类型属性的默认情况只能是 #REQUIRED 或 #IMPLIED,不可以是字符串或#FIXED。</p>
-    </div>
-  
+<div class="note warning flat"><p><strong>Warning</strong></p>
+<p>ID 类型属性的默认情况只能是 #REQUIRED 或 #IMPLIED,不可以是字符串或#FIXED。</p>
+</div>
 <p>举几个例子：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ATTLIST <span class="meta-keyword">memo</span> <span class="meta-keyword">id</span> <span class="meta-keyword">ID</span> <span class="meta-keyword">#REQUIRED</span></span></span><br><span class="line"><span class="meta">          <span class="meta-keyword">security</span> (<span class="meta-keyword">high</span>|<span class="meta-keyword">low</span>) <span class="meta-string">&quot;high&quot;</span></span></span><br><span class="line"><span class="meta">          <span class="meta-keyword">keywords</span> <span class="meta-keyword">NMTOKENS</span> <span class="meta-keyword">#IMPLIED</span></span></span><br><span class="line"><span class="meta">&gt;</span> </span><br><span class="line"><span class="meta">&lt;!ATTLIST <span class="meta-keyword">sender</span> <span class="meta-keyword">company</span> <span class="meta-keyword">CDATA</span> <span class="meta-keyword">#FIXED</span> <span class="meta-string">&quot;Microsoft&quot;</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">memo</span> <span class="attr">id</span>=<span class="string">&quot;memo-2006-03-14“ keywords=&quot;</span><span class="attr">XML</span> <span class="attr">XPath</span> <span class="attr">XQuery</span>&quot; /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">sender</span> <span class="attr">company</span>=<span class="string">“Microsoft”</span> /&gt;</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ATTLIST <span class="meta-keyword">memo</span> <span class="meta-keyword">id</span> <span class="meta-keyword">ID</span> <span class="meta-keyword">#REQUIRED</span></span></span><br><span class="line"><span class="meta">          <span class="meta-keyword">security</span> (<span class="meta-keyword">high</span>|<span class="meta-keyword">low</span>) <span class="meta-string">&quot;high&quot;</span></span></span><br><span class="line"><span class="meta">          <span class="meta-keyword">keywords</span> <span class="meta-keyword">NMTOKENS</span> <span class="meta-keyword">#IMPLIED</span></span></span><br><span class="line"><span class="meta">&gt;</span> </span><br><span class="line"><span class="meta">&lt;!ATTLIST <span class="meta-keyword">sender</span> <span class="meta-keyword">company</span> <span class="meta-keyword">CDATA</span> <span class="meta-keyword">#FIXED</span> <span class="meta-string">&quot;Microsoft&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">memo</span> <span class="attr">id</span>=<span class="string">&quot;memo-2006-03-14“ keywords=&quot;</span><span class="attr">XML</span> <span class="attr">XPath</span> <span class="attr">XQuery</span>&quot; /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">sender</span> <span class="attr">company</span>=<span class="string">“Microsoft”</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <hr>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT <span class="meta-keyword">Step</span> <span class="meta-keyword">EMPTY</span>&gt;</span> </span><br><span class="line">    <span class="meta">&lt;!ATTLIST <span class="meta-keyword">Step</span> <span class="meta-keyword">id</span> <span class="meta-keyword">ID</span> <span class="meta-keyword">#REQUIRED</span>&gt;</span> </span><br><span class="line"><span class="meta">&lt;!ELEMENT <span class="meta-keyword">StepLink</span> <span class="meta-keyword">EMPTY</span>&gt;</span> </span><br><span class="line">    <span class="meta">&lt;!ATTLIST <span class="meta-keyword">StepLink</span> <span class="meta-keyword">steps</span> <span class="meta-keyword">IDREFS</span> <span class="meta-keyword">#IMPLIED</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ELEMENT <span class="meta-keyword">Step</span> <span class="meta-keyword">EMPTY</span>&gt;</span> </span><br><span class="line">    <span class="meta">&lt;!ATTLIST <span class="meta-keyword">Step</span> <span class="meta-keyword">id</span> <span class="meta-keyword">ID</span> <span class="meta-keyword">#REQUIRED</span>&gt;</span> </span><br><span class="line"><span class="meta">&lt;!ELEMENT <span class="meta-keyword">StepLink</span> <span class="meta-keyword">EMPTY</span>&gt;</span> </span><br><span class="line">    <span class="meta">&lt;!ATTLIST <span class="meta-keyword">StepLink</span> <span class="meta-keyword">steps</span> <span class="meta-keyword">IDREFS</span> <span class="meta-keyword">#IMPLIED</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>如果在该文档中存在：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Step</span> <span class="attr">id</span>=<span class="string">&quot;step1&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Step</span> <span class="attr">id</span>=<span class="string">&quot;step2&quot;</span>/&gt;</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Step</span> <span class="attr">id</span>=<span class="string">&quot;step1&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Step</span> <span class="attr">id</span>=<span class="string">&quot;step2&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 <p>则</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">StepLink</span> <span class="attr">steps</span>=<span class="string">&quot;step1 step2&quot;</span>/&gt;</span> </span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">StepLink</span> <span class="attr">steps</span>=<span class="string">&quot;step1 step2&quot;</span>/&gt;</span> </span><br></pre></td></tr></table></figure>
 <p>是正确的。</p>
 <hr>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ATTLIST <span class="meta-keyword">bulletlist</span> <span class="meta-keyword">icon</span> <span class="meta-keyword">ENTITY</span> <span class="meta-keyword">#IMPLIED</span>&gt;</span></span><br><span class="line">     <span class="meta">&lt;!ENTITY <span class="meta-keyword">bluedot</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;icons/bluedot.png&quot;</span>&gt;</span></span><br><span class="line">     <span class="meta">&lt;!ENTITY <span class="meta-keyword">greendot</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;icons/greendot.png&quot;</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bulletlist</span> <span class="attr">icon</span>=<span class="string">&quot;bluedot&quot;</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ATTLIST <span class="meta-keyword">bulletlist</span> <span class="meta-keyword">icon</span> <span class="meta-keyword">ENTITY</span> <span class="meta-keyword">#IMPLIED</span>&gt;</span></span><br><span class="line">     <span class="meta">&lt;!ENTITY <span class="meta-keyword">bluedot</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;icons/bluedot.png&quot;</span>&gt;</span></span><br><span class="line">     <span class="meta">&lt;!ENTITY <span class="meta-keyword">greendot</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;icons/greendot.png&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bulletlist</span> <span class="attr">icon</span>=<span class="string">&quot;bluedot&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>最后一个例子看不懂也没关系，一会学完<strong>实体</strong> 后就能明白了。</p>
-
-        <h3 id="实体">
-          <a href="#实体" class="heading-link"><i class="fas fa-link"></i></a>实体</h3>
-      
+<h3 id="实体"><a class="markdownIt-Anchor" href="#实体"></a> 实体</h3>
 <p>实体根据出现的位置，可以大体分为两类：在DTD中占位的<strong>参数实体</strong> 与在XML文档中占位的<strong>一般实体</strong> 。</p>
-
-        <h4 id="参数实体">
-          <a href="#参数实体" class="heading-link"><i class="fas fa-link"></i></a>参数实体</h4>
-      
+<h4 id="参数实体"><a class="markdownIt-Anchor" href="#参数实体"></a> 参数实体</h4>
 <p>参数实体只在DTD文档中起作用，不会出现在XML文档的数据中。基本框架为：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ENTITY % 实体名 <span class="meta-string">&quot;实体值&quot;</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ENTITY % 实体名 <span class="meta-string">&quot;实体值&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>而参数引用的格式为 <strong>%实体名</strong>  。当然，也可以引用外部的实体，其基本框架为：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ENTITY % 实体名 <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;URI&quot;</span>&gt;</span></span><br><span class="line">or</span><br><span class="line"><span class="meta">&lt;!ENTITY % 实体名 <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;public_ID&quot;</span> <span class="meta-string">&quot;URI&quot;</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
-
-    <div class="note-plugin warning">
-      <span class="note-plugin__icon note-plugin__icon--warning">
-              <i class="fas fa-exclamation-circle"></i>
-            </span>
-      <p><strong>Warning</strong></p><p>声明实体的时候，“%”与实体名中间有一个空格，而引用实体的时候则不能有空格。</p>
-    </div>
-  
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ENTITY % 实体名 <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;URI&quot;</span>&gt;</span></span><br><span class="line">or</span><br><span class="line"><span class="meta">&lt;!ENTITY % 实体名 <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;public_ID&quot;</span> <span class="meta-string">&quot;URI&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div class="note warning flat"><p><strong>Warning</strong></p>
+<p>声明实体的时候，“%”与实体名中间有一个空格，而引用实体的时候则不能有空格。</p>
+</div>
 <p>示例：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; standalone=&quot;no&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">student</span> [</span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ENTITY % p <span class="meta-string">&quot;(#PCDATA)&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ELEMENT <span class="meta-keyword">student</span> (<span class="meta-keyword">id</span>,<span class="meta-keyword">name</span>)&gt;</span></span></span><br><span class="line"><span class="meta">        <span class="meta">&lt;!ELEMENT <span class="meta-keyword">id</span> %p;&gt;</span></span></span><br><span class="line"><span class="meta">        <span class="meta">&lt;!ELEMENT <span class="meta-keyword">name</span> %p;&gt;</span></span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 内部参数实体 --&gt;</span></span><br></pre></td></tr></table></div></figure>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; standalone=&quot;no&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">student</span> [</span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ENTITY % <span class="meta-keyword">studentdtd</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;http://example.org/student.dtd&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">    %studentdtd;</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 外部参数实体 --&gt;</span></span><br></pre></td></tr></table></div></figure>
-
-        <h4 id="一般实体">
-          <a href="#一般实体" class="heading-link"><i class="fas fa-link"></i></a>一般实体</h4>
-      
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; standalone=&quot;no&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">student</span> [</span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ENTITY % p <span class="meta-string">&quot;(#PCDATA)&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ELEMENT <span class="meta-keyword">student</span> (<span class="meta-keyword">id</span>,<span class="meta-keyword">name</span>)&gt;</span></span></span><br><span class="line"><span class="meta">        <span class="meta">&lt;!ELEMENT <span class="meta-keyword">id</span> %p;&gt;</span></span></span><br><span class="line"><span class="meta">        <span class="meta">&lt;!ELEMENT <span class="meta-keyword">name</span> %p;&gt;</span></span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 内部参数实体 --&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; standalone=&quot;no&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">student</span> [</span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ENTITY % <span class="meta-keyword">studentdtd</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;http://example.org/student.dtd&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">    %studentdtd;</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 外部参数实体 --&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="一般实体"><a class="markdownIt-Anchor" href="#一般实体"></a> 一般实体</h4>
 <p>一般实体虽然定义在DTD中，但用于在XML数据中进行占位。之前提到过的“&amp;lt;”、“&amp;gt;”等字符都属于一般实体。其基本框架为：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ENTITY 实体名 <span class="meta-string">&quot;实体值&quot;</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ENTITY 实体名 <span class="meta-string">&quot;实体值&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>参数的引用格式即为**&amp;实体名;** 。</p>
 <p>举个例子，在DTD文档中：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; standalone=&quot;no&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">author</span> [</span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ELEMENT <span class="meta-keyword">author</span> (<span class="meta-keyword">#PCDATA</span>)&gt;</span></span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ENTITY <span class="meta-keyword">us</span> <span class="meta-string">&quot;You and me&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">]&gt;</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; standalone=&quot;no&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">author</span> [</span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ELEMENT <span class="meta-keyword">author</span> (<span class="meta-keyword">#PCDATA</span>)&gt;</span></span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ENTITY <span class="meta-keyword">us</span> <span class="meta-string">&quot;You and me&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">]&gt;</span></span><br></pre></td></tr></table></figure>
 <p>而在XML文档中的</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">author</span>&gt;</span><span class="symbol">&amp;us;</span><span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">author</span>&gt;</span><span class="symbol">&amp;us;</span><span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>就会被解析为</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">author</span>&gt;</span>You and me<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
-
-    <div class="note-plugin info">
-      <span class="note-plugin__icon note-plugin__icon--info">
-              <i class="fas fa-info-circle"></i>
-            </span>
-      <p><strong>数值实体</strong></p><p>在XML文档中，可以直接用数值实体引用Unicode编码。</p><figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="symbol">&amp;#x5B66;</span><span class="symbol">&amp;#x4E60;</span><span class="symbol">&amp;#x58;</span><span class="symbol">&amp;#x4D;</span><span class="symbol">&amp;#x4C;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br></pre></td></tr></table></div></figure><p>会被解析为</p><figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>学习XML<span class="tag">&lt;/<span class="name">title</span>&gt;</span> </span><br></pre></td></tr></table></div></figure>
-    </div>
-  
-
-    <div class="note-plugin info">
-      <span class="note-plugin__icon note-plugin__icon--info">
-              <i class="fas fa-info-circle"></i>
-            </span>
-      <p><strong>未解析实体</strong></p><p>可以在 XML 数据中指明所关联的二进制文件（图片、音频、视频等等），然后由解析器通过调用适当的应用程序对这些文件进行解析。因为解析器本身无法处理这些非 XML 的数据，所以我们将定义这种关联关系的实体称为“未解析实体”。</p><figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; standalone=&quot;no&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">img</span> [</span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ELEMENT <span class="meta-keyword">img</span> <span class="meta-keyword">EMPTY</span>&gt;</span></span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ATTLIST <span class="meta-keyword">img</span> <span class="meta-keyword">src</span> <span class="meta-keyword">ENTITY</span> <span class="meta-keyword">#REQUIRED</span>&gt;</span></span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!NOTATION <span class="meta-keyword">gif</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;gif-viewer.exe&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ENTITY <span class="meta-keyword">logo</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;logo.gif&quot;</span> <span class="meta-keyword">NDATA</span> <span class="meta-keyword">gif</span>&gt;</span>  </span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;logo&quot;</span>/&gt;</span> </span><br></pre></td></tr></table></div></figure>
-    </div>
-  
-
-        <h3 id="条件">
-          <a href="#条件" class="heading-link"><i class="fas fa-link"></i></a>条件</h3>
-      
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">author</span>&gt;</span>You and me<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div class="note info flat"><p><strong>数值实体</strong></p>
+<p>在XML文档中，可以直接用数值实体引用Unicode编码。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="symbol">&amp;#x5B66;</span><span class="symbol">&amp;#x4E60;</span><span class="symbol">&amp;#x58;</span><span class="symbol">&amp;#x4D;</span><span class="symbol">&amp;#x4C;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>会被解析为</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>学习XML<span class="tag">&lt;/<span class="name">title</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+</div>
+<div class="note info flat"><p><strong>未解析实体</strong></p>
+<p>可以在 XML 数据中指明所关联的二进制文件（图片、音频、视频等等），然后由解析器通过调用适当的应用程序对这些文件进行解析。因为解析器本身无法处理这些非 XML 的数据，所以我们将定义这种关联关系的实体称为“未解析实体”。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; standalone=&quot;no&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">img</span> [</span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ELEMENT <span class="meta-keyword">img</span> <span class="meta-keyword">EMPTY</span>&gt;</span></span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ATTLIST <span class="meta-keyword">img</span> <span class="meta-keyword">src</span> <span class="meta-keyword">ENTITY</span> <span class="meta-keyword">#REQUIRED</span>&gt;</span></span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!NOTATION <span class="meta-keyword">gif</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;gif-viewer.exe&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ENTITY <span class="meta-keyword">logo</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;logo.gif&quot;</span> <span class="meta-keyword">NDATA</span> <span class="meta-keyword">gif</span>&gt;</span>  </span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;logo&quot;</span>/&gt;</span> </span><br></pre></td></tr></table></figure>
+</div>
+<h3 id="条件"><a class="markdownIt-Anchor" href="#条件"></a> 条件</h3>
 <p>在DTD中可以使用<strong>IGNORE</strong> 和<strong>INCLUDE</strong> 关键字来忽略或包含相应的DTD规则。其基本框架为：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!IGNORE [忽略的规则]]&gt;</span></span><br><span class="line"><span class="meta">&lt;!INCLUDE [包含的规则]]&gt;</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!IGNORE [忽略的规则]]&gt;</span></span><br><span class="line"><span class="meta">&lt;!INCLUDE [包含的规则]]&gt;</span></span><br></pre></td></tr></table></figure>
 <p>如果直接使用上述语法，则忽略或包含的DTD规则并不能提供任何价值。因此，需要配合参数实体进行使用。(但依旧用处不大)</p>
 <img src="/2020/11/23/xml-note-2/dtd4.png" class>
-
-    <div class="note-plugin info">
-      <span class="note-plugin__icon note-plugin__icon--info">
-              <i class="fas fa-info-circle"></i>
-            </span>
-      <p><strong>提示</strong></p><p>IGNORE的优先级比INCLUDE高。</p>
-    </div>
-  
-
-        <h2 id="结">
-          <a href="#结" class="heading-link"><i class="fas fa-link"></i></a>结</h2>
-      
+<div class="note info flat"><p><strong>提示</strong></p>
+<p>IGNORE的优先级比INCLUDE高。</p>
+</div>
+<h2 id="结"><a class="markdownIt-Anchor" href="#结"></a> 结</h2>
 <hr>
-</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://linyxxxxx.github.io">Linyx</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://linyxxxxx.github.io/2020/11/23/xml-note-2/">https://linyxxxxx.github.io/2020/11/23/xml-note-2/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://linyxxxxx.github.io/tags/%E7%BC%96%E7%A8%8B/">编程</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://linyxxxxx.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/11/24/data-structure-study-note-14/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">数据结构算法笔记#3.3:最小生成树</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2020/11/22/xml-note-1/"><span class="paginator-prev__text">XML学习笔记#1:XML语法</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">
-          概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">
-          语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">
-          引用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E5%BC%95%E7%94%A8"><span class="toc-number">2.1.1.</span> <span class="toc-text">
-          内部引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E5%BC%95%E7%94%A8"><span class="toc-number">2.1.2.</span> <span class="toc-text">
-          外部引用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%B4%A0"><span class="toc-number">2.2.</span> <span class="toc-text">
-          元素</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A9%BA%E5%85%83%E7%B4%A0"><span class="toc-number">2.2.1.</span> <span class="toc-text">
-          空元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E6%84%8F%E5%85%83%E7%B4%A0"><span class="toc-number">2.2.2.</span> <span class="toc-text">
-          任意元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%90%E5%86%85%E5%AE%B9%E4%B8%BA%E6%96%87%E6%9C%AC"><span class="toc-number">2.2.3.</span> <span class="toc-text">
-          子内容为文本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%90%E5%86%85%E5%AE%B9%E4%B8%BA%E5%85%83%E7%B4%A0"><span class="toc-number">2.2.4.</span> <span class="toc-text">
-          子内容为元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%90%E5%86%85%E5%AE%B9%E6%9C%89%E6%96%87%E6%9C%AC%E4%B8%8E%E5%85%83%E7%B4%A0"><span class="toc-number">2.2.5.</span> <span class="toc-text">
-          子内容有文本与元素</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7"><span class="toc-number">2.3.</span> <span class="toc-text">
-          属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.3.1.</span> <span class="toc-text">
-          属性类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="toc-number">2.3.2.</span> <span class="toc-text">
-          属性值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93"><span class="toc-number">2.4.</span> <span class="toc-text">
-          实体</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E5%AE%9E%E4%BD%93"><span class="toc-number">2.4.1.</span> <span class="toc-text">
-          参数实体</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%AE%9E%E4%BD%93"><span class="toc-number">2.4.2.</span> <span class="toc-text">
-          一般实体</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6"><span class="toc-number">2.5.</span> <span class="toc-text">
-          条件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">
-          结</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/avatar.png" alt="avatar"></div><p class="sidebar-ov-author__text">言多必失.</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/Linyxxxxx/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://weibo.com/5239240464/" target="_blank" rel="noopener" data-popover="微博" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-weibo"></i></span></a><a class="sidebar-ov-social-item" href="https://www.zhihu.com/people/lin-30-65/" target="_blank" rel="noopener" data-popover="知乎" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">知</span></a><a class="sidebar-ov-social-item" href="https://steamcommunity.com/profiles/76561198147249500/" target="_blank" rel="noopener" data-popover="Steam" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-steam"></i></span></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2020</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Linyx All Rights Reserved</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div><div>唯有孤独永恒。</div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1.0.1/dist/canvas-nest.min.js" color="255,182,185" opacity="0.6" count="99" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.1.1"></script><script src="/js/stun-boot.js?v=2.1.1"></script><script src="/js/scroll.js?v=2.1.1"></script><script src="/js/header.js?v=2.1.1"></script><script src="/js/sidebar.js?v=2.1.1"></script></body></html>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Linyx</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://linyxxxxx.github.io/2020/11/23/xml-note-2/">https://linyxxxxx.github.io/2020/11/23/xml-note-2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://linyxxxxx.github.io" target="_blank">Linyx's Home</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BC%96%E7%A8%8B/">编程</a><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></div><div class="post_share"><div class="social-share" data-image="/orange" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/11/24/data-structure-study-note-14/"><img class="prev-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">数据结构算法笔记#3.3:最小生成树</div></div></a></div><div class="next-post pull-right"><a href="/2020/11/22/xml-note-1/"><img class="next-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">XML学习笔记#1:XML语法</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/12/20/data-structure-study-note-21/" title="数据结构算法笔记#5.3:排序(3)"><img class="cover" src="/orange" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-20</div><div class="title">数据结构算法笔记#5.3:排序(3)</div></div></a></div><div><a href="/2020/12/19/data-structure-study-note-20/" title="数据结构算法笔记#5.2:排序(2)"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-19</div><div class="title">数据结构算法笔记#5.2:排序(2)</div></div></a></div><div><a href="/2020/12/18/csharp-homework-5/" title="C#实验笔记#5:多线程"><img class="cover" src="/orange" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-18</div><div class="title">C#实验笔记#5:多线程</div></div></a></div><div><a href="/2020/12/16/xml-note-6/" title="XML学习笔记#6:XQuery"><img class="cover" src="/orange" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-16</div><div class="title">XML学习笔记#6:XQuery</div></div></a></div><div><a href="/2020/12/15/data-structure-study-note-19/" title="数据结构算法笔记#5.1:排序(1)"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-15</div><div class="title">数据结构算法笔记#5.1:排序(1)</div></div></a></div><div><a href="/2020/12/11/data-structure-study-note-18/" title="数据结构算法笔记#4.2:哈希表"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-11</div><div class="title">数据结构算法笔记#4.2:哈希表</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Linyx</div><div class="author-info__description">自娱自乐罢了...</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Linyxxxxx/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Linyxxxxx/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://weibo.com/5239240464/" target="_blank" title="Weibo"><i class="fab fa-weibo"></i></a><a class="social-icon" href="https://www.zhihu.com/people/lin-30-65/" target="_blank" title="Zhihu"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://steamcommunity.com/profiles/76561198147249500/" target="_blank" title="Steam"><i class="fab fa-steam"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">新年快樂!2021,新的開始,新的外觀~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text"> 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text"> 语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text"> 引用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E5%BC%95%E7%94%A8"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 内部引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E5%BC%95%E7%94%A8"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 外部引用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%B4%A0"><span class="toc-number">2.2.</span> <span class="toc-text"> 元素</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A9%BA%E5%85%83%E7%B4%A0"><span class="toc-number">2.2.1.</span> <span class="toc-text"> 空元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E6%84%8F%E5%85%83%E7%B4%A0"><span class="toc-number">2.2.2.</span> <span class="toc-text"> 任意元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%90%E5%86%85%E5%AE%B9%E4%B8%BA%E6%96%87%E6%9C%AC"><span class="toc-number">2.2.3.</span> <span class="toc-text"> 子内容为文本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%90%E5%86%85%E5%AE%B9%E4%B8%BA%E5%85%83%E7%B4%A0"><span class="toc-number">2.2.4.</span> <span class="toc-text"> 子内容为元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%90%E5%86%85%E5%AE%B9%E6%9C%89%E6%96%87%E6%9C%AC%E4%B8%8E%E5%85%83%E7%B4%A0"><span class="toc-number">2.2.5.</span> <span class="toc-text"> 子内容有文本与元素</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7"><span class="toc-number">2.3.</span> <span class="toc-text"> 属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.3.1.</span> <span class="toc-text"> 属性类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="toc-number">2.3.2.</span> <span class="toc-text"> 属性值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93"><span class="toc-number">2.4.</span> <span class="toc-text"> 实体</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E5%AE%9E%E4%BD%93"><span class="toc-number">2.4.1.</span> <span class="toc-text"> 参数实体</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%AE%9E%E4%BD%93"><span class="toc-number">2.4.2.</span> <span class="toc-text"> 一般实体</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6"><span class="toc-number">2.5.</span> <span class="toc-text"> 条件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text"> 结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2020/12/26/math-statistics-note-2020/" title="概统复习笔记(4~9章)"><img src="/orange" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="概统复习笔记(4~9章)"/></a><div class="content"><a class="title" href="/2020/12/26/math-statistics-note-2020/" title="概统复习笔记(4~9章)">概统复习笔记(4~9章)</a><time datetime="2020-12-26T01:34:52.000Z" title="发表于 2020-12-26 09:34:52">2020-12-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/23/discrete-math-note-2020/" title="离散数学知识点笔记"><img src="/orange" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="离散数学知识点笔记"/></a><div class="content"><a class="title" href="/2020/12/23/discrete-math-note-2020/" title="离散数学知识点笔记">离散数学知识点笔记</a><time datetime="2020-12-23T02:07:07.000Z" title="发表于 2020-12-23 10:07:07">2020-12-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/20/data-structure-study-note-21/" title="数据结构算法笔记#5.3:排序(3)"><img src="/orange" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据结构算法笔记#5.3:排序(3)"/></a><div class="content"><a class="title" href="/2020/12/20/data-structure-study-note-21/" title="数据结构算法笔记#5.3:排序(3)">数据结构算法笔记#5.3:排序(3)</a><time datetime="2020-12-20T02:06:20.000Z" title="发表于 2020-12-20 10:06:20">2020-12-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/19/data-structure-study-note-20/" title="数据结构算法笔记#5.2:排序(2)"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据结构算法笔记#5.2:排序(2)"/></a><div class="content"><a class="title" href="/2020/12/19/data-structure-study-note-20/" title="数据结构算法笔记#5.2:排序(2)">数据结构算法笔记#5.2:排序(2)</a><time datetime="2020-12-19T02:15:07.000Z" title="发表于 2020-12-19 10:15:07">2020-12-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/18/csharp-homework-5/" title="C#实验笔记#5:多线程"><img src="/orange" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C#实验笔记#5:多线程"/></a><div class="content"><a class="title" href="/2020/12/18/csharp-homework-5/" title="C#实验笔记#5:多线程">C#实验笔记#5:多线程</a><time datetime="2020-12-18T02:40:44.000Z" title="发表于 2020-12-18 10:40:44">2020-12-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 By Linyx</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script id="canvas_nest" defer="defer" color="255,182,185" opacity="0.6" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script></div></body></html>

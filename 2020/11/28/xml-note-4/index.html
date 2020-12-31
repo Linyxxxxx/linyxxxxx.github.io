@@ -1,68 +1,192 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.1.1" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.1.1" type="image/png" sizes="32x32"><meta name="description" content="XPath即为XML路径语言(XML Path Language)，这是一篇XPath的笔记。">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>XML学习笔记#4:XPath | Linyx's Home</title><meta name="keywords" content="编程,计算机"><meta name="author" content="Linyx"><meta name="copyright" content="Linyx"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="XPath即为XML路径语言(XML Path Language)，这是一篇XPath的笔记。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XML学习笔记#4:XPath">
 <meta property="og:url" content="https://linyxxxxx.github.io/2020/11/28/xml-note-4/index.html">
 <meta property="og:site_name" content="Linyx&#39;s Home">
 <meta property="og:description" content="XPath即为XML路径语言(XML Path Language)，这是一篇XPath的笔记。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://linyxxxxx.github.io/orange">
 <meta property="article:published_time" content="2020-11-28T06:56:40.000Z">
 <meta property="article:modified_time" content="2020-11-28T08:09:54.177Z">
 <meta property="article:author" content="Linyx">
 <meta property="article:tag" content="编程">
 <meta property="article:tag" content="计算机">
-<meta name="twitter:card" content="summary"><title>XML学习笔记#4:XPath | Linyx's Home</title><link ref="canonical" href="https://linyxxxxx.github.io/2020/11/28/xml-note-4/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.1.1"><script>var Stun = window.Stun || {};
-var CONFIG = {
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://linyxxxxx.github.io/orange"><link rel="shortcut icon" href="/images/icons/favicon-32x32.png"><link rel="canonical" href="https://linyxxxxx.github.io/2020/11/28/xml-note-4/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var GLOBAL_CONFIG = { 
   root: '/',
   algolia: undefined,
-  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
-  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
-  header: {"enable":true,"showOnPost":false,"scrollDownIcon":false},
-  postWidget: {"endText":true},
-  nightMode: {"enable":true},
-  back2top: {"enable":true},
-  codeblock: {"style":"carbon","highlight":"light","wordWrap":false},
-  reward: false,
-  fancybox: false,
-  zoomImage: {"gapAside":"20px"},
-  galleryWaterfall: undefined,
-  lazyload: false,
-  pjax: undefined,
-  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
-  shortcuts: undefined,
-  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
-  sourcePath: {"js":"js","css":"css","images":"images"},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Linyx","link":"链接: ","source":"来源: Linyx's Home","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
 };
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-bookmark"></i></span><span class="header-nav-menu-item__text">文章</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/friends/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-friends"></i></span><span class="header-nav-menu-item__text">朋友</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/me/"><span class="header-nav-menu-item__icon"><i class="fas fa-heart"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/comments/"><span class="header-nav-menu-item__icon"><i class="fas fa-comments"></i></span><span class="header-nav-menu-item__text">留言</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">XML学习笔记#4:XPath</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-11-28</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2020-11-28</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p>XPath即为XML路径语言(XML Path Language)，这是一篇XPath的笔记。</p>
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-11-28 16:09:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'true'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}const fontSizeVal = saveToLocal.get('global-font-size')
+if (fontSizeVal !== undefined) {
+  document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+}})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-bookmark"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/me/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: orange"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Linyx's Home</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-bookmark"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/me/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">XML学习笔记#4:XPath</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-11-28T06:56:40.000Z" title="发表于 2020-11-28 14:56:40">2020-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-11-28T08:09:54.177Z" title="更新于 2020-11-28 16:09:54">2020-11-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/XML%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">XML学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>XPath即为XML路径语言(XML Path Language)，这是一篇XPath的笔记。</p>
 <a id="more"></a>
-
-        <h2 id="概述">
-          <a href="#概述" class="heading-link"><i class="fas fa-link"></i></a>概述</h2>
-      
+<h2 id="概述"><a class="markdownIt-Anchor" href="#概述"></a> 概述</h2>
 <p>XPath的主要功能是<strong>定位</strong>XML文档中的某部分内容，换句话说，就是确定一条路，使得电脑能够顺着这条路找到你想要的节点。</p>
-
-        <h2 id="语法">
-          <a href="#语法" class="heading-link"><i class="fas fa-link"></i></a>语法</h2>
-      
-
-        <h3 id="节点">
-          <a href="#节点" class="heading-link"><i class="fas fa-link"></i></a>节点</h3>
-      
+<h2 id="语法"><a class="markdownIt-Anchor" href="#语法"></a> 语法</h2>
+<h3 id="节点"><a class="markdownIt-Anchor" href="#节点"></a> 节点</h3>
 <p>节点是XPath中的基本单位，以下几种都属于节点：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bookstore</span>&gt;</span> <span class="comment">&lt;!-- 文档节点 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">author</span>&gt;</span>J K. Rowling<span class="tag">&lt;/<span class="name">author</span>&gt;</span> <span class="comment">&lt;!-- 元素节点 --&gt;</span></span><br><span class="line">lang=&quot;en&quot; <span class="comment">&lt;!-- 属性节点 --&gt;</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bookstore</span>&gt;</span> <span class="comment">&lt;!-- 文档节点 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">author</span>&gt;</span>J K. Rowling<span class="tag">&lt;/<span class="name">author</span>&gt;</span> <span class="comment">&lt;!-- 元素节点 --&gt;</span></span><br><span class="line">lang=&quot;en&quot; <span class="comment">&lt;!-- 属性节点 --&gt;</span></span><br></pre></td></tr></table></figure>
 <p>而节点中的数据被称为<strong>原子值</strong> ，比如上述例子中，J K. Rowling与“en”都属于原子值。</p>
 <p>而节点之间的<strong>关系</strong> 分为父（Parent）、子（Children）、兄弟（Sibling）、先辈（Ancestor）与后代（Descendant）。举个例子，在如下文档中：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bookstore</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">book</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Harry Potter<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">author</span>&gt;</span>J K. Rowling<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">year</span>&gt;</span>2005<span class="tag">&lt;/<span class="name">year</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">price</span>&gt;</span>29.99<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bookstore</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bookstore</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">book</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Harry Potter<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">author</span>&gt;</span>J K. Rowling<span class="tag">&lt;/<span class="name">author</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">year</span>&gt;</span>2005<span class="tag">&lt;/<span class="name">year</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">price</span>&gt;</span>29.99<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bookstore</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>&lt;title&gt;的父节点是&lt;book&gt;，而先辈节点是&lt;book&gt;与&lt;bookstore&gt;；&lt;bookstore&gt;的子节点是&lt;book&gt;，而后代节点是&lt;book&gt;、&lt;title&gt;、&lt;author&gt;、&lt;year&gt;以及&lt;price&gt;。</p>
-
-        <h3 id="基本语法">
-          <a href="#基本语法" class="heading-link"><i class="fas fa-link"></i></a>基本语法</h3>
-      
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bookstore</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">book</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span> <span class="attr">lang</span>=<span class="string">&quot;eng&quot;</span>&gt;</span>Harry Potter<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">price</span>&gt;</span>29.99<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">book</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span> <span class="attr">lang</span>=<span class="string">&quot;eng&quot;</span>&gt;</span>Learning XML<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">price</span>&gt;</span>39.95<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bookstore</span>&gt;</span></span><br></pre></td></tr></table></div></figure>
+<h3 id="基本语法"><a class="markdownIt-Anchor" href="#基本语法"></a> 基本语法</h3>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bookstore</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">book</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span> <span class="attr">lang</span>=<span class="string">&quot;eng&quot;</span>&gt;</span>Harry Potter<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">price</span>&gt;</span>29.99<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">book</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span> <span class="attr">lang</span>=<span class="string">&quot;eng&quot;</span>&gt;</span>Learning XML<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">price</span>&gt;</span>39.95<span class="tag">&lt;/<span class="name">price</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">book</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bookstore</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>在以上文档中，假如我们需要匹配所有&lt;title&gt;元素，那就可以使用以下语法：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bookstore/book/title</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bookstore/book/title</span><br></pre></td></tr></table></figure>
 <p>这就是XPath的最核心语法，是不是一看就懂。当然，在匹配过程中，为了方便地操作，还有一些路径表达式可以选用：</p>
-<div class="table-container"><table>
+<table>
 <thead>
 <tr>
 <th>表达式</th>
@@ -102,9 +226,9 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <td>//@lang</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>在匹配过程中，假如我们要匹配到一些未知节点，或是不精确匹配，就可以用<strong>通配符</strong> 来匹配未知节点：</p>
-<div class="table-container"><table>
+<table>
 <thead>
 <tr>
 <th>通配符</th>
@@ -129,15 +253,12 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <td>//book/node()</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>在匹配过程中，如果要选取若干路径，则可以用 “|” 运算符连接：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//book/title | //book/price</span><br></pre></td></tr></table></div></figure>
-
-        <h3 id="谓语">
-          <a href="#谓语" class="heading-link"><i class="fas fa-link"></i></a>谓语</h3>
-      
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//book/title | //book/price</span><br></pre></td></tr></table></figure>
+<h3 id="谓语"><a class="markdownIt-Anchor" href="#谓语"></a> 谓语</h3>
 <p>谓语相当于在匹配的过程中加入一些限定条件，起到过滤地作用。看几个例子就能明白了：</p>
-<div class="table-container"><table>
+<table>
 <thead>
 <tr>
 <th>表达式</th>
@@ -178,15 +299,12 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <td>选取 bookstore 元素中的 book 元素的所有 title 元素，且其中的 price 元素的值须大于 35.00。</td>
 </tr>
 </tbody>
-</table></div>
-
-        <h3 id="轴">
-          <a href="#轴" class="heading-link"><i class="fas fa-link"></i></a>轴</h3>
-      
+</table>
+<h3 id="轴"><a class="markdownIt-Anchor" href="#轴"></a> 轴</h3>
 <p>如果我们已经确定了一个节点，但要顺着这个节点匹配与它相关的其他值，那就可以通过轴来进行查找。比如我们要匹配bookstore下的所有title节点，但我们不清楚title的具体位置，就可以用如下表达式：</p>
-<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bookstore/descendant::title</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bookstore/descendant::title</span><br></pre></td></tr></table></figure>
 <p>其中，/descendant::title即是一段轴表达式，表示匹配后代中所有的title元素，轴表达式有以下多种选择：</p>
-<div class="table-container"><table>
+<table>
 <thead>
 <tr>
 <th>轴</th>
@@ -247,68 +365,32 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <td>选取当前节点。</td>
 </tr>
 </tbody>
-</table></div>
-
-        <h3 id="节点测试函数">
-          <a href="#节点测试函数" class="heading-link"><i class="fas fa-link"></i></a>节点测试函数</h3>
-      
+</table>
+<h3 id="节点测试函数"><a class="markdownIt-Anchor" href="#节点测试函数"></a> 节点测试函数</h3>
 <p>由于函数有很多，所以这里只稍微介绍几个：</p>
-
-        <h4 id="comment">
-          <a href="#comment" class="heading-link"><i class="fas fa-link"></i></a>comment()</h4>
-      
+<h4 id="comment"><a class="markdownIt-Anchor" href="#comment"></a> comment()</h4>
 <p>对注释节点返回 True。如<code>following::comment()</code> 可以选择所有出现在上下文节点之后的注释节点。</p>
-
-        <h4 id="text">
-          <a href="#text" class="heading-link"><i class="fas fa-link"></i></a>text()</h4>
-      
+<h4 id="text"><a class="markdownIt-Anchor" href="#text"></a> text()</h4>
 <p>对文本节点返回 True。如<code>child::text()</code> 选择属于上下文节点子级的文本节点。</p>
-
-        <h4 id="empty">
-          <a href="#empty" class="heading-link"><i class="fas fa-link"></i></a>empty()</h4>
-      
+<h4 id="empty"><a class="markdownIt-Anchor" href="#empty"></a> empty()</h4>
 <p>如果参数值是空序列则返回 True。如 <code>//book[empty(child::title)]/price</code>选择所有不含title的book的price。</p>
-
-        <h2 id="类型">
-          <a href="#类型" class="heading-link"><i class="fas fa-link"></i></a>类型</h2>
-      
+<h2 id="类型"><a class="markdownIt-Anchor" href="#类型"></a> 类型</h2>
 <p>XPath是强类型的语言。在查询计划的编写和执行过程中，数据类型扮演着重要的角色。</p>
-
-        <h3 id="序列类型">
-          <a href="#序列类型" class="heading-link"><i class="fas fa-link"></i></a>序列类型</h3>
-      
+<h3 id="序列类型"><a class="markdownIt-Anchor" href="#序列类型"></a> 序列类型</h3>
 <p>这里举两个函数：</p>
-
-        <h4 id="codepoints-to-stringint-arg">
-          <a href="#codepoints-to-stringint-arg" class="heading-link"><i class="fas fa-link"></i></a>codepoints-to-string(int arg[])</h4>
-      
+<h4 id="codepoints-to-stringint-arg"><a class="markdownIt-Anchor" href="#codepoints-to-stringint-arg"></a> codepoints-to-string(int arg[])</h4>
 <p>该函数将序列中的数值（Unicode代码点）转换为字符串。参数 arg 是一个由0或多个整数值构成的序列，返回值是一个字符串。</p>
 <p>如<code>codepoints-to-string((88, 81, 117, 101, 114, 121))</code> 返回 “XQuery”。</p>
-
-        <h4 id="string-to-codepointsstring-arg">
-          <a href="#string-to-codepointsstring-arg" class="heading-link"><i class="fas fa-link"></i></a>string-to-codepoints(string arg)</h4>
-      
+<h4 id="string-to-codepointsstring-arg"><a class="markdownIt-Anchor" href="#string-to-codepointsstring-arg"></a> string-to-codepoints(string arg)</h4>
 <p>该函数将参数中的字符串转换为Unicode代码点。参数 arg 是一个空序列或者一个字符串，返回值是一个由0或多个整数值构成的序列。</p>
 <p>如 <code>string-to-codepoints(&quot;XQuery&quot;)</code> 返回 (88, 81, 117, 101, 114, 121) 。</p>
-
-        <h3 id="类型转换">
-          <a href="#类型转换" class="heading-link"><i class="fas fa-link"></i></a>类型转换</h3>
-      
+<h3 id="类型转换"><a class="markdownIt-Anchor" href="#类型转换"></a> 类型转换</h3>
 <p>与大多数一样，XPath也支持隐式类型转换与显式类型转换。这边介绍一下几个显式类型转换的相关操作符：</p>
-
-        <h4 id="cast-as">
-          <a href="#cast-as" class="heading-link"><i class="fas fa-link"></i></a>cast as</h4>
-      
+<h4 id="cast-as"><a class="markdownIt-Anchor" href="#cast-as"></a> cast as</h4>
 <p>可以使用 cast as 操作符进行显式类型转换。比如，表达式 <code>&quot;123&quot; cast as xs:integer</code> 可以将字符串 123 转换为整型值。</p>
-
-        <h4 id="castable-as">
-          <a href="#castable-as" class="heading-link"><i class="fas fa-link"></i></a>castable as</h4>
-      
+<h4 id="castable-as"><a class="markdownIt-Anchor" href="#castable-as"></a> castable as</h4>
 <p>可以使用 castable as 操作符判断是否能够成功地进行显式类型转换，但并不进行类型转换。返回值为 true 或 false。</p>
-
-        <h4 id="instance-of">
-          <a href="#instance-of" class="heading-link"><i class="fas fa-link"></i></a>instance of</h4>
-      
+<h4 id="instance-of"><a class="markdownIt-Anchor" href="#instance-of"></a> instance of</h4>
 <p>如果输入数据是目标类型的实例，则返回 true，否则返回 false。</p>
 <ol>
 <li>
@@ -318,28 +400,6 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <p>对于用户定义的复杂类型：通过扩展派生的数据类型的值 <strong>instance of</strong> 原数据类型 ＝ <strong>true</strong></p>
 </li>
 </ol>
-
-        <h2 id="结">
-          <a href="#结" class="heading-link"><i class="fas fa-link"></i></a>结</h2>
-      
+<h2 id="结"><a class="markdownIt-Anchor" href="#结"></a> 结</h2>
 <hr>
-</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://linyxxxxx.github.io">Linyx</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://linyxxxxx.github.io/2020/11/28/xml-note-4/">https://linyxxxxx.github.io/2020/11/28/xml-note-4/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://linyxxxxx.github.io/tags/%E7%BC%96%E7%A8%8B/">编程</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://linyxxxxx.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/11/30/xml-note-5/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">XML学习笔记#5:XSLT</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2020/11/27/data-structure-study-note-15/"><span class="paginator-prev__text">数据结构算法笔记#3.4:最短路径</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">
-          概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">
-          语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8A%82%E7%82%B9"><span class="toc-number">2.1.</span> <span class="toc-text">
-          节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">
-          基本语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%93%E8%AF%AD"><span class="toc-number">2.3.</span> <span class="toc-text">
-          谓语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%B4"><span class="toc-number">2.4.</span> <span class="toc-text">
-          轴</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8A%82%E7%82%B9%E6%B5%8B%E8%AF%95%E5%87%BD%E6%95%B0"><span class="toc-number">2.5.</span> <span class="toc-text">
-          节点测试函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#comment"><span class="toc-number">2.5.1.</span> <span class="toc-text">
-          comment()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#text"><span class="toc-number">2.5.2.</span> <span class="toc-text">
-          text()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#empty"><span class="toc-number">2.5.3.</span> <span class="toc-text">
-          empty()</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">
-          类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">
-          序列类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#codepoints-to-stringint-arg"><span class="toc-number">3.1.1.</span> <span class="toc-text">
-          codepoints-to-string(int arg[])</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#string-to-codepointsstring-arg"><span class="toc-number">3.1.2.</span> <span class="toc-text">
-          string-to-codepoints(string arg)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">3.2.</span> <span class="toc-text">
-          类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cast-as"><span class="toc-number">3.2.1.</span> <span class="toc-text">
-          cast as</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#castable-as"><span class="toc-number">3.2.2.</span> <span class="toc-text">
-          castable as</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#instance-of"><span class="toc-number">3.2.3.</span> <span class="toc-text">
-          instance of</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">
-          结</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/avatar.png" alt="avatar"></div><p class="sidebar-ov-author__text">言多必失.</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/Linyxxxxx/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://weibo.com/5239240464/" target="_blank" rel="noopener" data-popover="微博" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-weibo"></i></span></a><a class="sidebar-ov-social-item" href="https://www.zhihu.com/people/lin-30-65/" target="_blank" rel="noopener" data-popover="知乎" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">知</span></a><a class="sidebar-ov-social-item" href="https://steamcommunity.com/profiles/76561198147249500/" target="_blank" rel="noopener" data-popover="Steam" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-steam"></i></span></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2020</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Linyx All Rights Reserved</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div><div>唯有孤独永恒。</div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1.0.1/dist/canvas-nest.min.js" color="255,182,185" opacity="0.6" count="99" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.1.1"></script><script src="/js/stun-boot.js?v=2.1.1"></script><script src="/js/scroll.js?v=2.1.1"></script><script src="/js/header.js?v=2.1.1"></script><script src="/js/sidebar.js?v=2.1.1"></script></body></html>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Linyx</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://linyxxxxx.github.io/2020/11/28/xml-note-4/">https://linyxxxxx.github.io/2020/11/28/xml-note-4/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://linyxxxxx.github.io" target="_blank">Linyx's Home</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BC%96%E7%A8%8B/">编程</a><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></div><div class="post_share"><div class="social-share" data-image="/orange" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/11/30/xml-note-5/"><img class="prev-cover" src="/orange" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">XML学习笔记#5:XSLT</div></div></a></div><div class="next-post pull-right"><a href="/2020/11/27/data-structure-study-note-15/"><img class="next-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">数据结构算法笔记#3.4:最短路径</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/12/20/data-structure-study-note-21/" title="数据结构算法笔记#5.3:排序(3)"><img class="cover" src="/orange" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-20</div><div class="title">数据结构算法笔记#5.3:排序(3)</div></div></a></div><div><a href="/2020/12/19/data-structure-study-note-20/" title="数据结构算法笔记#5.2:排序(2)"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-19</div><div class="title">数据结构算法笔记#5.2:排序(2)</div></div></a></div><div><a href="/2020/12/18/csharp-homework-5/" title="C#实验笔记#5:多线程"><img class="cover" src="/orange" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-18</div><div class="title">C#实验笔记#5:多线程</div></div></a></div><div><a href="/2020/12/16/xml-note-6/" title="XML学习笔记#6:XQuery"><img class="cover" src="/orange" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-16</div><div class="title">XML学习笔记#6:XQuery</div></div></a></div><div><a href="/2020/12/15/data-structure-study-note-19/" title="数据结构算法笔记#5.1:排序(1)"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-15</div><div class="title">数据结构算法笔记#5.1:排序(1)</div></div></a></div><div><a href="/2020/12/11/data-structure-study-note-18/" title="数据结构算法笔记#4.2:哈希表"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-11</div><div class="title">数据结构算法笔记#4.2:哈希表</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Linyx</div><div class="author-info__description">自娱自乐罢了...</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Linyxxxxx/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Linyxxxxx/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://weibo.com/5239240464/" target="_blank" title="Weibo"><i class="fab fa-weibo"></i></a><a class="social-icon" href="https://www.zhihu.com/people/lin-30-65/" target="_blank" title="Zhihu"><i class="fab fa-zhihu"></i></a><a class="social-icon" href="https://steamcommunity.com/profiles/76561198147249500/" target="_blank" title="Steam"><i class="fab fa-steam"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">新年快樂!2021,新的開始,新的外觀~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text"> 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text"> 语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8A%82%E7%82%B9"><span class="toc-number">2.1.</span> <span class="toc-text"> 节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text"> 基本语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%93%E8%AF%AD"><span class="toc-number">2.3.</span> <span class="toc-text"> 谓语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%B4"><span class="toc-number">2.4.</span> <span class="toc-text"> 轴</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8A%82%E7%82%B9%E6%B5%8B%E8%AF%95%E5%87%BD%E6%95%B0"><span class="toc-number">2.5.</span> <span class="toc-text"> 节点测试函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#comment"><span class="toc-number">2.5.1.</span> <span class="toc-text"> comment()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#text"><span class="toc-number">2.5.2.</span> <span class="toc-text"> text()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#empty"><span class="toc-number">2.5.3.</span> <span class="toc-text"> empty()</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text"> 类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text"> 序列类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#codepoints-to-stringint-arg"><span class="toc-number">3.1.1.</span> <span class="toc-text"> codepoints-to-string(int arg[])</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#string-to-codepointsstring-arg"><span class="toc-number">3.1.2.</span> <span class="toc-text"> string-to-codepoints(string arg)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">3.2.</span> <span class="toc-text"> 类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cast-as"><span class="toc-number">3.2.1.</span> <span class="toc-text"> cast as</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#castable-as"><span class="toc-number">3.2.2.</span> <span class="toc-text"> castable as</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#instance-of"><span class="toc-number">3.2.3.</span> <span class="toc-text"> instance of</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text"> 结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2020/12/26/math-statistics-note-2020/" title="概统复习笔记(4~9章)"><img src="/orange" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="概统复习笔记(4~9章)"/></a><div class="content"><a class="title" href="/2020/12/26/math-statistics-note-2020/" title="概统复习笔记(4~9章)">概统复习笔记(4~9章)</a><time datetime="2020-12-26T01:34:52.000Z" title="发表于 2020-12-26 09:34:52">2020-12-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/23/discrete-math-note-2020/" title="离散数学知识点笔记"><img src="/orange" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="离散数学知识点笔记"/></a><div class="content"><a class="title" href="/2020/12/23/discrete-math-note-2020/" title="离散数学知识点笔记">离散数学知识点笔记</a><time datetime="2020-12-23T02:07:07.000Z" title="发表于 2020-12-23 10:07:07">2020-12-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/20/data-structure-study-note-21/" title="数据结构算法笔记#5.3:排序(3)"><img src="/orange" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据结构算法笔记#5.3:排序(3)"/></a><div class="content"><a class="title" href="/2020/12/20/data-structure-study-note-21/" title="数据结构算法笔记#5.3:排序(3)">数据结构算法笔记#5.3:排序(3)</a><time datetime="2020-12-20T02:06:20.000Z" title="发表于 2020-12-20 10:06:20">2020-12-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/19/data-structure-study-note-20/" title="数据结构算法笔记#5.2:排序(2)"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据结构算法笔记#5.2:排序(2)"/></a><div class="content"><a class="title" href="/2020/12/19/data-structure-study-note-20/" title="数据结构算法笔记#5.2:排序(2)">数据结构算法笔记#5.2:排序(2)</a><time datetime="2020-12-19T02:15:07.000Z" title="发表于 2020-12-19 10:15:07">2020-12-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/18/csharp-homework-5/" title="C#实验笔记#5:多线程"><img src="/orange" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C#实验笔记#5:多线程"/></a><div class="content"><a class="title" href="/2020/12/18/csharp-homework-5/" title="C#实验笔记#5:多线程">C#实验笔记#5:多线程</a><time datetime="2020-12-18T02:40:44.000Z" title="发表于 2020-12-18 10:40:44">2020-12-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 By Linyx</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script id="canvas_nest" defer="defer" color="255,182,185" opacity="0.6" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script></div></body></html>
