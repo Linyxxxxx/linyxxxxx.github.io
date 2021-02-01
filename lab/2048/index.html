@@ -3,17 +3,19 @@
 <head>
     <title>2048 Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
     <div id="main">
         <div class="heading">
             <h1 class="title">2048</h1>
-            <div id="restart-button">New Game</div>
+            <div class="info">
+                <div id="restart-button">New Game</div>
             <div class="score-container">
                 SCORE
                 <div id="score">0</div>
+            </div>
             </div>
         </div>
         <div class="intro">
@@ -26,9 +28,13 @@
             <div id="finish-info">Game over!</div>
         </div>
     </div>
-
+    <footer>
+        <div id="copyright">
+            Created by <a href="https://github.com/Linyxxxxx">Linyx</a> ©2021.
+        </div>
+    </footer>
     
-    <script src="js/main.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>

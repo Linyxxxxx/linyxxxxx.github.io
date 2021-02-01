@@ -1,9 +1,18 @@
+html {
+    overflow: hidden;
+}
+
 body {
+    top: 0;
+    left: 0;
+    position: fixed;
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
     background-color: #faf8ef;
+    font-weight: 500;
+    font-family: Consolas, 'Courier New', 'Comic Sans MS';
 }
 
 #main {
@@ -11,8 +20,6 @@ body {
     margin: 0 auto;
     display: block;
     color: #776e65;
-    font-weight: 500;
-    font-family: Consolas, 'Courier New', 'Comic Sans MS';
 }
 
 .heading {
@@ -23,6 +30,10 @@ body {
     font-size: 80px;
     margin: 0;
     flex: auto;
+}
+
+.info{
+    display: flex;
 }
 
 #restart-button {
@@ -80,11 +91,11 @@ strong {
     transform: translateX(-50%) translateY(-50%);
 }
 
-.hide{
+.hide {
     display: none;
 }
 
-#finish-page .background{
+#finish-page .background {
     background-color: #faf8ef;
     position: absolute;
     width: 460px;
@@ -95,7 +106,7 @@ strong {
     opacity: 0.6;
 }
 
-#finish-info{
+#finish-info {
     text-align: center;
     position: relative;
     top: 40%;
@@ -103,7 +114,6 @@ strong {
     font-weight: 700;
     color: #786e65;
 }
-
 
 canvas {
     display: block;
@@ -117,9 +127,50 @@ canvas {
     transform: translateX(-50%) translateY(-50%) scale(0.5, 0.5);
 }
 
+footer {
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    text-align: center;
+    transform: translateX(-50%);
+}
+
+footer a {
+    text-decoration: none;
+    font-weight: 900;
+}
+
 @media screen and (max-width: 500px) {
-    .heading {
-        display: none;
+    .heading{
+        width: 100vw;
+        display: block;
+    }
+    .title {
+        font-size: 60px;
+        margin-top: 5%;
+        text-align: center;
+    }
+
+    .info{
+        margin: 0 auto;
+        justify-content: center;
+    }
+
+    #restart-button {
+        padding: 0 10px 5px 10px;;
+        height: 35px;
+    }
+
+    .score-container{
+        font-size: 12px;
+        padding: 0px 10px 5px 10px;;
+        height: 35px;
+        line-height: 35px;
+        display: flex;
+    }
+
+    .score-container #score{
+        margin-left: 5px;
     }
 
     .intro {
@@ -129,7 +180,12 @@ canvas {
     canvas {
         transform: translateX(-50%) translateY(-50%) scale(0.4, 0.4);
     }
-    #finish-page{
+
+    #finish-page {
         transform: translateX(-50%) translateY(-50%) scale(0.8, 0.8);
+    }
+
+    footer{
+        font-size: 12px;
     }
 }
