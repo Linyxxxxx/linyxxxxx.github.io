@@ -189,3 +189,28 @@ footer a {
         font-size: 12px;
     }
 }
+
+@media screen and (max-width: 420px) {
+    canvas {
+        transform: translateX(-50%) translateY(-50%) scale(0.3, 0.3);
+    }
+
+    #finish-page {
+        transform: translateX(-50%) translateY(-50%) scale(0.6, 0.6);
+    }
+}
+
+@media screen and (max-height: 700px) {
+    .title {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    #restart-button {
+        margin-top: 10px;
+    }
+    
+    .score-container {
+        margin-top: 10px;
+    }
+}
