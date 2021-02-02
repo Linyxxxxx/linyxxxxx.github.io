@@ -13,13 +13,13 @@ body {
     background-color: #faf8ef;
     font-weight: 500;
     font-family: Consolas, 'Courier New', 'Comic Sans MS';
+    color: #776e65;
 }
 
-#main {
+.main {
     width: 466px;
     margin: 0 auto;
     display: block;
-    color: #776e65;
 }
 
 .heading {
@@ -32,7 +32,7 @@ body {
     flex: auto;
 }
 
-.info{
+.info {
     display: flex;
 }
 
@@ -138,38 +138,43 @@ footer {
 footer a {
     text-decoration: none;
     font-weight: 900;
+    color: #8f7a66;
 }
 
 @media screen and (max-width: 500px) {
-    .heading{
+    .heading {
         width: 100vw;
         display: block;
     }
+
     .title {
         font-size: 60px;
         margin-top: 5%;
         text-align: center;
     }
 
-    .info{
+    .info {
         margin: 0 auto;
         justify-content: center;
     }
 
     #restart-button {
-        padding: 0 10px 5px 10px;;
-        height: 35px;
+        padding-left: 10px;
+        padding-right: 10px;
+        height: 25px;
+        line-height: 25px;
     }
 
-    .score-container{
+    .score-container {
         font-size: 12px;
-        padding: 0px 10px 5px 10px;;
-        height: 35px;
-        line-height: 35px;
+        padding-left: 10px;
+        padding-right: 10px;
+        height: 25px;
+        line-height: 25px;
         display: flex;
     }
 
-    .score-container #score{
+    .score-container #score {
         margin-left: 5px;
     }
 
@@ -185,7 +190,7 @@ footer a {
         transform: translateX(-50%) translateY(-50%) scale(0.8, 0.8);
     }
 
-    footer{
+    footer {
         font-size: 12px;
     }
 }
@@ -209,7 +214,7 @@ footer a {
     #restart-button {
         margin-top: 10px;
     }
-    
+
     .score-container {
         margin-top: 10px;
     }
