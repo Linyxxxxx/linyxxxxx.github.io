@@ -128,8 +128,9 @@ body {
 .nav .avatar-name .name i {
   font-size: 16px;
   font-family: "italic" !important;
-  font-weight: 300;
+  font-weight: 500;
   color: #666666;
+  font-style: normal;
 }
 .nav .contents ul {
   width: 100%;
