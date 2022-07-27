@@ -13,7 +13,7 @@
 
     <title>
         
-        「二零拾肆」
+        Tags - 「二零拾肆」
         
     </title>
 
@@ -59,7 +59,7 @@
     </div>
     <div class="contents" id="nav-content">
         <ul>
-            <li  class=active >
+            <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
                     <span>主页</span>
@@ -71,7 +71,7 @@
                     <span>目录</span>
                 </a>
             </li>
-            <!-- <li >
+            <!-- <li  class=active >
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
                     <span>标签</span>
@@ -125,54 +125,59 @@
     
     <div class="index-middle">
         <!-- Main Content -->
-        
-<div class="post-preview-container" style="min-height: 720px">
+        <div id='tag_cloud' class="tags">
     
-    <div class="post-preview">
-        <div class="post-time">2022-07-27</div>
-        <div class="post-info">
-            <a href="2022/07/27/xmu-camp-experience/">
-                <h3>
-                    厦门大学2022软件工程系夏令营笔试经验
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#经验记录" title="经验记录">经验记录</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
-    </div>
+    <a href="#经验记录" class="tag-triangle" title="经验记录"><i class="tag-i">经验记录</i></a>
     
+    <a href="#杂谈随想" class="tag-triangle" title="杂谈随想"><i class="tag-i">杂谈随想</i></a>
+    
+</div>
+
+<!-- 标签列表 -->
+
+
+<div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="经验记录">
+                    <span class="tag-text">经验记录</span>
+                </span>
+    
+    <!-- <li class="listing-item">
+    <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+    <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+    </li> -->
     <div class="post-preview">
-        <div class="post-time">2022-07-27</div>
-        <div class="post-info">
-            <a href="2022/07/27/hello-world/">
-                <h3>
-                    你好，世界
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#杂谈随想" title="杂谈随想">杂谈随想</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
+        <a href="/2022/07/27/xmu-camp-experience/">
+            <h2 class="post-title">
+                厦门大学2022软件工程系夏令营笔试经验
+            </h2>
+            
+        </a>
+        <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
     </div>
     
 </div>
-<ul class="pager">
+
+<div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="杂谈随想">
+                    <span class="tag-text">杂谈随想</span>
+                </span>
     
+    <!-- <li class="listing-item">
+    <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+    <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+    </li> -->
+    <div class="post-preview">
+        <a href="/2022/07/27/hello-world/">
+            <h2 class="post-title">
+                你好，世界
+            </h2>
+            
+        </a>
+        <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+    </div>
     
-</ul>
+</div>
+
 
     </div>
 </div>
