@@ -165,6 +165,10 @@ body {
 .nav .contents ul li:hover i {
   color: #4a4a4a;
 }
+.nav .contents ul li.old-site a span,
+.nav .contents ul li.old-site a i {
+  color: #cacaca
+}
 .site-nav-toggle {
   display: none;
 }
