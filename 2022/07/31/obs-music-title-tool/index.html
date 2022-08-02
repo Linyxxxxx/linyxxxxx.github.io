@@ -26,6 +26,7 @@
 
     <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
     <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/KaTeX/0.7.1/katex.min.css" rel="stylesheet">
     <!-- ga & ba script hoook -->
     <script></script>
 <meta name="generator" content="Hexo 6.2.0"></head>
@@ -110,7 +111,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OBS"><span class="toc-text">OBS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#win32"><span class="toc-text">win32</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#python"><span class="toc-text">python</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#csharp"><span class="toc-text">csharp</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#obs"><span class="toc-text"> OBS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#win32"><span class="toc-text"> win32</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#python"><span class="toc-text"> python</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#csharp"><span class="toc-text"> csharp</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -142,7 +143,7 @@
 
 <div class="post-container">
     <div class="post-title">
-        「实现一个直播时实时显示音乐名的工具」
+        「 实现一个直播时实时显示音乐名的工具 」
     </div>
 
     <div class="post-meta">
@@ -163,25 +164,24 @@
         <p>前段时间闲来无事开了个直播间做做直播，直播时总是有弹幕问我bgm是什么，奈何我的直播歌单是和朋友一起凑出来的，有些歌我也不知道歌名，再说逐一回复也麻烦，于是想着把bgm名直接显示在屏幕上。</p>
 <p>其实要实现这一功能并不复杂，直接挂个音乐播放器的小窗在屏幕上或者是使用现有的软件就行了。然而我实在懒得额外下载软件，只想集成在本身常驻运行，且自己开发的工具箱里。再者，额外显示一个窗口属实略显冗杂，比起只显示一行文字来说属实影响画面观感。</p>
 <p>综合以上几点，我所需要的是一个直接嵌入在直播工具（如obs）中显示，且自动识别更新的一行歌名显示功能。</p>
-<h1 id="OBS"><a href="#OBS" class="headerlink" title="OBS"></a>OBS</h1><p>要在obs中显示动态更新的文字其实很简单：obs的文字显示可以选择“从文件读取”，选定一个文本文件，文本标签中的文字就会自动更新为文件内容的文本（观感延迟大概一秒）。</p>
+<h1 id="obs"><a class="markdownIt-Anchor" href="#obs"></a> OBS</h1>
+<p>要在obs中显示动态更新的文字其实很简单：obs的文字显示可以选择“从文件读取”，选定一个文本文件，文本标签中的文字就会自动更新为文件内容的文本（观感延迟大概一秒）。</p>
 <p>所以程序部分只需实时获取播放器信息，然后更新到文本文件。</p>
-<h1 id="win32"><a href="#win32" class="headerlink" title="win32"></a>win32</h1><p>由于要获取播放器信息，直觉能想到，音乐播放器会将当前播放歌曲的名字作为窗口标题。这里以我用的网易云音乐为例，鼠标移到窗口上后发现显示的果然是当前播放的歌曲名。</p>
+<h1 id="win32"><a class="markdownIt-Anchor" href="#win32"></a> win32</h1>
+<p>由于要获取播放器信息，直觉能想到，音乐播放器会将当前播放歌曲的名字作为窗口标题。这里以我用的网易云音乐为例，鼠标移到窗口上后发现显示的果然是当前播放的歌曲名。</p>
 <p>这样一来要获取当前播放名就很容易了，只需使用win32api获取窗口名就行。</p>
-<h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><p>这里先以python为例，首先 <code>pip install pypiwin32</code>。</p>
+<h2 id="python"><a class="markdownIt-Anchor" href="#python"></a> python</h2>
+<p>这里先以python为例，首先 <code>pip install pypiwin32</code>。</p>
 <p>win32中获取窗口标题的函数为</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">win32gui.GetWindowText(handle)</span><br></pre></td></tr></table></figure>
-
 <p>需要传入一个窗体句柄，一般可以通过className来获取。所以在这之前，我们要先获取到音乐播放器的className。</p>
 <p>在这里我用了 <code>win32gui.GetForegroundWindow()</code> 来获取最前方的窗口，然后在运行代码后给予一个延迟，再把网易云音乐的窗口置于最前，然后输出相关信息：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> sleep</span><br><span class="line"><span class="keyword">from</span> win32 <span class="keyword">import</span> win32gui</span><br><span class="line"></span><br><span class="line">sleep(<span class="number">3</span>) <span class="comment">#延迟3s，打开音乐播放器（如网易云音乐）窗口</span></span><br><span class="line"></span><br><span class="line">current_window = win32gui.GetForegroundWindow()</span><br><span class="line">classname = win32gui.GetClassName(current_window)</span><br><span class="line">title = win32gui.GetWindowText(current_window)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;classname: <span class="subst">&#123;classname&#125;</span> title: <span class="subst">&#123;title&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OUT: classname: OrpheusBrowserHost title: Tomorrow will be fine. - Sodagreen</span><br></pre></td></tr></table></figure>
-
-<p>有了这些信息，我们就可以先使用 <code>win32gui.FindWindow(&#39;OrpheusBrowserHost&#39;, None)</code> 来获取到窗体句柄，然后直接获取到窗口标题：</p>
+<p>有了这些信息，我们就可以先使用 <code>win32gui.FindWindow('OrpheusBrowserHost', None)</code> 来获取到窗体句柄，然后直接获取到窗口标题：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> win32 <span class="keyword">import</span> win32gui</span><br><span class="line"></span><br><span class="line">handle = win32gui.FindWindow(<span class="string">&#x27;OrpheusBrowserHost&#x27;</span>, <span class="literal">None</span>)</span><br><span class="line">musicInfo = win32gui.GetWindowText(handle)</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="csharp"><a href="#csharp" class="headerlink" title="csharp"></a>csharp</h2><p>由于我的桌面小工具是csharp实现的，所以最后也给出一段csharp的完整代码：</p>
+<h2 id="csharp"><a class="markdownIt-Anchor" href="#csharp"></a> csharp</h2>
+<p>由于我的桌面小工具是csharp实现的，所以最后也给出一段csharp的完整代码：</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">IntPtr handle = FindWindow(<span class="string">&quot;OrpheusBrowserHost&quot;</span>, <span class="literal">null</span>);</span><br><span class="line">StringBuilder title = <span class="keyword">new</span> StringBuilder(<span class="number">256</span>);</span><br><span class="line">GetWindowText(handle, title, title.Capacity);</span><br><span class="line"></span><br><span class="line"><span class="built_in">string</span> _curMusicInfo = title.ToString();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (_curMusicInfo.Equals(curMusicInfo)) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">curMusicInfo = _curMusicInfo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">string</span> startupPath = Application.StartupPath + <span class="string">@&quot;/data/music-info.txt&quot;</span>;</span><br><span class="line">	<span class="keyword">using</span> (StreamWriter sw = <span class="keyword">new</span> StreamWriter(startupPath))</span><br><span class="line">	&#123;</span><br><span class="line">		sw.WriteLine(<span class="string">&quot;当前播放: &quot;</span> + curMusicInfo);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span> (Exception err) &#123; &#125;</span><br></pre></td></tr></table></figure>
 
         
