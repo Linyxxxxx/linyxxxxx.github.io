@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/images/icons/favicon-32x32.png">
+
+    <title>
+        
+        Motion Representations for Articulated Animation 论文阅读 - 「二零拾肆」
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/KaTeX/0.7.1/katex.min.css" rel="stylesheet">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Look how they shine for you </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/images/avatar.png" />
+        </div>
+        <div class="name">
+            <i>Linyx</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>目录</span>
+                </a>
+            </li>
+            <!-- <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li> -->
+            <!-- <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li> -->
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+
+            <!-- profile -->
+            
+            <li>
+                <a target="_blank" rel="noopener" href="https://github.com/Linyxxxxx">
+                    <i class="iconfont icon-github"></i>
+                    <span>Github</span>
+                </a>
+            </li>
+            
+            <li class="old-site">
+                <a target="_blank" rel="noopener" href="https://linyx-old.vercel.app/">
+                    <i class="iconfont icon-fanhui"></i>
+                    <span>旧站</span>
+                </a>
+            </li>
+            <!--  -->
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#related-work"><span class="toc-text"> RELATED WORK</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#method"><span class="toc-text"> METHOD</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pca-based%E8%BF%90%E5%8A%A8%E4%BC%B0%E8%AE%A1"><span class="toc-text"> PCA-based运动估计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E8%BF%90%E5%8A%A8%E4%BC%B0%E8%AE%A1"><span class="toc-text"> 背景运动估计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%AD%A5%E7%94%9F%E6%88%90%E5%8A%A8%E7%94%BB"><span class="toc-text"> 分步生成动画</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Look how they shine for you </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        「 Motion Representations for Articulated Animation 论文阅读 」
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2022-08-04 16:03:49</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#论文阅读" title="论文阅读">论文阅读</a>
+        <span>/</span>
+        
+        
+        </span>
+        <!-- <span class="attr">访问：<span id="busuanzi_value_page_pv"></span> -->
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <p>这篇文章的工作是在 First Order Motion Model 上的修改。</p>
+<h1 id="related-work"><a class="markdownIt-Anchor" href="#related-work"></a> RELATED WORK</h1>
+<p>FOMM存在一些问题：</p>
+<ul>
+<li>比如说两帧之间的keypoints并不能精确地建立好联系，容易出现映射错误，导致运动错误的情况；</li>
+<li>kp只能代表位置和运动方向，不能表征周围域的形状，比如旋转、缩放之类的特征；</li>
+<li>没有考虑到背景的运动，比如一点微小的相机运动或者背景内容的变化都需要单独的kp进行建模，这样一来首先是需要额外的网络来训练背景的kp，其次是可能导致过拟合，最后导致背景的内容被附近的kp带着运动。</li>
+</ul>
+<h1 id="method"><a class="markdownIt-Anchor" href="#method"></a> METHOD</h1>
+<p><img src="https://s2.loli.net/2022/08/05/XJsdlMgoANWBVew.png" alt="RegionAA Pipeline" /></p>
+<h2 id="pca-based运动估计"><a class="markdownIt-Anchor" href="#pca-based运动估计"></a> PCA-based运动估计</h2>
+<p>作者提出，在FOMM中直接对仿射变换参数直接进行回归，需要较大的网络容量，而且建模出来的效果较差。所以在本文中提出了使用region进行预测。</p>
+<p>这个region是指 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mover accent="true"><mi>T</mi><mo>^</mo></mover><mrow><mi>S</mi><mo>←</mo><mi>D</mi></mrow></msub><mo>(</mo><mi>z</mi><mo>)</mo><mo>=</mo><msub><mi>M</mi><mn>0</mn></msub><mi>z</mi><mo>+</mo><mstyle scriptlevel="0" displaystyle="true"><msubsup><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></msubsup><msub><mi>M</mi><mi>k</mi></msub><mo>(</mo><msub><mi>T</mi><mrow><mi>S</mi><mo>←</mo><mi>R</mi></mrow></msub><mo>(</mo><msub><mi>p</mi><mi>k</mi></msub><mo>)</mo><mo>+</mo><msub><mi>J</mi><mi>k</mi></msub><mo>(</mo><mi>z</mi><mo>−</mo><msub><mi>T</mi><mrow><mi>D</mi><mo>←</mo><mi>R</mi></mrow></msub><mo>(</mo><msub><mi>p</mi><mi>k</mi></msub><mo>)</mo><mo>)</mo><mo>)</mo></mstyle></mrow><annotation encoding="application/x-tex">\hat T_{S \gets D}(z)=M_0 z+\displaystyle\sum^K_{k=1} M_k(T_{S \gets R}(p_k)+J_k(z-T_{D \gets R}(p_k)))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.8283360000000002em;"></span><span class="strut bottom" style="height:3.1304490000000005em;vertical-align:-1.302113em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord accent"><span class="vlist"><span style="top:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord mathit" style="margin-right:0.13889em;">T</span></span><span style="top:-0.25233em;margin-left:0.16668em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="accent-body"><span>^</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mrel">←</span><span class="mord mathit" style="margin-right:0.02778em;">D</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mrel">=</span><span class="mord"><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.10903em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="mbin">+</span><span class="reset-textstyle displaystyle textstyle uncramped"><span class="mop op-limits"><span class="vlist"><span style="top:1.202113em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mrel">=</span><span class="mord mathrm">1</span></span></span></span><span style="top:-0.000005000000000032756em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span><span class="op-symbol large-op mop">∑</span></span></span><span style="top:-1.250005em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.07153em;">K</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord"><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.10903em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mrel">←</span><span class="mord mathit" style="margin-right:0.00773em;">R</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit">p</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span><span class="mbin">+</span><span class="mord"><span class="mord mathit" style="margin-right:0.09618em;">J</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.09618em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="mbin">−</span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.02778em;">D</span><span class="mrel">←</span><span class="mord mathit" style="margin-right:0.00773em;">R</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit">p</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></span> 中的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>M</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">M_k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.10903em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span> ，也就是对于每一个pk的一张张heatmap。由于平移变换还是需要从kp得出，所以平移还是用原本的方法进行预测，但是旋转和缩放使用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>M</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">M_k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.10903em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span> 的PCA进行预测。作者这里是用了SVD（奇异值分解）进行PCA计算：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtable><mtr><mtd><mrow><msup><mi>μ</mi><mi>k</mi></msup><mo>=</mo><mstyle scriptlevel="0" displaystyle="true"><msubsup><mo>∑</mo><mrow><mi>z</mi><mo>∈</mo><mi>Z</mi></mrow><mrow></mrow></msubsup><msub><mi>M</mi><mi>k</mi></msub><mo>(</mo><mi>z</mi><mo>)</mo><mi>z</mi><mo separator="true">,</mo></mstyle></mrow></mtd></mtr><mtr><mtd><mrow><msup><mi>U</mi><mi>k</mi></msup><msup><mi>S</mi><mi>k</mi></msup><msup><mi>V</mi><mi>k</mi></msup><mo>=</mo><mstyle scriptlevel="0" displaystyle="true"><msubsup><mo>∑</mo><mrow><mi>z</mi><mo>∈</mo><mi>Z</mi></mrow><mrow></mrow></msubsup><msub><mi>M</mi><mi>k</mi></msub><mo>(</mo><mi>z</mi><mo>)</mo><mo>(</mo><mi>z</mi><mo>−</mo><msup><mi>μ</mi><mi>k</mi></msup><mo>)</mo><mo>(</mo><mi>z</mi><mo>−</mo><msup><mi>μ</mi><mi>k</mi></msup><msup><mo>)</mo><mi>T</mi></msup><mtext> </mtext><mo>(</mo><mi>S</mi><mi>V</mi><mi>D</mi><mo>)</mo><mo separator="true">,</mo></mstyle></mrow></mtd></mtr><mtr><mtd><mrow><msubsup><mi>A</mi><mrow><mi>X</mi><mo>←</mo><mi>R</mi></mrow><mi>k</mi></msubsup><mo>=</mo><mo>[</mo><msup><mrow><msup><mi>U</mi><mi>k</mi></msup><msup><mi>S</mi><mi>k</mi></msup></mrow><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></msup><mo separator="true">,</mo><msup><mi>μ</mi><mi>k</mi></msup><mo>]</mo><mi mathvariant="normal">.</mi></mrow></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">\begin{array}{cc}
+\mu ^k=\displaystyle\sum^{}_{z\in Z} M_k(z)z, \\
+U^kS^kV^k=\displaystyle\sum^{}_{z\in Z} M_k(z)(z-\mu^k)(z-\mu^k)^T \space (SVD), \\
+A^k_{X \gets R} = [{U^kS^k}^{\frac{1}{2}},\mu^k].
+\end{array}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:3.6572750000000003em;"></span><span class="strut bottom" style="height:6.8145500000000006em;vertical-align:-3.1572750000000003em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mtable"><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist"><span style="top:-2.30727em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit">μ</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mrel">=</span><span class="reset-textstyle displaystyle textstyle uncramped"><span class="mop op-limits"><span class="vlist"><span style="top:1.194336em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="mrel">∈</span><span class="mord mathit" style="margin-right:0.07153em;">Z</span></span></span></span><span style="top:-0.000005000000000032756em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span><span class="op-symbol large-op mop">∑</span></span></span><span style="top:-1.250005em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord"><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.10903em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="mpunct">,</span></span></span></span><span style="top:0.364441em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.10903em;">U</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord"><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord"><span class="mord mathit" style="margin-right:0.22222em;">V</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mrel">=</span><span class="reset-textstyle displaystyle textstyle uncramped"><span class="mop op-limits"><span class="vlist"><span style="top:1.194336em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="mrel">∈</span><span class="mord mathit" style="margin-right:0.07153em;">Z</span></span></span></span><span style="top:-0.000005000000000032756em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span><span class="op-symbol large-op mop">∑</span></span></span><span style="top:-1.250005em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord"><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.10903em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="mbin">−</span><span class="mord"><span class="mord mathit">μ</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="mbin">−</span><span class="mord"><span class="mord mathit">μ</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose"><span class="mclose">)</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.13889em;">T</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mspace"> </span><span class="mopen">(</span><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mord mathit" style="margin-right:0.22222em;">V</span><span class="mord mathit" style="margin-right:0.02778em;">D</span><span class="mclose">)</span><span class="mpunct">,</span></span></span></span><span style="top:2.7972750000000004em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit">A</span><span class="vlist"><span style="top:0.247em;margin-left:0em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.07847em;">X</span><span class="mrel">←</span><span class="mord mathit" style="margin-right:0.00773em;">R</span></span></span></span><span style="top:-0.4129999999999999em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mrel">=</span><span class="mopen">[</span><span class="mord"><span class="mord displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.10903em;">U</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord"><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span><span class="vlist"><span style="top:-0.5131079999999999em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord scriptstyle uncramped"><span class="mord reset-scriptstyle scriptstyle uncramped"><span class="sizing reset-size5 size5 reset-scriptstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.345em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-scriptstyle scriptscriptstyle cramped"><span class="mord scriptscriptstyle cramped"><span class="mord mathrm">2</span></span></span></span><span style="top:-0.22142857142857142em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-scriptstyle textstyle uncramped frac-line"></span></span><span style="top:-0.394em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-scriptstyle scriptscriptstyle uncramped"><span class="mord scriptscriptstyle uncramped"><span class="mord mathrm">1</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="sizing reset-size5 size5 reset-scriptstyle textstyle uncramped nulldelimiter"></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">μ</span><span class="vlist"><span style="top:-0.413em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">]</span><span class="mord mathrm">.</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="arraycolsep" style="width:0.5em;"></span></span></span></span></span></span></span></p>
+<h2 id="背景运动估计"><a class="markdownIt-Anchor" href="#背景运动估计"></a> 背景运动估计</h2>
+<p>作者这里额外用了一个网络预测背景的仿射变换： <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>A</mi><mrow><mi>S</mi><mo>←</mo><mi>D</mi></mrow><mn>0</mn></msubsup><mo>=</mo><mrow><mo fence="true">[</mo><mtable><mtr><mtd><mrow><msub><mi>a</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>a</mi><mn>2</mn></msub><mo separator="true">,</mo><msub><mi>a</mi><mn>3</mn></msub></mrow></mtd></mtr><mtr><mtd><mrow><msub><mi>a</mi><mn>4</mn></msub><mo separator="true">,</mo><msub><mi>a</mi><mn>5</mn></msub><mo separator="true">,</mo><msub><mi>a</mi><mn>6</mn></msub></mrow></mtd></mtr></mtable><mo fence="true">]</mo></mrow></mrow><annotation encoding="application/x-tex">A^0_{S \gets D} = \left[\begin{matrix}a_1,a_2,a_3\\a_4,a_5,a_6\end{matrix}\right]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.45em;"></span><span class="strut bottom" style="height:2.40003em;vertical-align:-0.95003em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">A</span><span class="vlist"><span style="top:0.275331em;margin-left:0em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mrel">←</span><span class="mord mathit" style="margin-right:0.02778em;">D</span></span></span></span><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathrm">0</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mrel">=</span><span class="minner textstyle uncramped"><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;"><span class="delimsizing size3">[</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist"><span style="top:-0.6099999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle uncramped"><span class="mord"><span class="mord mathit">a</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">a</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">a</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">3</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span><span style="top:0.5900000000000003em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="mord textstyle uncramped"><span class="mord"><span class="mord mathit">a</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">4</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">a</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">5</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mpunct">,</span><span class="mord"><span class="mord mathit">a</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">6</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span><span class="style-wrap reset-textstyle textstyle uncramped" style="top:0em;"><span class="delimsizing size3">]</span></span></span></span></span></span> ，作者这里提出：从理论上来说，背景运动的训练可能会掺杂一部分前景。但是在实际训练过程中，发现前景的PCA分解比背景更加明显，所以很容易就被区分开了，在训练中没有遇到这种掺杂的情况。</p>
+<h2 id="分步生成动画"><a class="markdownIt-Anchor" href="#分步生成动画"></a> 分步生成动画</h2>
+<p>在FOMM中，对于input的图像和驱动视频其实是有一点约束的：源图像S和驱动视频的第一帧D1需要拥有大体相同的姿态，不然生成效果会受到影响。</p>
+<p>本文中针对这一现象引入了一个额外的网络来对动画生成进行编码。</p>
+<p><img src="https://s2.loli.net/2022/08/05/jFUx23TfpJhnYSk.png" alt="Animation via disentanglement" /></p>
+<p>这里使用S来对前景的shape进行编码，然后用D来编码人物的pose，最后一起丢进一个网络生成最终的帧。由于和FOMM一样，在早期训练的过程中S和D其实是来自于同一段视频的，那显而易见S和D的shape是相同的，为了优化训练，作者在把这个D先进行了一些随机的形变。同时由于pose每一帧都不同，所以就不用额外处理了。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <!-- <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/Linyxxxxx">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul> -->
+    <p>Friends</p>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://shenyyu.site/">shenyyu</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>
