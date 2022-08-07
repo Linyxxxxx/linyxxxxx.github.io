@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/images/icons/favicon-32x32.png">
+
+    <title>
+        
+        Structure-Aware Motion Transfer with Deformable Anchor Model 论文阅读 - 「二零拾肆」
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/KaTeX/0.7.1/katex.min.css" rel="stylesheet">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Look how they shine for you </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/images/avatar.png" />
+        </div>
+        <div class="name">
+            <i>Linyx</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>目录</span>
+                </a>
+            </li>
+            <!-- <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li> -->
+            <!-- <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li> -->
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+
+            <!-- profile -->
+            
+            <li>
+                <a target="_blank" rel="noopener" href="https://github.com/Linyxxxxx">
+                    <i class="iconfont icon-github"></i>
+                    <span>Github</span>
+                </a>
+            </li>
+            
+            <li class="old-site">
+                <a target="_blank" rel="noopener" href="https://linyx-old.vercel.app/">
+                    <i class="iconfont icon-fanhui"></i>
+                    <span>旧站</span>
+                </a>
+            </li>
+            <!--  -->
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Look how they shine for you </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        「 Structure-Aware Motion Transfer with Deformable Anchor Model 论文阅读 」
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2022-08-07 10:11:53</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#论文阅读" title="论文阅读">论文阅读</a>
+        <span>/</span>
+        
+        
+        </span>
+        <!-- <span class="attr">访问：<span id="busuanzi_value_page_pv"></span> -->
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <p>现在的motion transfer主要分为两种流派：</p>
+<ol>
+<li>model-based：需要一个预训练的第三方模型，好处是把keypoints的识别和后续的形变独立开来，保证kp识别的正确。但是最大的问题就在于需要有这个模型，像人脸、人体等模型挺常见，但是推广到其他物体或动物可能就找不到对应的模型。</li>
+<li>model-free：把识别kp当作训练的一部分，这样的好处当然就是适用于多种场景，但是也存在kp容易识别错误的问题。</li>
+</ol>
+<p>这篇paper是在出名的model-free模型，First Order Motion Model上进行的改进，在其中引入了Deformable Part Model。DPM的思想大概是把人体检测的工作分为身体各个部分的检测，然后根据root的位置把它们对应关联到一起。这篇paper把FOMM的kp检测中加入了DPM，来让kp的生成更加符合逻辑。</p>
+<p><img src="https://s2.loli.net/2022/08/07/vDZrC7MmpWFXeTa.png" alt="FOMM中出现的kp错误问题" /></p>
+<p>如图，FOMM中时常存在kp检测错误（红、蓝框）的问题，这样的错误直接导致了动作估计的错误，使得生成效果出错。</p>
+<p><img src="https://s2.loli.net/2022/08/07/JPXjCHZOLvwnxEY.png" alt="DAM Pipeline" /></p>
+<p>作者在训练的时候引入了DPM，先计算出了一些root anchor <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>z</mi><mi>r</mi><mi>d</mi></msubsup></mrow><annotation encoding="application/x-tex">z_r^d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.849108em;"></span><span class="strut bottom" style="height:1.096108em;vertical-align:-0.247em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="vlist"><span style="top:0.247em;margin-left:-0.04398em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.02778em;">r</span></span></span><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit">d</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span> ，然后通过这些root的运动以及root与其控制的kp之间的运动计算出每一个kp <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>z</mi><mi>k</mi><mi>d</mi></msubsup></mrow><annotation encoding="application/x-tex">z_k^d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.849108em;"></span><span class="strut bottom" style="height:1.132216em;vertical-align:-0.2831079999999999em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="vlist"><span style="top:0.2831079999999999em;margin-left:-0.04398em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span style="top:-0.363em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit">d</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span> 的运动：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mi>r</mi></msub><mo>(</mo><msubsup><mi>z</mi><mi>k</mi><mi>d</mi></msubsup><mo>)</mo><mo>=</mo><msub><mi>T</mi><mi>r</mi></msub><mo>(</mo><msubsup><mi>z</mi><mi>r</mi><mi>d</mi></msubsup><mo>)</mo><mo>+</mo><msub><mi>θ</mi><mi>r</mi></msub><mo>(</mo><msubsup><mi>z</mi><mi>k</mi><mi>d</mi></msubsup><mo>−</mo><msubsup><mi>z</mi><mi>r</mi><mi>d</mi></msubsup><mo>)</mo></mrow><annotation encoding="application/x-tex">T_r(z_k^d) = T_r(z_r^d) + \theta_r(z_k^d-z_r^d)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8991079999999998em;"></span><span class="strut bottom" style="height:1.1491079999999998em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.02778em;">r</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="vlist"><span style="top:0.247em;margin-left:-0.04398em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span style="top:-0.4129999999999999em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit">d</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span><span class="mrel">=</span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.02778em;">r</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="vlist"><span style="top:0.247em;margin-left:-0.04398em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.02778em;">r</span></span></span><span style="top:-0.4129999999999999em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit">d</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span><span class="mbin">+</span><span class="mord"><span class="mord mathit" style="margin-right:0.02778em;">θ</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.02778em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.02778em;">r</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="vlist"><span style="top:0.247em;margin-left:-0.04398em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span style="top:-0.4129999999999999em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit">d</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mbin">−</span><span class="mord"><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="vlist"><span style="top:0.247em;margin-left:-0.04398em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.02778em;">r</span></span></span><span style="top:-0.4129999999999999em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit">d</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span></span></span></span></span></p>
+<p>与此同时，作者也保留了原本FOMM的检测方法，将通过原本方法直接检测出的运动记为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">T_k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span> ，可以将其与 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mi>r</mi></msub></mrow><annotation encoding="application/x-tex">T_r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.02778em;">r</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span> 一同计算loss：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>L</mi><mrow><mi>k</mi><mo>←</mo><mi>r</mi></mrow></msub><mo>=</mo><mi mathvariant="normal">∥</mi><msub><mi>T</mi><mi>k</mi></msub><mo>(</mo><msubsup><mi>z</mi><mi>k</mi><mi>d</mi></msubsup><mo>)</mo><mo>−</mo><msub><mi>T</mi><mi>r</mi></msub><mo>(</mo><msubsup><mi>z</mi><mi>k</mi><mi>d</mi></msubsup><mo>)</mo><msub><mi mathvariant="normal">∥</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">L_{k \gets r} = \|T_k(z_k^d) - T_r(z_k^d)\|_2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8991079999999998em;"></span><span class="strut bottom" style="height:1.1491079999999998em;vertical-align:-0.25em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit">L</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span><span class="mrel">←</span><span class="mord mathit" style="margin-right:0.02778em;">r</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mrel">=</span><span class="mord mathrm">∥</span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="vlist"><span style="top:0.247em;margin-left:-0.04398em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span style="top:-0.4129999999999999em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit">d</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span><span class="mbin">−</span><span class="mord"><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.13889em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.02778em;">r</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathit" style="margin-right:0.04398em;">z</span><span class="vlist"><span style="top:0.247em;margin-left:-0.04398em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.03148em;">k</span></span></span><span style="top:-0.4129999999999999em;margin-right:0.05em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle uncramped"><span class="mord mathit">d</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mclose">)</span><span class="mord"><span class="mord mathrm">∥</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathrm">2</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span></p>
+<p>需要注意的是这些root anchor以及涉及的计算只存在于训练过程中，用来优化模型，在实际检测的时候还是直接用FOMM的那一套方法。</p>
+<p>作者还提出如果还觉得这不够的话你可以再在root anchor和其余kp之间再加一层检测……</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <!-- <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/Linyxxxxx">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul> -->
+    <p>Friends</p>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a target="_blank" rel="noopener" href="https://shenyyu.site/">shenyyu</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>
